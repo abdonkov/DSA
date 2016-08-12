@@ -1,0 +1,36 @@
+﻿using System;
+
+namespace DSA.DataStructures.Trees
+{
+    /// <summary>
+    /// Represents a node in the <see cref="BinarySearchTree{T}"/>.
+    /// </summary>
+    /// <typeparam name="T">T implements <see cref="IComparable{T}">.</typeparam>
+    public class BinarySearchTreeNode<T>
+        where T : IComparable<T>
+    {
+        /// <summary>
+        /// Gets the left child of the <see cref="BinarySearchTreeNode{T}"/>.
+        /// </summary>
+        public BinarySearchTreeNode<T> Left { get; internal set; }
+
+        /// <summary>
+        /// Gets the right child of the <see cref="BinarySearchTreeNode{T}"/>.
+        /// </summary>
+        public BinarySearchTreeNode<T> Right { get; internal set; }
+
+        /// <summary>
+        /// Gets the value contained in the <see cref="BinarySearchTreeNode{T}"/>.
+        /// </summary>
+        public T Value { get; internal set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BinarySearchTreeNode{T}"/> class, containing the specified value.
+        /// </summary>
+        /// <param name="value">The value to contain in the <see cref="BinarySearchTreeNode{T}"/>.</param>
+        public BinarySearchTreeNode(T value)
+        {
+            Value = value;
+        }
+    }
+}
