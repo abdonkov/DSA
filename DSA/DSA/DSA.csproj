@@ -41,8 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataStructures\Interfaces\ITree.cs" />
-    <Compile Include="DataStructures\Trees\RedBlackTree.cs" />
-    <Compile Include="DataStructures\Trees\RedBlackTreeNode.cs" />
+    <Compile Include="DataStructures\Trees\AVLTree.cs" />
+    <Compile Include="DataStructures\Trees\AVLTreeNode.cs" />
+    <Compile Include="DataStructures\Trees\BinarySearchTree.cs" />
+    <Compile Include="DataStructures\Trees\BinarySearchTreeNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

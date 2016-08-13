@@ -198,5 +198,27 @@ namespace DSAUnitTests
                             && count == elementsCount / 2
                             && removedEverything);
         }
+
+        [TestMethod]
+        public void BalancingCheckWithRootRotation()
+        {
+            var tree = new AVLTree<int>();
+
+            tree.Add(1);
+            tree.Add(2);
+            tree.Add(3);
+
+            /*
+            After balance the tree should look like this:
+                  2
+                 / \
+                1   3
+            */
+
+            Assert.IsTrue(tree.Root.Value == 2
+                            && tree.Root.Left.Value == 1
+                            && tree.Root.Right.Value == 3);
+            
+        }
     }
 }
