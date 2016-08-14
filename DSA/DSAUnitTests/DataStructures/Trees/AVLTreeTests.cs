@@ -30,7 +30,7 @@ namespace DSAUnitTests
         {
             var tree = new AVLTree<int>();
 
-            int elementsCount = 100;
+            int elementsCount = 100000;
 
             //Adding every seventh number, then every fifth number,
             //every third and at last all numbers
@@ -72,7 +72,7 @@ namespace DSAUnitTests
         {
             var tree = new AVLTree<int>();
 
-            int elementsCount = 100;
+            int elementsCount = 100000;
 
             //Adding every seventh number, then every fifth number,
             //every third and at last all numbers
@@ -121,7 +121,7 @@ namespace DSAUnitTests
         {
             var tree = new AVLTree<int>();
 
-            int elementsCount = 100;
+            int elementsCount = 100000;
 
             //Adding every seventh number, then every fifth number,
             //every third and at last all numbers
@@ -153,7 +153,7 @@ namespace DSAUnitTests
         {
             var tree = new AVLTree<int>();
 
-            int elementsCount = 100;
+            int elementsCount = 100000;
 
             //Adding every seventh number, then every fifth number,
             //every third and at last all numbers

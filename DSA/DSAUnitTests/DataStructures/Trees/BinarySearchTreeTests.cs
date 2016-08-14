@@ -14,7 +14,7 @@ namespace DSAUnitTests.DataStructures.Trees
         {
             BinarySearchTree<int> tree = new BinarySearchTree<int>();
 
-            int elementsCount = 100;
+            int elementsCount = 10000;
 
             //To make it more balanced
             tree.Add(50);
@@ -59,7 +59,7 @@ namespace DSAUnitTests.DataStructures.Trees
         {
             BinarySearchTree<int> tree = new BinarySearchTree<int>();
 
-            int elementsCount = 100;
+            int elementsCount = 10000;
 
             //To make it more balanced
             tree.Add(50);
@@ -113,7 +113,7 @@ namespace DSAUnitTests.DataStructures.Trees
         {
             BinarySearchTree<int> tree = new BinarySearchTree<int>();
 
-            int elementsCount = 100;
+            int elementsCount = 10000;
 
             //To make it more balanced
             tree.Add(50);
@@ -150,7 +150,7 @@ namespace DSAUnitTests.DataStructures.Trees
         {
             var tree = new BinarySearchTree<int>();
 
-            int elementsCount = 100;
+            int elementsCount = 10000;
 
             //To make it more balanced
             tree.Add(50);
