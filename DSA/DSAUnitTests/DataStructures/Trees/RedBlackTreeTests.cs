@@ -30,7 +30,7 @@ namespace DSAUnitTests
         {
             var tree = new RedBlackTree<int>();
 
-            int elementsCount = 100;
+            int elementsCount = 100000;
 
             //Adding every seventh number, then every fifth number,
             //every third and at last all numbers
@@ -68,7 +68,7 @@ namespace DSAUnitTests
         {
             var tree = new RedBlackTree<int>();
 
-            int elementsCount = 100;
+            int elementsCount = 100000;
 
             //Adding every seventh number, then every fifth number,
             //every third and at last all numbers
@@ -105,8 +105,6 @@ namespace DSAUnitTests
                 count++;
             }
 
-            Trace.WriteLine(tree.Count);
-
             Assert.IsTrue(tree.Count == count
                             && elementsAreSorted
                             && removedEverything);
@@ -117,7 +115,7 @@ namespace DSAUnitTests
         {
             var tree = new RedBlackTree<int>();
 
-            int elementsCount = 100;
+            int elementsCount = 100000;
 
             //Adding every seventh number, then every fifth number,
             //every third and at last all numbers
@@ -139,11 +137,11 @@ namespace DSAUnitTests
                 if (!tree.Remove(i)) removedEverything = false;
             }
 
-            Trace.WriteLine(tree.Count + " -> " + removedEverything + " ->" + tree.Root.Value );
-
             Assert.IsTrue(tree.Count == 1
                             && removedEverything
-                            && tree.Root.Value == elementsCount - 1);
+                            && tree.Root.Value == elementsCount - 1
+                            && tree.Root.Left == null
+                            && tree.Root.Right == null);
         }
 
         [TestMethod]
@@ -151,7 +149,7 @@ namespace DSAUnitTests
         {
             var tree = new RedBlackTree<int>();
 
-            int elementsCount = 100;
+            int elementsCount = 100000;
 
             //Adding every seventh number, then every fifth number,
             //every third and at last all numbers
@@ -189,12 +187,32 @@ namespace DSAUnitTests
                 count++;
             }
 
-            Trace.WriteLine(tree.Count);
-
             Assert.IsTrue(tree.Count == count
                             && elementsAreSorted
                             && count == elementsCount / 2
                             && removedEverything);
+        }
+
+        [TestMethod]
+        public void BalancingCheckWithRootRotation()
+        {
+            var tree = new RedBlackTree<int>();
+
+            tree.Add(1);
+            tree.Add(2);
+            tree.Add(3);
+
+            /*
+            After balance the tree should look like this:
+                  2
+                 / \
+                1   3
+            */
+
+            Assert.IsTrue(tree.Root.Value == 2
+                            && tree.Root.Left.Value == 1
+                            && tree.Root.Right.Value == 3);
+
         }
     }
 }
