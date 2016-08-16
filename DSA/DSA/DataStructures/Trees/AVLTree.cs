@@ -35,14 +35,17 @@ namespace DSA.DataStructures.Trees
         /// </summary>
         public AVLTree() : base() { }
 
-
-        // Gets the node height. Returns 0 if node is null.
+        /// <summary>
+        /// Gets the node height. Returns 0 if node is null.
+        /// </summary>
         private int NodeHeight(AVLTreeNode<T> node)
         {
             return node?.Height ?? 0;
         }
 
-        // Fixes the node height, calculating it from its childs.
+        /// <summary>
+        /// Fixes the node height, calculating it from its children.
+        /// </summary>
         private void FixHeight(AVLTreeNode<T> node)
         {
             var leftHeight = NodeHeight(node.Left);
@@ -50,11 +53,17 @@ namespace DSA.DataStructures.Trees
             node.Height = (leftHeight > rightHeight ? leftHeight : rightHeight) + 1;
         }
 
+        /// <summary>
+        /// Calculates the balance factor.
+        /// </summary>
         private int BalanceFactor(AVLTreeNode<T> node)
         {
             return NodeHeight(node.Left) - NodeHeight(node.Right);
         }
 
+        /// <summary>
+        /// Standard left rotation.
+        /// </summary>
         private AVLTreeNode<T> RotateLeft(AVLTreeNode<T> node)
         {
             AVLTreeNode<T> m = node.Right;
@@ -65,6 +74,9 @@ namespace DSA.DataStructures.Trees
             return m;
         }
 
+        /// <summary>
+        /// Standard right rotation.
+        /// </summary>
         private AVLTreeNode<T> RotateRight(AVLTreeNode<T> node)
         {
             AVLTreeNode<T> m = node.Left;
@@ -75,17 +87,27 @@ namespace DSA.DataStructures.Trees
             return m;
         }
 
+        /// <summary>
+        /// Checks if balancing is needed and performs it.
+        /// </summary>
         private AVLTreeNode<T> Balance(AVLTreeNode<T> node)
         {
             FixHeight(node);
+            // if balance factor is -2 the left subtree is smaller than the right
+            // so we need to perform a left rotation
             if (BalanceFactor(node) == -2)
             {
-                if (BalanceFactor(node.Right) > 0) node.Right = RotateRight(node.Right);
+
+                if (BalanceFactor(node.Right) > 0)// Right Left Case if true, else Right Right Case
+                    node.Right = RotateRight(node.Right);
                 return RotateLeft(node);
             }
+            // if balance factor is 2 the right subtree is smaller than the left
+            // so we need to perform a right rotation
             if (BalanceFactor(node) == 2)
             {
-                if (BalanceFactor(node.Left) < 0) node.Left = RotateLeft(node.Left);
+                if (BalanceFactor(node.Left) < 0)// Left Right Case if true, else Left Left Case
+                    node.Left = RotateLeft(node.Left);
                 return RotateRight(node);
             }
             return node;
@@ -101,6 +123,9 @@ namespace DSA.DataStructures.Trees
             Count++;
         }
 
+        /// <summary>
+        /// Recursive insertion with balancing on every step.
+        /// </summary>
         private AVLTreeNode<T> Add(AVLTreeNode<T> node, T value)
         {
             if (node == null) return new AVLTreeNode<T>(value);
@@ -125,6 +150,9 @@ namespace DSA.DataStructures.Trees
             return curCount != Count;
         }
 
+        /// <summary>
+        /// Recursive removal with balancing on every step.
+        /// </summary>
         private AVLTreeNode<T> Remove(AVLTreeNode<T> node, T value)
         {
             if (node == null) return node;
@@ -149,6 +177,9 @@ namespace DSA.DataStructures.Trees
             return Balance(node);
         }
 
+        /// <summary>
+        /// Finds and removes the min element of the given subtree.
+        /// </summary>
         private AVLTreeNode<T> FindAndRemoveMin(AVLTreeNode<T> node, ref AVLTreeNode<T> min)
         {
             if (node.Left == null)
