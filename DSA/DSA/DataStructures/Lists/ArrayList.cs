@@ -46,12 +46,12 @@ namespace DSA.DataStructures.Lists
         }
 
         /// <summary>
-        /// Creates a new instance of the <see cref="ArrayList{T}"/> class with default capacity of 8.
+        /// Creates a new instance of the <see cref="ArrayList{T}"/> class that is empty and has default capacity of 8.
         /// </summary>
         public ArrayList() : this(capacity: 8) { }
 
         /// <summary>
-        /// Creates a new instance of the <see cref="ArrayList{T}"/> class with the given capacity.
+        /// Creates a new instance of the <see cref="ArrayList{T}"/> class that is empty and has the given capacity.
         /// </summary>
         /// <param name="capacity">The capacity of the backing array.</param>
         public ArrayList(int capacity)
@@ -61,6 +61,27 @@ namespace DSA.DataStructures.Lists
             Capacity = capacity;
             array = new T[Capacity];
             Count = 0;
+        }
+
+        /// <summary>
+        /// Creates a new instance of the <see cref="ArrayList{T}"/> class that contains the elements from the specified collection.
+        /// </summary>
+        /// <param name="collection">The collection whose elements are copied to the new ArrayList.</param>
+        public ArrayList(IEnumerable<T> collection)
+        {
+            if (collection == null) throw new ArgumentNullException();
+
+            int colSize = collection.Count();
+
+            Capacity = 0;
+            Count = 0;
+
+            Resize(increase: true, minCapacity: colSize);
+
+            foreach (var item in collection)
+            {
+                Add(item);
+            }          
         }
 
         /// <summary>
@@ -74,12 +95,8 @@ namespace DSA.DataStructures.Lists
             {
                 if (increase)
                 {
-                    if (Capacity < 2048)
-                    {
-                        if (Capacity == 0) Capacity = 1;
-                        else Capacity *= 2;
-                    }
-                    else Capacity += 256;
+                    if (Capacity == 0) Capacity = 1;
+                    else Capacity *= 2;
                 }
                 else Capacity /= 2;
             }
@@ -89,12 +106,8 @@ namespace DSA.DataStructures.Lists
                 {
                     while (Capacity < minCapacity)
                     {
-                        if (Capacity < 2048)
-                        {
-                            if (Capacity == 0) Capacity = 1;
-                            else Capacity *= 2;
-                        }
-                        else Capacity += 256;
+                        if (Capacity == 0) Capacity = 1;
+                        else Capacity *= 2;
                     }
                 }
                 else
@@ -148,10 +161,11 @@ namespace DSA.DataStructures.Lists
         /// <param name="item">The item to insert</param>
         public void Insert(int index, T item)
         {
-            if (index < 0 || index >= Count) throw new IndexOutOfRangeException();
+            if (index < 0 || index > Count) throw new IndexOutOfRangeException();
             if (index == Count)
             {
                 Add(item);
+                return;
             }
             if (Count == Capacity) Resize(increase: true);
 
