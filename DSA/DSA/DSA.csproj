@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="DataStructures\Interfaces\ITree.cs" />
     <Compile Include="DataStructures\Lists\ArrayList.cs" />
+    <Compile Include="DataStructures\Lists\SinglyLinkedList.cs" />
+    <Compile Include="DataStructures\Lists\SinglyLinkedListNode.cs" />
     <Compile Include="DataStructures\Trees\AVLTree.cs" />
     <Compile Include="DataStructures\Trees\AVLTreeNode.cs" />
     <Compile Include="DataStructures\Trees\BinarySearchTree.cs" />
