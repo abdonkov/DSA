@@ -27,7 +27,7 @@ namespace DSA.DataStructures.Lists
         public int Count { get; internal set; }
 
         /// <summary>
-        /// The element at the given index.
+        /// The element at the given index in the <see cref="ArrayList{T}"/>.
         /// </summary>
         /// <param name="index">The index of the element.</param>
         /// <returns>The element on the given index.</returns>
@@ -46,9 +46,9 @@ namespace DSA.DataStructures.Lists
         }
 
         /// <summary>
-        /// Creates a new instance of the <see cref="ArrayList{T}"/> class that is empty and has default capacity of 8.
+        /// Creates a new instance of the <see cref="ArrayList{T}"/> class that is empty and has default capacity.
         /// </summary>
-        public ArrayList() : this(capacity: 8) { }
+        public ArrayList() : this(capacity: 4) { }
 
         /// <summary>
         /// Creates a new instance of the <see cref="ArrayList{T}"/> class that is empty and has the given capacity.
@@ -66,7 +66,7 @@ namespace DSA.DataStructures.Lists
         /// <summary>
         /// Creates a new instance of the <see cref="ArrayList{T}"/> class that contains the elements from the specified collection.
         /// </summary>
-        /// <param name="collection">The collection whose elements are copied to the new ArrayList.</param>
+        /// <param name="collection">The collection whose elements are copied to the new <see cref="ArrayList{T}"/>.</param>
         public ArrayList(IEnumerable<T> collection)
         {
             if (collection == null) throw new ArgumentNullException();
@@ -128,7 +128,7 @@ namespace DSA.DataStructures.Lists
         /// <summary>
         /// Adds an item to the end of the <see cref="ArrayList{T}"/>.
         /// </summary>
-        /// <param name="item">The item to add.</param>
+        /// <param name="item">The item to add at the end of the <see cref="ArrayList{T}"/>.</param>
         public void Add(T item)
         {
             if (Count == Capacity) Resize(increase: true);
@@ -157,8 +157,8 @@ namespace DSA.DataStructures.Lists
         /// <summary>
         /// Inserts an item into the <see cref="ArrayList{T}"/> at the specific index.
         /// </summary>
-        /// <param name="index">The index at which the item is inserted.</param>
-        /// <param name="item">The item to insert</param>
+        /// <param name="index">The index at which the item is inserted in the <see cref="ArrayList{T}"/>.</param>
+        /// <param name="item">The item to insert in the <see cref="ArrayList{T}"/>.</param>
         public void Insert(int index, T item)
         {
             if (index < 0 || index > Count) throw new IndexOutOfRangeException();
@@ -184,7 +184,7 @@ namespace DSA.DataStructures.Lists
         /// <summary>
         /// Inserts the elements of the collection into the <see cref="ArrayList{T}"/> at the specific index.
         /// </summary>
-        /// <param name="index">The index at which the item is inserted.</param>
+        /// <param name="index">The index at which the item is inserted in the <see cref="ArrayList{T}"/>.</param>
         /// <param name="collection">The collection whose elements should be inserted in the <see cref="ArrayList{T}"/>at the specified index.</param>
         public void InsertRange(int index, IEnumerable<T> collection)
         {
@@ -212,7 +212,7 @@ namespace DSA.DataStructures.Lists
         /// <summary>
         /// Removes the first occurrence of the item from the <see cref="ArrayList{T}"/>.
         /// </summary>
-        /// <param name="item">The item to remove</param>
+        /// <param name="item">The item to remove from the <see cref="ArrayList{T}"/>.</param>
         /// <returns>true if the item is removed successfully; otherwise false.</returns>
         public bool Remove(T item)
         {
@@ -225,7 +225,7 @@ namespace DSA.DataStructures.Lists
         /// <summary>
         /// Removes a range of elements from the <see cref="ArrayList{T}"/>.
         /// </summary>
-        /// <param name="index">The starting index of the range of elements to remove.</param>
+        /// <param name="index">The starting index of the range of elements to remove from the <see cref="ArrayList{T}"/>.</param>
         /// <param name="count">The number of elements to remove.</param>
         public void RemoveRange(int index, int count)
         {
@@ -249,7 +249,7 @@ namespace DSA.DataStructures.Lists
         /// <summary>
         /// Removes the item at the specific index of the <see cref="ArrayList{T}"/>.
         /// </summary>
-        /// <param name="index">The index of the item to remove.</param>
+        /// <param name="index">The index of the item to remove from the <see cref="ArrayList{T}"/>.</param>
         public void RemoveAt(int index)
         {
             if (index < 0 || index >= Count) throw new IndexOutOfRangeException();
@@ -266,7 +266,7 @@ namespace DSA.DataStructures.Lists
         /// <summary>
         /// Searches for the item and returns the index of the first occurrence within the entire <see cref="ArrayList{T}"/>.
         /// </summary>
-        /// <param name="item">The item for searching.</param>
+        /// <param name="item">The item to search for the first occurrence in the <see cref="ArrayList{T}"/>.</param>
         /// <returns>The index of the first occurrence of the item if found; otherwise -1.</returns>
         public int IndexOf(T item)
         {
@@ -280,7 +280,7 @@ namespace DSA.DataStructures.Lists
         /// <summary>
         /// Searches for the item and returns the index of the last occurrence within the entire <see cref="ArrayList{T}"/>.
         /// </summary>
-        /// <param name="item">The item for searching.</param>
+        /// <param name="item">The item to search for the last occurrence in the <see cref="ArrayList{T}"/>.</param>
         /// <returns>The index of the last occurrence of the item if found; otherwise -1.</returns>
         public int LastIndexOf(T item)
         {
@@ -294,7 +294,7 @@ namespace DSA.DataStructures.Lists
         /// <summary>
         /// Determines whether an item is in the <see cref="ArrayList{T}"/>.
         /// </summary>
-        /// <param name="item">The item for searching.</param>
+        /// <param name="item">The item to search in the <see cref="ArrayList{T}"/>.</param>
         /// <returns>returns true if the item is found; otherwise false.</returns>
         public bool Contains(T item)
         {
@@ -332,7 +332,7 @@ namespace DSA.DataStructures.Lists
         /// <summary>
         /// Returns an enumerator that iterates throught the <see cref="ArrayList{T}"/>.
         /// </summary>
-        /// <returns>Enumerator for the <see cref="ArrayList{T}"/></returns>
+        /// <returns>Enumerator for the <see cref="ArrayList{T}"/>.</returns>
         public IEnumerator<T> GetEnumerator()
         {
             for (int i = 0; i < Count; i++)
