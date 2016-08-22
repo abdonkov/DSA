@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace DSA.DataStructures.Lists
 {
     /// <summary>
-    /// Represents a singly linked list
+    /// Represents a singly linked list.
     /// </summary>
     /// <typeparam name="T">The stored data type.</typeparam>
     public class SinglyLinkedList<T> : IEnumerable<T>
@@ -34,9 +34,9 @@ namespace DSA.DataStructures.Lists
         }
 
         /// <summary>
-        /// Creates a new instance of the <see cref="ArrayList{T}"/> class that contains the elements from the specified collection.
+        /// Creates a new instance of the <see cref="SinglyLinkedList{T}"/> class that contains the elements from the specified collection.
         /// </summary>
-        /// <param name="collection">The collection whose elements are copied to the new ArrayList.</param>
+        /// <param name="collection">The collection whose elements are copied to the new <see cref="SinglyLinkedList{T}"/>.</param>
         public SinglyLinkedList(IEnumerable<T> collection)
         {
             Count = 0;
@@ -167,7 +167,10 @@ namespace DSA.DataStructures.Lists
                 {
                     lastNode.Next = curNode.Next;
                     if (lastNode.Next == null) Last = lastNode;
+
+                    curNode.Invalidate();
                     Count--;
+
                     return true;
                 }
 
@@ -179,13 +182,45 @@ namespace DSA.DataStructures.Lists
         }
 
         /// <summary>
+        /// Removes the specified node from the <see cref="SinglyLinkedList{T}"/>.
+        /// </summary>
+        /// <param name="node">The <see cref="SinglyLinkedListNode{T}"/> to remove from the <see cref="SinglyLinkedList{T}"/>.</param>
+        public void Remove(SinglyLinkedListNode<T> node)
+        {
+            if (node == null) throw new ArgumentNullException("node");
+            if (node.List != this) throw new InvalidOperationException("node doesn't belong to this list");
+
+            if (node == First)
+            {
+                RemoveFirst();
+                return;
+            }
+
+            var curNode = First;
+
+            while (curNode.Next != node)
+            {
+                curNode = curNode.Next;
+            }
+
+            curNode.Next = node.Next;
+            if (curNode.Next == null) Last = curNode;
+
+            node.Invalidate();
+            Count--;
+        }
+
+        /// <summary>
         /// Removes the node at the start of the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
         public void RemoveFirst()
         {
             if (Count == 0) throw new InvalidOperationException();
 
+            var oldFirst = First;
             First = First.Next;
+
+            oldFirst.Invalidate();
             Count--;
 
             if (Count == 0) Last = null;
@@ -200,6 +235,7 @@ namespace DSA.DataStructures.Lists
 
             if (Count == 1)
             {
+                First.Invalidate();
                 First = null;
                 Last = null;
                 Count--;
@@ -214,6 +250,7 @@ namespace DSA.DataStructures.Lists
             }
 
             curNode.Next = null;
+            Last.Invalidate();
             Last = curNode;
             Count--;
         }
@@ -221,7 +258,7 @@ namespace DSA.DataStructures.Lists
         /// <summary>
         /// Determines whether an value is in the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
-        /// <param name="value">The value to search.</param>
+        /// <param name="value">The value to search in the <see cref="SinglyLinkedList{T}"/>.</param>
         /// <returns>returns true if the value is found; otherwise false.</returns>
         public bool Contains(T value)
         {
@@ -244,6 +281,17 @@ namespace DSA.DataStructures.Lists
         /// </summary>
         public void Clear()
         {
+            if (Count == 0) return;
+
+            var curNode = First;
+            var lastNode = curNode;
+            while (curNode != null)
+            {
+                curNode = curNode.Next;
+                lastNode.Invalidate();
+                lastNode = curNode;
+            }
+
             First = null;
             Last = null;
             Count = 0;
@@ -252,7 +300,7 @@ namespace DSA.DataStructures.Lists
         /// <summary>
         /// Returns an enumerator that iterates throught the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
-        /// <returns>Enumerator for the <see cref="SinglyLinkedList{T}"/></returns>
+        /// <returns>Enumerator for the <see cref="SinglyLinkedList{T}"/>.</returns>
         public IEnumerator<T> GetEnumerator()
         {
             var curNode = First;
