@@ -136,6 +136,8 @@ namespace DSA.DataStructures.Lists
         /// <param name="value">The value to add at the end of the <see cref="SinglyLinkedList{T}"/>.</param>
         public SinglyLinkedListNode<T> AddLast(T value)
         {
+            if (Count == 0) return AddFirst(value);
+
             var newNode = new SinglyLinkedListNode<T>(value, this);
             Last.Next = newNode;
             Last = newNode;
