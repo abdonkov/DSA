@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="DataStructures\Lists\ArrayListTests.cs" />
     <Compile Include="DataStructures\Lists\SinglyLinkedListTests.cs" />
+    <Compile Include="DataStructures\Lists\DoublyLinkedListTest.cs" />
     <Compile Include="DataStructures\Trees\AVLTreeTests.cs" />
     <Compile Include="DataStructures\Trees\BinarySearchTreeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
