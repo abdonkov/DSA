@@ -13,7 +13,7 @@ namespace DSAUnitTests.DataStructures.Lists
         {
             var list = new SinglyLinkedList<int>();
 
-            int itemCount = 100;
+            int itemCount = 1000;
 
             for (int i = 0; i < itemCount; i++)
             {
@@ -21,13 +21,16 @@ namespace DSAUnitTests.DataStructures.Lists
             }
 
             int previous = itemCount;
+            int numberOfElementsInList = 0;
             foreach (var item in list)
             {
                 if (previous < item) Assert.Fail();
                 previous = item;
+                numberOfElementsInList++;
             }
 
-            Assert.IsTrue(list.Count == itemCount);
+            Assert.IsTrue(list.Count == itemCount
+                            && numberOfElementsInList == list.Count);
         }
 
         [TestMethod]
@@ -35,7 +38,7 @@ namespace DSAUnitTests.DataStructures.Lists
         {
             var list = new SinglyLinkedList<int>();
 
-            int itemCount = 100;
+            int itemCount = 1000;
 
             for (int i = 0; i < itemCount; i++)
             {
@@ -43,13 +46,16 @@ namespace DSAUnitTests.DataStructures.Lists
             }
 
             int previous = -1;
+            int numberOfElementsInList = 0;
             foreach (var item in list)
             {
                 if (previous > item) Assert.Fail();
                 previous = item;
+                numberOfElementsInList++;
             }
 
-            Assert.IsTrue(list.Count == itemCount);
+            Assert.IsTrue(list.Count == itemCount
+                            && numberOfElementsInList == list.Count);
         }
 
         [TestMethod]
@@ -57,7 +63,7 @@ namespace DSAUnitTests.DataStructures.Lists
         {
             var list = new SinglyLinkedList<int>();
 
-            int itemCount = 100;
+            int itemCount = 1000;
             var middleNode = new SinglyLinkedListNode<int>(0);
 
             for (int i = 0; i < itemCount; i++)
@@ -73,6 +79,7 @@ namespace DSAUnitTests.DataStructures.Lists
 
             int j = 0;
             int k = 0;
+            int numberOfElementsInList = 0;
 
             foreach (var item in list)
             {
@@ -90,9 +97,11 @@ namespace DSAUnitTests.DataStructures.Lists
                 }
 
                 j++;
+                numberOfElementsInList++;
             }
 
-            Assert.IsTrue(list.Count == 2 * itemCount);
+            Assert.IsTrue(list.Count == 2 * itemCount
+                            && numberOfElementsInList == list.Count);
         }
 
         [TestMethod]
@@ -100,7 +109,7 @@ namespace DSAUnitTests.DataStructures.Lists
         {
             var list = new SinglyLinkedList<int>();
 
-            int itemCount = 100;
+            int itemCount = 1000;
             var middleNode = new SinglyLinkedListNode<int>(0);
 
             for (int i = 0; i < itemCount; i++)
@@ -116,6 +125,7 @@ namespace DSAUnitTests.DataStructures.Lists
 
             int j = 0;
             int k = 0;
+            int numberOfElementsInList = 0;
 
             foreach (var item in list)
             {
@@ -133,9 +143,11 @@ namespace DSAUnitTests.DataStructures.Lists
                 }
 
                 j++;
+                numberOfElementsInList++;
             }
 
-            Assert.IsTrue(list.Count == 2 * itemCount);
+            Assert.IsTrue(list.Count == 2 * itemCount
+                            && numberOfElementsInList == list.Count);
         }
 
         [TestMethod]
@@ -143,7 +155,7 @@ namespace DSAUnitTests.DataStructures.Lists
         {
             var list = new SinglyLinkedList<int>();
 
-            int itemCount = 100;
+            int itemCount = 1000;
 
             for (int i = 0; i < itemCount; i++)
             {
@@ -156,12 +168,15 @@ namespace DSAUnitTests.DataStructures.Lists
             }
 
             int current = itemCount / 2;
+            int numberOfElementsInList = 0;
             foreach (var item in list)
             {
                 if (current++ != item) Assert.Fail();
+                numberOfElementsInList++;
             }
 
-            Assert.IsTrue(list.Count == itemCount / 2);
+            Assert.IsTrue(list.Count == itemCount / 2
+                            && numberOfElementsInList == list.Count);
         }
 
         [TestMethod]
@@ -169,7 +184,7 @@ namespace DSAUnitTests.DataStructures.Lists
         {
             var list = new SinglyLinkedList<int>();
 
-            int itemCount = 100;
+            int itemCount = 1000;
 
             for (int i = 0; i < itemCount; i++)
             {
@@ -182,12 +197,54 @@ namespace DSAUnitTests.DataStructures.Lists
             }
 
             int current = 0;
+            int numberOfElementsInList = 0;
             foreach (var item in list)
             {
                 if (current++ != item) Assert.Fail();
+                numberOfElementsInList++;
             }
 
-            Assert.IsTrue(list.Count == itemCount / 2);
+            Assert.IsTrue(list.Count == itemCount / 2
+                            && numberOfElementsInList == list.Count);
+        }
+
+        [TestMethod]
+        public void RemoveMiddeNodeAndOnward()
+        {
+            var list = new SinglyLinkedList<int>();
+
+            int itemCount = 1000;
+            var middleNode = new SinglyLinkedListNode<int>(0);
+
+            for (int i = 0; i < itemCount; i++)
+            {
+                if (i == itemCount / 2) middleNode = list.AddLast(i);
+                else list.AddLast(i);
+            }
+
+            SinglyLinkedListNode<int> currentNode = middleNode;
+            SinglyLinkedListNode<int> nextNode = middleNode;
+
+            do
+            {
+                nextNode = currentNode.Next;
+                list.Remove(currentNode);
+                currentNode = nextNode;
+
+            } while (currentNode != null);
+
+            int current = 0;
+            int numberOfElementsInList = 0;
+            foreach (var item in list)
+            {
+                if (current++ != item) Assert.Fail();
+                numberOfElementsInList++;
+            }
+
+
+            Assert.IsTrue(list.Count == itemCount / 2
+                            && list.Last.Value == itemCount / 2 - 1
+                            && numberOfElementsInList == list.Count);
         }
 
         [TestMethod]
@@ -195,7 +252,7 @@ namespace DSAUnitTests.DataStructures.Lists
         {
             var list = new SinglyLinkedList<int>();
 
-            int itemCount = 100;
+            int itemCount = 1000;
 
             for (int i = 0; i < itemCount; i++) list.AddLast(i);
 
@@ -233,7 +290,7 @@ namespace DSAUnitTests.DataStructures.Lists
         {
             var list = new SinglyLinkedList<int>();
 
-            int itemCount = 100;
+            int itemCount = 1000;
 
             for (int i = 0; i < itemCount; i++)
             {
@@ -256,7 +313,7 @@ namespace DSAUnitTests.DataStructures.Lists
         {
             var list = new SinglyLinkedList<int>();
 
-            int itemCount = 100;
+            int itemCount = 1000;
 
             for (int i = 0; i < itemCount; i++)
             {
@@ -292,7 +349,7 @@ namespace DSAUnitTests.DataStructures.Lists
         {
             var list = new SinglyLinkedList<int>();
 
-            int itemCount = 100;
+            int itemCount = 1000;
 
             var firstNode = new SinglyLinkedListNode<int>(0);
             var lastNode = new SinglyLinkedListNode<int>(0);
@@ -307,12 +364,21 @@ namespace DSAUnitTests.DataStructures.Lists
             list.RemoveFirst();
             list.RemoveLast();
 
+            int current = list.First.Value;
+            int numberOfElementsInList = 0;
+            foreach (var item in list)
+            {
+                if (current++ != item) Assert.Fail();
+                numberOfElementsInList++;
+            }
+
             Assert.IsTrue(list.First != firstNode
                             && firstNode.Next == null
                             && firstNode.List == null
                             && lastNode != list.Last
                             && lastNode.Next == null
-                            && lastNode.List == null);
+                            && lastNode.List == null
+                            && numberOfElementsInList == list.Count);
         }
 
         [TestMethod]
@@ -320,7 +386,7 @@ namespace DSAUnitTests.DataStructures.Lists
         {
             var list = new SinglyLinkedList<int>();
 
-            int itemCount = 100;
+            int itemCount = 1000;
 
             for (int i = 0; i < itemCount; i++)
             {
