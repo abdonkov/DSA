@@ -72,7 +72,7 @@ namespace DSA.DataStructures.Lists
         {
             var newNode = new DoublyLinkedListNode<T>(value, this);
             newNode.Next = First;
-            First.Previous = newNode;
+            if (First != null) First.Previous = newNode;
             First = newNode;
             Count++;
 
@@ -139,6 +139,8 @@ namespace DSA.DataStructures.Lists
         /// <param name="value">The value to add at the end of the <see cref="DoublyLinkedList{T}"/>.</param>
         public DoublyLinkedListNode<T> AddLast(T value)
         {
+            if (Count == 0) return AddFirst(value);
+            
             var newNode = new DoublyLinkedListNode<T>(value, this);
             Last.Next = newNode;
             newNode.Previous = Last;
