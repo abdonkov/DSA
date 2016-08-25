@@ -46,6 +46,8 @@
     <Compile Include="DataStructures\Lists\DoublyLinkedListNode.cs" />
     <Compile Include="DataStructures\Lists\SinglyLinkedList.cs" />
     <Compile Include="DataStructures\Lists\SinglyLinkedListNode.cs" />
+    <Compile Include="DataStructures\Lists\SkipList.cs" />
+    <Compile Include="DataStructures\Lists\SkipListNode.cs" />
     <Compile Include="DataStructures\Trees\AVLTree.cs" />
     <Compile Include="DataStructures\Trees\AVLTreeNode.cs" />
     <Compile Include="DataStructures\Trees\BinarySearchTree.cs" />
