@@ -128,6 +128,8 @@ namespace DSA.DataStructures.Lists
         /// <returns>true if the value is removed successfully; otherwise false.</returns>
         public bool Remove(T value)
         {
+            if (Count == 0) return false;
+
             // Gets the nodes which have to be updated(the nodes before the one we will delete)
             var nodesForUpdate = new SkipListNode<T>[Height];
             var curNode = Head;
@@ -187,7 +189,7 @@ namespace DSA.DataStructures.Lists
 
             for (int i = Height - 1; i >= 0; i--)
             {
-                while (curNode != null)
+                while (curNode[i] != null)
                 {
                     int cmp = value.CompareTo(curNode[i].Value);
 
