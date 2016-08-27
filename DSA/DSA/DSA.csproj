@@ -54,6 +54,8 @@
     <Compile Include="DataStructures\Trees\BinarySearchTreeNode.cs" />
     <Compile Include="DataStructures\Trees\RedBlackTree.cs" />
     <Compile Include="DataStructures\Trees\RedBlackTreeNode.cs" />
+    <Compile Include="DataStructures\Trees\SplayTree.cs" />
+    <Compile Include="DataStructures\Trees\SplayTreeNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
