@@ -1,9 +1,6 @@
 ﻿using DSA.DataStructures.Lists;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DSA.DataStructures.Trees
 {
@@ -26,7 +23,7 @@ namespace DSA.DataStructures.Trees
         /// <summary>
         /// Gets the number of elements in the <see cref="SplayTree{T}"/>.
         /// </summary>
-        public new int Count { get; internal set; }
+        public override int Count { get; internal set; }
 
         /// <summary>
         /// Creates a new instance of the <see cref="SplayTree{T}"/> class.
@@ -105,6 +102,9 @@ namespace DSA.DataStructures.Trees
                 traversedNodes.AddFirst(newNode);
                 Count++;
             }
+
+            //Have to splay tree after adding
+            Splay(traversedNodes);
         }
 
         /// <summary>
@@ -115,6 +115,7 @@ namespace DSA.DataStructures.Trees
         {
             if (traversedNodes == null) throw new ArgumentNullException("traversedNodes");
             if (traversedNodes.Last.Value != Root) throw new ArgumentException("traversedNodes list does not end with the root node!");
+            if (traversedNodes.Count == 1) return;
 
             var nodeToSplay = traversedNodes.First.Value;
             traversedNodes.RemoveFirst();
@@ -217,13 +218,13 @@ namespace DSA.DataStructures.Trees
 
             var curNode = Root;
             var traversedNodes = new SinglyLinkedList<SplayTreeNode<T>>();
+            bool lastWasLeftSide = true;
 
             while (curNode != null)
             {
                 traversedNodes.AddFirst(curNode);
 
                 int cmp = value.CompareTo(curNode.Value);
-                bool lastWasLeftSide = true;
 
                 if (cmp < 0)
                 {
