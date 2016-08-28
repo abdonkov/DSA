@@ -22,7 +22,7 @@ namespace DSA.DataStructures.Trees
         /// <summary>
         /// Gets the number of elements in the <see cref="RedBlackTree{T}"/>.
         /// </summary>
-        public new int Count { get; internal set; }
+        public override int Count { get; internal set; }
 
         /// <summary>
         /// Creates a new instance of the <see cref="RedBlackTree{T}"/> class.

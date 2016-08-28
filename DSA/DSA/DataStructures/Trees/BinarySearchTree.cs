@@ -20,7 +20,7 @@ namespace DSA.DataStructures.Trees
         /// <summary>
         /// Gets the number of elements in the <see cref="BinarySearchTree{T}"/>.
         /// </summary>
-        public int Count { get; internal set; }
+        public virtual int Count { get; internal set; }
 
         /// <summary>
         /// Creates a new instance of the <see cref="BinarySearchTree{T}"/> class.
