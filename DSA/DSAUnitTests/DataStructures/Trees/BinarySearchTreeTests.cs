@@ -200,5 +200,144 @@ namespace DSAUnitTests.DataStructures.Trees
                             && count == elementsCount / 2
                             && removedEverything);
         }
+
+        [TestMethod]
+        public void AddingAfterClearingTree()
+        {
+            var tree = new BinarySearchTree<int>();
+
+            int elementsCount = 10000;
+
+            //Adding every seventh number, then every fifth number,
+            //every third and at last all numbers
+            for (int i = 7; i > 0; i -= 2)
+            {
+                int el = 0;
+                while (el < elementsCount)
+                {
+                    if (!tree.Contains(el))
+                    {
+                        tree.Add(el);
+                    }
+                    el += i;
+                }
+
+            }
+
+            if (tree.Count != elementsCount) Assert.Fail();
+
+            tree.Clear();
+
+            if (tree.Count != 0) Assert.Fail();
+
+            //Adding every seventh number, then every fifth number,
+            //every third and at last all numbers
+            for (int i = 7; i > 0; i -= 2)
+            {
+                int el = 0;
+                while (el < elementsCount)
+                {
+                    if (!tree.Contains(el))
+                    {
+                        tree.Add(el);
+                    }
+                    el += i;
+                }
+
+            }
+
+            int last = -1;
+            int count = 0;
+            bool elementsAreSorted = true;
+            foreach (var item in tree)
+            {
+                if (last > item)
+                {
+                    elementsAreSorted = false;
+
+                }
+                last = item;
+                count++;
+            }
+
+            Assert.IsTrue(tree.Count == elementsCount
+                            && elementsAreSorted
+                            && count == elementsCount);
+        }
+
+        [TestMethod]
+        public void AddingAfterRemovingAllElements()
+        {
+            var tree = new BinarySearchTree<int>();
+
+            int elementsCount = 10000;
+
+            //Adding every seventh number, then every fifth number,
+            //every third and at last all numbers
+            for (int i = 7; i > 0; i -= 2)
+            {
+                int el = 0;
+                while (el < elementsCount)
+                {
+                    if (!tree.Contains(el))
+                    {
+                        tree.Add(el);
+                    }
+                    el += i;
+                }
+
+            }
+
+            if (tree.Count != elementsCount) Assert.Fail();
+
+            //Removing every seventh number, then every fifth number,
+            //every third and at last all numbers
+            for (int i = 7; i > 0; i -= 2)
+            {
+                int el = 0;
+                while (el < elementsCount)
+                {
+                    tree.Remove(el);
+                    el += i;
+                }
+
+            }
+
+            if (tree.Count != 0) Assert.Fail();
+
+            //Adding every seventh number, then every fifth number,
+            //every third and at last all numbers
+            for (int i = 7; i > 0; i -= 2)
+            {
+                int el = 0;
+                while (el < elementsCount)
+                {
+                    if (!tree.Contains(el))
+                    {
+                        tree.Add(el);
+                    }
+                    el += i;
+                }
+
+            }
+
+            int last = -1;
+            int count = 0;
+            bool elementsAreSorted = true;
+            foreach (var item in tree)
+            {
+                if (last > item)
+                {
+                    elementsAreSorted = false;
+
+                }
+                last = item;
+                count++;
+            }
+
+            Assert.IsTrue(tree.Count == elementsCount
+                            && elementsAreSorted
+                            && count == elementsCount);
+        }
     }
 }
