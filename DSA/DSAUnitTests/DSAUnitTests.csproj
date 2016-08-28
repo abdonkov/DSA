@@ -58,6 +58,7 @@
     <Compile Include="DataStructures\Lists\SkipListTests.cs" />
     <Compile Include="DataStructures\Trees\AVLTreeTests.cs" />
     <Compile Include="DataStructures\Trees\BinarySearchTreeTests.cs" />
+    <Compile Include="DataStructures\Trees\SplayTreeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataStructures\Trees\RedBlackTreeTests.cs" />
   </ItemGroup>
