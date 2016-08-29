@@ -253,6 +253,7 @@ namespace DSA.DataStructures.Trees
                                 // if node for removal is the root node
                                 // no more operations are required
                                 Root = curNode.Left;
+                                curNode.Invalidate();
                                 return true;
                             }
                             else traversedNodes.First.Value.Left = curNode.Left;
@@ -276,6 +277,7 @@ namespace DSA.DataStructures.Trees
                                 // if node for removal is the root node
                                 // no more operations are required
                                 Root = min;
+                                curNode.Invalidate();
                                 return true;
                             }
                             else traversedNodes.First.Value.Left = min;
@@ -292,6 +294,8 @@ namespace DSA.DataStructures.Trees
                     // When removing a node from the tree we have to
                     // splay the tree for its parent
                     Splay(traversedNodes);
+
+                    curNode.Invalidate();
 
                     return true;
                 }

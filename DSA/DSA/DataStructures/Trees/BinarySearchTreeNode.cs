@@ -22,7 +22,7 @@ namespace DSA.DataStructures.Trees
         /// <summary>
         /// Gets the value contained in the <see cref="BinarySearchTreeNode{T}"/>.
         /// </summary>
-        public T Value { get; internal set; }
+        public virtual T Value { get; internal set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BinarySearchTreeNode{T}"/> class, containing the specified value.
@@ -31,6 +31,15 @@ namespace DSA.DataStructures.Trees
         public BinarySearchTreeNode(T value)
         {
             Value = value;
+        }
+
+        /// <summary>
+        /// Removes all references the <see cref="BinarySearchTreeNode{T}"/> has.
+        /// </summary>
+        internal virtual void Invalidate()
+        {
+            Left = null;
+            Right = null;
         }
     }
 }

@@ -166,12 +166,15 @@ namespace DSA.DataStructures.Trees
                 AVLTreeNode<T> left = node.Left;
                 AVLTreeNode<T> right = node.Right;
 
+                node.Invalidate();
+
                 if (right == null) return left;
 
                 AVLTreeNode<T> min = null;
                 AVLTreeNode<T> rightSubtreeRoot = FindAndRemoveMin(right, ref min);
                 min.Right = rightSubtreeRoot;
                 min.Left = left;
+
                 return Balance(min);
             }
             return Balance(node);

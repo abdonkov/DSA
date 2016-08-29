@@ -140,6 +140,7 @@ namespace DSA.DataStructures.Trees
                         }
                     }
 
+                    curNode.Invalidate();
                     Count--;
                     return true;
                 }
@@ -203,9 +204,30 @@ namespace DSA.DataStructures.Trees
         /// </summary>
         public virtual void Clear()
         {
+            if (Root != null)
+            {
+                HashSet<BinarySearchTreeNode<T>> cleared = new HashSet<BinarySearchTreeNode<T>>();
+                Stack<BinarySearchTreeNode<T>> stack = new Stack<BinarySearchTreeNode<T>>();
+                stack.Push(Root);
+                while (stack.Count > 0)
+                {
+                    BinarySearchTreeNode<T> curNode = stack.Peek();
+
+                    if (curNode.Left == null || cleared.Contains(curNode.Left))
+                    {
+                        cleared.Add(curNode);
+                        stack.Pop();
+
+                        if (curNode.Right != null) stack.Push(curNode.Right);
+
+                        curNode.Invalidate();
+                    }
+                    else stack.Push(curNode.Left);
+                }
+            }
+
             Root = null;
             Count = 0;
-            //The Garbage Collector deletes the other nodes (Tested)
         }
 
         /// <summary>

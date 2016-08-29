@@ -215,6 +215,8 @@ namespace DSA.DataStructures.Trees
                         // Now the subtreeNode is the one to be deleted.
                         // This is done in order to have a node to delete with only one child
                         RemoveNodeAndBalanceTree(nodeForRemoval: subtreeNode, isNodeForRemovalNull: false);
+
+                        subtreeNode.Invalidate();
                     }
                     else if (curNode.Right != null)
                     {
@@ -228,6 +230,8 @@ namespace DSA.DataStructures.Trees
                         // Now the subtreeNode is the one to be deleted.
                         // This is done in order to have a node to delete with only one child
                         RemoveNodeAndBalanceTree(nodeForRemoval: subtreeNode, isNodeForRemovalNull: false);
+
+                        subtreeNode.Invalidate();
                     }
                     else
                     {
@@ -235,6 +239,8 @@ namespace DSA.DataStructures.Trees
                         // in the right/left subtree we swap the value with a null.
                         curNode.IsRed = false;
                         RemoveNodeAndBalanceTree(nodeForRemoval: curNode, isNodeForRemovalNull: true);
+
+                        curNode.Invalidate();
                     }
 
                     Count--;
@@ -427,6 +433,8 @@ namespace DSA.DataStructures.Trees
                             else
                                 child.Parent.Right = null;
 
+                            child.Invalidate();
+
                             isChildNull = false;
                         }
                     }
@@ -456,6 +464,8 @@ namespace DSA.DataStructures.Trees
                     child.Parent.Left = null;
                 else
                     child.Parent.Right = null;
+
+                child.Invalidate();
 
                 isChildNull = false;
             }

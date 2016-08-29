@@ -29,7 +29,7 @@ namespace DSA.DataStructures.Trees
         /// <summary>
         /// Gets the value contained in the <see cref="AVLTreeNode{T}"/>.
         /// </summary>
-        public new T Value { get; internal set; }
+        public override T Value { get; internal set; }
 
         /// <summary>
         /// Gets the height of the <see cref="AVLTreeNode{T}"/>.
@@ -44,6 +44,14 @@ namespace DSA.DataStructures.Trees
         {
             Value = value;
             Height = 1;
+        }
+
+        /// <summary>
+        /// Removes all references the <see cref="AVLTreeNode{T}"/> has.
+        /// </summary>
+        internal override void Invalidate()
+        {
+            base.Invalidate();
         }
     }
 }

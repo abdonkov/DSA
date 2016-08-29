@@ -34,7 +34,7 @@ namespace DSA.DataStructures.Trees
         /// <summary>
         /// Gets the value contained in the <see cref="SplayTreeNode{T}"/>.
         /// </summary>
-        public new T Value { get; internal set; }
+        public override T Value { get; internal set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SplayTreeNode{T}"/> class, containing the specified value.
@@ -43,6 +43,14 @@ namespace DSA.DataStructures.Trees
         public SplayTreeNode(T value) : base(value)
         {
             Value = value;
+        }
+
+        /// <summary>
+        /// Removes all references the <see cref="SplayTreeNode{T}"/> has.
+        /// </summary>
+        internal override void Invalidate()
+        {
+            base.Invalidate();
         }
     }
 }

@@ -35,7 +35,7 @@ namespace DSA.DataStructures.Trees
         /// <summary>
         /// Gets the value contained in the <see cref="RedBlackTreeNode{T}"/>.
         /// </summary>
-        public new T Value { get; internal set; }
+        public override T Value { get; internal set; }
 
         /// <summary>
         /// Gets a bool indicating the color of the <see cref="RedBlackTreeNode{T}"/>.
@@ -50,6 +50,16 @@ namespace DSA.DataStructures.Trees
         {
             Value = value;
             IsRed = true;
+        }
+
+        /// <summary>
+        /// Removes all references the <see cref="RedBlackTreeNode{T}"/> has.
+        /// </summary>
+        internal override void Invalidate()
+        {
+            Left = null;
+            Right = null;
+            Parent = null;
         }
     }
 }
