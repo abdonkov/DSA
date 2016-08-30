@@ -7,7 +7,6 @@ namespace DSA.DataStructures.Interfaces
     /// </summary>
     /// <typeparam name="T">T implements <see cref="IComparable{T}">.</typeparam>
     public interface ITree<T>
-        where T : IComparable<T>
     {
         /// <summary>
         /// Gets the number of elements in the tree.
