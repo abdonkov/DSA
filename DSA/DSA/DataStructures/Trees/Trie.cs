@@ -1,12 +1,16 @@
 ﻿using DSA.DataStructures.Interfaces;
 using DSA.DataStructures.Lists;
+using System.Collections.Generic;
+using System;
+using System.Collections;
+using System.Text;
 
 namespace DSA.DataStructures.Trees
 {
     /// <summary>
     /// Represents a Trie (Prefix Tree).
     /// </summary>
-    public class Trie : ITree<string>
+    public class Trie : ITree<string>, IEnumerable<string>
     {
         /// <summary>
         /// Gets the tree root of the <see cref="Trie"/>.
@@ -100,7 +104,7 @@ namespace DSA.DataStructures.Trees
 
             var curListNode = nodesList.First;
 
-            while (curListNode != null)
+            while (curListNode.Next != null)
             {
                 if (curListNode.Value.children.Count == 0)
                 {
@@ -148,8 +152,76 @@ namespace DSA.DataStructures.Trees
         /// </summary>
         public void Clear()
         {
-            Root = null;
+            Root = new TrieNode(default(char), false);
             Count = 0;
+        }
+
+        /// <summary>
+        /// Returns an enumerator that iterates lexicographically through the <see cref="Trie"/>.
+        /// </summary>
+        /// <returns>Returns the words in lexicographical order.</returns>
+        public IEnumerator<string> GetEnumerator()
+        {
+            // Stack containing the nodes for traversal
+            var nodesStack = new Stack<TrieNode>();
+            // Stack containing the level of the current node
+            var levelStack = new Stack<int>();
+
+            var curNode = Root;
+
+            // Creating reversed sorted dictionary for adding into the stack of nodes
+            var sortedChildren = new SortedDictionary<char, TrieNode>(curNode.children,
+                                            Comparer<char>.Create((x,y) => y.CompareTo(x)));
+
+            // Adding nodes in the stack
+            foreach (var kvp in sortedChildren)
+            {
+                nodesStack.Push(kvp.Value);
+                levelStack.Push(1);
+            }
+
+            var curWord = new StringBuilder();
+
+            while(nodesStack.Count != 0)
+            {
+                curNode = nodesStack.Pop();
+                var curLevel = levelStack.Pop();
+
+                // if the current word lenght is higher that the node level
+                // we have to trim the lenght to the previous level
+                // Note: this happens when we traverse all the nodes in a level
+                // and drop to a lower level again
+                if (curWord.Length >= curLevel)
+                    curWord.Length = curLevel - 1;
+
+                // Add the current node character to the word
+                curWord.Append(curNode.Key);
+
+                // If we have a complete word we output it
+                if (curNode.IsTerminal)
+                    yield return curWord.ToString();
+
+                // Creating reversed sorted dictionary for adding into the stack of nodes
+                sortedChildren = new SortedDictionary<char, TrieNode>(curNode.children,
+                                            Comparer<char>.Create((x, y) => y.CompareTo(x)));
+
+                // Adding nodes in the stack
+                foreach (var kvp in sortedChildren)
+                {
+                    nodesStack.Push(kvp.Value);
+                    levelStack.Push(curLevel + 1);
+                }
+            }
+
+            // Note: We add the nodes in reversed order because the stack
+            // is LIFO(last in first out) data structure so everything is outputted
+            // in reversed order. We do this because we need this feature(LIFO)
+            // of the stack to create a DFS(depth first search)
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }
