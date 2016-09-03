@@ -122,7 +122,7 @@ namespace DSA.DataStructures.Trees
         }
 
         /// <summary>
-        /// Determines whether a word is in the <see cref="AVLTree{T}"/>.
+        /// Determines whether a word is in the <see cref="Trie"/>.
         /// </summary>
         /// <param name="word">The word to check.</param>
         /// <returns>true if word is found; otherwise false.</returns>
@@ -148,6 +148,32 @@ namespace DSA.DataStructures.Trees
         }
 
         /// <summary>
+        /// Determines whether a prefix is in the <see cref="Trie"/>.
+        /// </summary>
+        /// <param name="prefix">The prefix to check.</param>
+        /// <returns>true if prefix is found; otherwise false.</returns>
+        public bool ContainsPrefix(string prefix)
+        {
+            var curNode = Root;
+
+            for (int i = 0; i < prefix.Length; i++)
+            {
+                if (curNode.children.ContainsKey(prefix[i]))
+                {
+                    if (i == prefix.Length - 1)
+                    {
+                        return true;
+                    }
+                    else
+                        curNode = curNode.children[prefix[i]];
+                }
+                else return false;
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// Removes all words from the <see cref="Trie"/>.
         /// </summary>
         public void Clear()
@@ -157,10 +183,97 @@ namespace DSA.DataStructures.Trees
         }
 
         /// <summary>
-        /// Returns an enumerator that iterates lexicographically through the <see cref="Trie"/>.
+        /// Returns an <see cref="IEnumerable{T}"/> of the words in the <see cref="Trie"/> beginning with the given prefix sorted lexicographically.
         /// </summary>
-        /// <returns>Returns the words in lexicographical order.</returns>
-        public IEnumerator<string> GetEnumerator()
+        /// <param name="prefix">The prefix of the requested words.</param>
+        /// <returns>Returns the words sorted in lexicographical order.</returns>
+        public IEnumerable<string> GetWordsByPrefix(string prefix)
+        {
+            return GetWordsByPrefix(prefix, Comparer<char>.Default);
+        }
+
+        /// <summary>
+        /// Returns an <see cref="IEnumerable{T}"/> of the words in the <see cref="Trie"/> beginning with the given prefix sorted by the given comparer.
+        /// </summary>
+        /// <param name="prefix">The prefix of the requested words.</param>
+        /// <param name="comparer">The comparer which is used for sorting.</param>
+        /// <returns>Returns the words sorted with the given comparer.</returns>
+        public IEnumerable<string> GetWordsByPrefix(string prefix, Comparer<char> comparer)
+        {
+            if (ContainsPrefix(prefix))
+            {
+                // Stack containing the nodes for traversal
+                var nodesStack = new Stack<TrieNode>();
+                // Stack containing the level of the current node
+                var levelStack = new Stack<int>();
+
+                var curNode = Root;
+
+                var curWord = new StringBuilder();
+
+                // Finding last node of the prefix and adding the characters
+                // to the current word
+                for (int i = 0; i < prefix.Length; i++)
+                {
+                    curNode = curNode.children[prefix[i]];
+                    curWord.Append(prefix[i]);
+                }
+
+                int prefixLength = prefix.Length;
+
+                // Code below is the same as the GetEnumerator() method except we are using
+                // the given comparer instead of the default compare method. Normal DFS
+                // begging from the last node of the prefix.
+                var sortedChildren = new SortedDictionary<char, TrieNode>(curNode.children,
+                                                Comparer<char>.Create((x, y) => comparer.Compare(y,x)));
+
+                foreach (var kvp in sortedChildren)
+                {
+                    nodesStack.Push(kvp.Value);
+                    // We set the level of the nodes after the last node of the prefix
+                    levelStack.Push(prefixLength + 1);
+                }
+
+                while (nodesStack.Count != 0)
+                {
+                    curNode = nodesStack.Pop();
+                    var curLevel = levelStack.Pop();
+
+                    if (curWord.Length >= curLevel)
+                        curWord.Length = curLevel - 1;
+
+                    curWord.Append(curNode.Key);
+
+                    if (curNode.IsTerminal)
+                        yield return curWord.ToString();
+
+                    sortedChildren = new SortedDictionary<char, TrieNode>(curNode.children,
+                                                Comparer<char>.Create((x, y) => comparer.Compare(y, x)));
+
+                    foreach (var kvp in sortedChildren)
+                    {
+                        nodesStack.Push(kvp.Value);
+                        levelStack.Push(curLevel + 1);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Returns an <see cref="IEnumerable{T}"/> of all words in the <see cref="Trie"/> sorted in lexicographical order.
+        /// </summary>
+        /// <returns>Returns the words sorted in lexicographical order.</returns>
+        public IEnumerable<string> GetAllWords()
+        {
+            return GetAllWords(Comparer<char>.Default);
+        }
+
+        /// <summary>
+        /// Returns an <see cref="IEnumerable{T}"/> of all words in the <see cref="Trie"/> sorted by the given comparer.
+        /// </summary>
+        /// <param name="comparer">The comparer which is used for sorting.</param>
+        /// <returns>Returns the words sorted with the given comparer.</returns>
+        public IEnumerable<string> GetAllWords(Comparer<char> comparer)
         {
             // Stack containing the nodes for traversal
             var nodesStack = new Stack<TrieNode>();
@@ -171,7 +284,7 @@ namespace DSA.DataStructures.Trees
 
             // Creating reversed sorted dictionary for adding into the stack of nodes
             var sortedChildren = new SortedDictionary<char, TrieNode>(curNode.children,
-                                            Comparer<char>.Create((x,y) => y.CompareTo(x)));
+                                            Comparer<char>.Create((x, y) => comparer.Compare(y, x)));
 
             // Adding nodes in the stack
             foreach (var kvp in sortedChildren)
@@ -182,7 +295,7 @@ namespace DSA.DataStructures.Trees
 
             var curWord = new StringBuilder();
 
-            while(nodesStack.Count != 0)
+            while (nodesStack.Count != 0)
             {
                 curNode = nodesStack.Pop();
                 var curLevel = levelStack.Pop();
@@ -203,7 +316,7 @@ namespace DSA.DataStructures.Trees
 
                 // Creating reversed sorted dictionary for adding into the stack of nodes
                 sortedChildren = new SortedDictionary<char, TrieNode>(curNode.children,
-                                            Comparer<char>.Create((x, y) => y.CompareTo(x)));
+                                            Comparer<char>.Create((x, y) => comparer.Compare(y, x)));
 
                 // Adding nodes in the stack
                 foreach (var kvp in sortedChildren)
@@ -217,6 +330,15 @@ namespace DSA.DataStructures.Trees
             // is LIFO(last in first out) data structure so everything is outputted
             // in reversed order. We do this because we need this feature(LIFO)
             // of the stack to create a DFS(depth first search)
+        }
+
+        /// <summary>
+        /// Returns an enumerator that iterates lexicographically through the <see cref="Trie"/>.
+        /// </summary>
+        /// <returns>Returns the words sorted in lexicographical order.</returns>
+        public IEnumerator<string> GetEnumerator()
+        {
+            return GetAllWords(Comparer<char>.Default).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
