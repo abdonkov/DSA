@@ -119,11 +119,11 @@ namespace DSA.DataStructures.Arrays
             {
                 if (rows[row].ContainsKey(col))
                 {
-                    return true;
+                    return false;
                 }
             }
 
-            return false;
+            return true;
         }
 
         /// <summary>
@@ -161,6 +161,32 @@ namespace DSA.DataStructures.Arrays
                 {
                     yield return item;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Gets non empty rows indexes sorted in ascending order.
+        /// </summary>
+        /// <returns>Returns an <see cref="IEnumerable{T}"/> of integers being row indexes sorted in ascending order.</returns>
+        public IEnumerable<int> GetNonEmptyRows()
+        {
+            var sortedRows = new SortedSet<int>(rows.Keys);
+            foreach (var row in sortedRows)
+            {
+                yield return row;
+            }
+        }
+
+        /// <summary>
+        /// Gets non empty columns indexes sorted in ascending order.
+        /// </summary>
+        /// <returns>Returns an <see cref="IEnumerable{T}"/> of integers being column indexes sorted in ascending order.</returns>
+        public IEnumerable<int> GetNonEmptyColumns()
+        {
+            var sortedCols = new SortedSet<int>(cols.Keys);
+            foreach (var col in sortedCols)
+            {
+                yield return col;
             }
         }
 
