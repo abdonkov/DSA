@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DSA.DataStructures.Arrays
 {
@@ -10,7 +11,6 @@ namespace DSA.DataStructures.Arrays
     /// <typeparam name="T">The stored data type.</typeparam>
     public class HashedArrayTree<T> : IEnumerable<T>
     {
-
         /// <summary>
         /// The base 2 logarithm of the top array size. Used for bitwise indexing calculations.
         /// </summary>
@@ -78,6 +78,10 @@ namespace DSA.DataStructures.Arrays
             Capacity = 4;
             topArrayLog2Size = 1;
 
+            var colSize = collection.Count();
+
+            Resize(increase: true, minCapacity: colSize);
+
             foreach (var item in collection)
             {
                 Add(item);
@@ -116,17 +120,17 @@ namespace DSA.DataStructures.Arrays
                     while (minCapacity < (newTopArraySize << newTopArrayLog2Size))
                     {
                         // Divide by 2
-                        newTopArraySize = newTopArraySize << 1;
+                        newTopArraySize = newTopArraySize >> 1;
                         newTopArrayLog2Size--;
                     }
                     // When when we get out of the loop min capacity will be higher that
                     // the new capacity so we need to multiply the new capacity by 2
-                    newTopArraySize = newTopArraySize >> 1;
+                    newTopArraySize = newTopArraySize << 1;
                     newTopArrayLog2Size++;
                 }
                 else
                 {
-                    newTopArraySize = newTopArraySize << 1;
+                    newTopArraySize = newTopArraySize >> 1;
                     newTopArrayLog2Size--;
                 }
 
@@ -148,17 +152,19 @@ namespace DSA.DataStructures.Arrays
 
             for (int i = 0; i < newArrays.Length; i++)
             {
+                if (oldArraysIndex == Count) break;
+
                 newArrays[i] = new T[newTopArraySize];
                 for (int j = 0; j < newArrays.Length; j++)
                 {
                     newArrays[i][j] = this[oldArraysIndex++];
                     if (oldArraysIndex == Count) break;
                 }
-                if (oldArraysIndex == Count) break;
             }
 
             Capacity = newTopArraySize << newTopArrayLog2Size;
             topArrayLog2Size = newTopArrayLog2Size;
+            arrays = newArrays;
         }
 
         /// <summary>
@@ -203,16 +209,37 @@ namespace DSA.DataStructures.Arrays
         {
             if (Count == Capacity)
                 Resize(increase: true);
-
+            
             var topArrayIndex = GetTopArrayIndex(Count);
             var subarrayIndex = GetSubarrayIndex(Count);
 
             // If array is not created on this index create one
             if (arrays[topArrayIndex] == null)
+            {
                 arrays[topArrayIndex] = new T[arrays.Length];
+            }
 
             arrays[topArrayIndex][subarrayIndex] = item;
             Count++;
+        }
+
+        /// <summary>
+        /// Adds the elements of the specific collection to the end of the <see cref="HashedArrayTree{T}"/>.
+        /// </summary>
+        /// <param name="collection">The collection whose elements should be added to end of the <see cref="HashedArrayTree{T}"/>.</param>
+        public void AddRange(IEnumerable<T> collection)
+        {
+            if (collection == null) throw new ArgumentNullException();
+
+            int colSize = collection.Count();
+
+            if (Count + colSize > Capacity)
+                Resize(increase: true, minCapacity: Count + colSize);
+
+            foreach (var item in collection)
+            {
+                Add(item);
+            }
         }
 
         /// <summary>
@@ -232,28 +259,51 @@ namespace DSA.DataStructures.Arrays
             // Adding item at the end makes easier handling the cases where resize is needed.
             Add(item);
             // After that we just need to shift all elements after the given index by 1
-            // and the last element will override the item we added at the end.
-
-            var topArrayIndex = GetTopArrayIndex(index);
-            var subarrayIndex = GetSubarrayIndex(index);
-
-            // Get the indexes of the last item
-            var lastItemTopArrayIndex = GetTopArrayIndex(Count - 1);
-            var lastItemSubarrayIndex = GetSubarrayIndex(Count - 1);
+            // and the last element will override the item we added at the end
 
             // Storing the item on the previous index. It is the given item
             // the first time bevause we need to insert it on the given position
             var previousItem = item;
 
-            // Shifting the items
-            for (int i = topArrayIndex; i <= lastItemTopArrayIndex; i++)
+            for (int i = index; i < Count; i++)
             {
-                for (int j = subarrayIndex; j <=lastItemSubarrayIndex; j++)
-                {
-                    var temp = arrays[i][j];
-                    arrays[i][j] = previousItem;
-                    previousItem = temp;
-                }
+                var temp = this[i];
+                this[i] = previousItem;
+                previousItem = temp;
+            }            
+        }
+
+        /// <summary>
+        /// Inserts the elements of the collection into the <see cref="HashedArrayTree{T}"/> at the specific index.
+        /// </summary>
+        /// <param name="index">The index at which the item is inserted in the <see cref="HashedArrayTree{T}"/>.</param>
+        /// <param name="collection">The collection whose elements should be inserted in the <see cref="HashedArrayTree{T}"/>at the specified index.</param>
+        public void InsertRange(int index, IEnumerable<T> collection)
+        {
+            if (index < 0 || index >= Count) throw new IndexOutOfRangeException();
+            if (collection == null) throw new ArgumentNullException();
+
+            int colSize = collection.Count();
+
+            if (Count + colSize > Capacity)
+                Resize(increase: true, minCapacity: Count + colSize);
+
+            // Adding dummy elements(easier handling of the case where an array has to be created)
+            for (int i = 0; i < colSize; i++)
+            {
+                Add(default(T));
+            }
+
+            // Shifting items to make place for the elements of the collection
+            for (int i = Count - colSize - 1; i >= index; i--)
+            {
+                this[i + colSize] = this[i];
+            }
+
+            // Inserting the items from the collection
+            foreach (var item in collection)
+            {
+                this[index++] = item;
             }
         }
 
@@ -282,25 +332,16 @@ namespace DSA.DataStructures.Arrays
 
             // We just need to shift all items until the given index by 1 to the left
 
-            var topArrayIndex = GetTopArrayIndex(index);
-            var subarrayIndex = GetSubarrayIndex(index);
-
-            var lastItemTopArrayIndex = GetTopArrayIndex(Count - 1);
-            var lastItemSubarrayIndex = GetSubarrayIndex(Count - 1);
-
             // Storing the last item. The first time it is null
             // because we need to remove the item
             T previousItem = default(T);
 
             // Shifting the items
-            for (int i = lastItemTopArrayIndex; i >= topArrayIndex; i--)
+            for (int i = Count - 1; i >= index; i--)
             {
-                for (int j = lastItemSubarrayIndex - 1; j >= subarrayIndex; j--)
-                {
-                    var temp = arrays[i][j];
-                    arrays[i][j] = previousItem;
-                    previousItem = temp;
-                }
+                var temp = this[i];
+                this[i] = previousItem;
+                previousItem = temp;
             }
 
             Count--;
@@ -318,27 +359,56 @@ namespace DSA.DataStructures.Arrays
         }
 
         /// <summary>
+        /// Removes a range of elements from the <see cref="HashedArrayTree{T}"/>.
+        /// </summary>
+        /// <param name="index">The starting index of the range of elements to remove from the <see cref="HashedArrayTree{T}"/>.</param>
+        /// <param name="count">The number of elements to remove.</param>
+        public void RemoveRange(int index, int count)
+        {
+            if (index < 0 || index >= Count) throw new IndexOutOfRangeException();
+            if (index + count > Count || count < 1) throw new ArgumentException();
+
+            // Shifting all items until the end
+            while (index + count < Count)
+            {
+                this[index] = this[index++ + count];
+            }
+
+            Count -= count;
+
+            // If Count is 1/8 or lower of the capacity decreasing of the arrays is needed
+            if (Count << 3 <= Capacity)
+            {
+                if (Count > 1)
+                    Resize(increase: false, minCapacity: Count << 2);
+                else
+                    Resize(increase: false, minCapacity: 4);
+            }
+
+            var lastItemTopArrayIndex = GetTopArrayIndex(Count - 1);
+
+            // All array allocations after the array containing the last item can be deleted
+            for (int i = lastItemTopArrayIndex + 1; i < arrays.Length; i++)
+            {
+                arrays[i] = null;
+            }
+        }
+
+        /// <summary>
         /// Searches for the item and returns the index of the first occurrence within the entire <see cref="HashedArrayTree{T}"/>.
         /// </summary>
         /// <param name="item">The item to search for the first occurrence in the <see cref="HashedArrayTree{T}"/>.</param>
         /// <returns>The index of the first occurrence of the item if found; otherwise -1.</returns>
         public int IndexOf(T item)
         {
-            var lastItemTopArrayIndex = GetTopArrayIndex(Count - 1);
-            var lastItemSubarrayIndex = GetSubarrayIndex(Count - 1);
-
-            for (int i = 0; i <= lastItemTopArrayIndex; i++)
+            for (int i = 0; i < Count; i++)
             {
-                for (int j = 0; j <= lastItemSubarrayIndex; j++)
+                if (object.Equals(this[i], item))
                 {
-                    if (object.Equals(arrays[i][j], item))
-                    {
-                        // Returns the index of the item
-                        return (i * arrays.Length) + j;
-                    }
+                    // Returns the index of the item
+                    return i;
                 }
             }
-
             // If nothing is found returns -1
             return -1;
         }
@@ -350,21 +420,15 @@ namespace DSA.DataStructures.Arrays
         /// <returns>The index of the last occurrence of the item if found; otherwise -1.</returns>
         public int LastIndexOf(T item)
         {
-            var lastItemTopArrayIndex = GetTopArrayIndex(Count - 1);
-            var lastItemSubarrayIndex = GetSubarrayIndex(Count - 1);
-
-            for (int i = lastItemTopArrayIndex; i >= 0; i--)
+            for (int i = Count - 1; i >= 0; i--)
             {
-                for (int j = lastItemSubarrayIndex; j >= 0; j--)
+
+                if (object.Equals(this[i], item))
                 {
-                    if (object.Equals(arrays[i][j], item))
-                    {
-                        // Returns the index of the item
-                        return (i * arrays.Length) + j;
-                    }
+                    // Returns the index of the item
+                    return i;
                 }
             }
-
             // If nothing is found returns -1
             return -1;
         }
@@ -386,8 +450,24 @@ namespace DSA.DataStructures.Arrays
         {
             arrays = new T[2][];
             Count = 0;
-            Capacity = 0;
+            Capacity = 4;
             topArrayLog2Size = 1;
+        }
+
+        /// <summary>
+        /// Copies the elements of the <see cref="HashedArrayTree{T}"/> to a new array.
+        /// </summary>
+        /// <returns>An array containing copies of the elements of the <see cref="HashedArrayTree{T}"/>.</returns>
+        public T[] ToArray()
+        {
+            T[] newArray = new T[Count];
+
+            for (int i = 0; i < Count; i++)
+            {
+                newArray[i] = this[i];
+            }
+
+            return newArray;
         }
 
         /// <summary>
@@ -396,18 +476,9 @@ namespace DSA.DataStructures.Arrays
         /// <returns>Enumerator for the <see cref="HashedArrayTree{T}"/>.</returns>
         public IEnumerator<T> GetEnumerator()
         {
-            if (Count > 0)
+            for (int i = 0; i < Count; i++)
             {
-                var lastItemTopArrayIndex = GetTopArrayIndex(Count - 1);
-                var lastItemSubarrayIndex = GetSubarrayIndex(Count - 1);
-
-                for (int i = 0; i < lastItemTopArrayIndex; i++)
-                {
-                    for (int j = 0; j < lastItemSubarrayIndex; j++)
-                    {
-                        yield return arrays[i][j];
-                    }
-                }
+                yield return this[i];
             }
         }
 
