@@ -13,14 +13,25 @@ namespace DSAUnitTests.DataStructures.Lists
         {
             var list = new ArrayList<int>();
 
-            int itemCount = 100;
+            int itemCount = 1000;
 
             for (int i = 0; i < itemCount; i++)
             {
                 list.Add(i);
             }
 
-            Assert.IsTrue(list.Count == itemCount);
+            int trueCount = 0;
+            int previousItem = int.MinValue;
+
+            foreach (var item in list)
+            {
+                if (previousItem > item) Assert.Fail();
+                previousItem = item;
+                trueCount++;
+            }
+
+            Assert.IsTrue(list.Count == itemCount
+                            && list.Count == trueCount);
         }
 
         [TestMethod]
@@ -28,19 +39,32 @@ namespace DSAUnitTests.DataStructures.Lists
         {
             var list = new ArrayList<int>();
 
-            int itemCount = 100;
+            int itemCount = 1000;
 
             for (int i = 0; i < itemCount; i++)
             {
                 list.Add(i);
             }
 
+            if (list.Count != itemCount) Assert.Fail();
+
             var list2 = new ArrayList<int>();
 
             list2.AddRange(list);
 
+            int trueCount = 0;
+            int previousItem = int.MinValue;
+
+            foreach (var item in list2)
+            {
+                if (previousItem > item) Assert.Fail();
+                previousItem = item;
+                trueCount++;
+            }
+
             Assert.IsTrue(list.Count == itemCount
-                            && list2.Count == itemCount);
+                            && list2.Count == itemCount
+                            && list2.Count == trueCount);
         }
 
         [TestMethod]
@@ -48,7 +72,7 @@ namespace DSAUnitTests.DataStructures.Lists
         {
             var list = new ArrayList<int>();
 
-            int itemCount = 100;
+            int itemCount = 1000;
 
             for (int i = 0; i < itemCount; i++)
             {
@@ -57,8 +81,19 @@ namespace DSAUnitTests.DataStructures.Lists
 
             var list2 = new ArrayList<int>(list);
 
+            int trueCount = 0;
+            int previousItem = int.MinValue;
+
+            foreach (var item in list2)
+            {
+                if (previousItem > item) Assert.Fail();
+                previousItem = item;
+                trueCount++;
+            }
+
             Assert.IsTrue(list.Count == itemCount
-                            && list2.Count == itemCount);
+                            && list2.Count == itemCount
+                            && list2.Count == trueCount);
         }
 
         [TestMethod]
@@ -66,19 +101,28 @@ namespace DSAUnitTests.DataStructures.Lists
         {
             var list = new ArrayList<int>();
 
-            int itemCount = 100;
+            int itemCount = 1000;
 
             for (int i = 0; i < itemCount; i++)
             {
                 list.Add(i);
             }
 
-            for (int i = 0; i < itemCount -1; i++)
+            for (int i = 0; i < itemCount - 1; i++)
             {
-                list.Remove(i);
+                if (!list.Remove(i)) Assert.Fail(i.ToString());
+            }
+
+            int trueCount = 0;
+
+
+            foreach (var item in list)
+            {
+                trueCount++;
             }
 
             Assert.IsTrue(list.Count == 1
+                            && trueCount == 1
                             && list[0] == itemCount - 1);
         }
 
@@ -94,7 +138,18 @@ namespace DSAUnitTests.DataStructures.Lists
                 list.Add(i);
             }
 
-            Assert.IsTrue(list.Count == itemCount);
+            int trueCount = 0;
+            int previousItem = int.MinValue;
+
+            foreach (var item in list)
+            {
+                if (previousItem > item) Assert.Fail();
+                previousItem = item;
+                trueCount++;
+            }
+
+            Assert.IsTrue(list.Count == itemCount
+                            && list.Count == trueCount);
         }
 
         [TestMethod]
@@ -102,7 +157,7 @@ namespace DSAUnitTests.DataStructures.Lists
         {
             var list = new ArrayList<int>();
 
-            int itemCount = 100;
+            int itemCount = 1000;
 
             for (int i = 0; i < itemCount; i++)
             {
@@ -111,7 +166,7 @@ namespace DSAUnitTests.DataStructures.Lists
 
             for (int i = 0; i < itemCount; i++)
             {
-                list.Remove(i);
+                if (!list.Remove(i)) Assert.Fail();
             }
 
             bool countWasZero = list.Count == 0;
@@ -121,7 +176,18 @@ namespace DSAUnitTests.DataStructures.Lists
                 list.Add(i);
             }
 
+            int trueCount = 0;
+            int previousItem = int.MinValue;
+
+            foreach (var item in list)
+            {
+                if (previousItem > item) Assert.Fail();
+                previousItem = item;
+                trueCount++;
+            }
+
             Assert.IsTrue(list.Count == itemCount
+                            && list.Count == trueCount
                             && countWasZero);
         }
 
@@ -130,7 +196,7 @@ namespace DSAUnitTests.DataStructures.Lists
         {
             var list = new ArrayList<int>();
 
-            int itemCount = 100;
+            int itemCount = 1000;
 
             for (int i = 0; i < itemCount; i++)
             {
@@ -139,7 +205,15 @@ namespace DSAUnitTests.DataStructures.Lists
 
             list.RemoveRange(0, itemCount - 1);
 
+            int trueCount = 0;
+
+            foreach (var item in list)
+            {
+                trueCount++;
+            }
+
             Assert.IsTrue(list.Count == 1
+                            && list.Count == trueCount
                             && list[0] == itemCount - 1);
         }
 
@@ -148,7 +222,7 @@ namespace DSAUnitTests.DataStructures.Lists
         {
             var list = new ArrayList<int>();
 
-            int itemCount = 100;
+            int itemCount = 1000;
 
             for (int i = 0; i < itemCount; i++)
             {
@@ -178,7 +252,7 @@ namespace DSAUnitTests.DataStructures.Lists
         {
             var list = new ArrayList<int>();
 
-            int itemCount = 100;
+            int itemCount = 1000;
 
             for (int i = 0; i < itemCount; i++)
             {
@@ -190,7 +264,15 @@ namespace DSAUnitTests.DataStructures.Lists
                 list.RemoveAt(0);
             }
 
+            int trueCount = 0;
+
+            foreach (var item in list)
+            {
+                trueCount++;
+            }
+
             Assert.IsTrue(list.Count == 1
+                            && list.Count == trueCount
                             && list[0] == itemCount - 1);
         }
 
@@ -199,7 +281,7 @@ namespace DSAUnitTests.DataStructures.Lists
         {
             var list = new ArrayList<int>();
 
-            int itemCount = 100;
+            int itemCount = 1000;
 
             for (int i = 0; i < itemCount; i++)
             {
@@ -214,7 +296,7 @@ namespace DSAUnitTests.DataStructures.Lists
                 int first = list.IndexOf(i);
                 int last = list.LastIndexOf(i);
 
-                if (last - first - 1 - 2*i != 0)
+                if (last - first - 1 - 2 * i != 0)
                 {
                     allInPlace = false;
                     break;
@@ -230,32 +312,23 @@ namespace DSAUnitTests.DataStructures.Lists
         {
             var list = new ArrayList<int>();
 
-            int itemCount = 100;
+            int itemCount = 1000;
 
             for (int i = 0; i < itemCount; i++)
             {
+                if (list.Contains(i)) Assert.Fail();
                 list.Add(i);
+                if (!list.Contains(i)) Assert.Fail();
             }
-
-            bool containsWorksFine = true;
 
             for (int i = 0; i < itemCount; i++)
             {
-                if (!list.Contains(i))
-                {
-                    containsWorksFine = false;
-                    break;
-                }
+                if (!list.Contains(i)) Assert.Fail();
                 list.Remove(i);
-                if (list.Contains(i))
-                {
-                    containsWorksFine = false;
-                    break;
-                }
+                if (list.Contains(i)) Assert.Fail();
             }
 
-            Assert.IsTrue(list.Count == 0
-                            && containsWorksFine);
+            Assert.IsTrue(list.Count == 0);
         }
 
         [TestMethod]
@@ -263,7 +336,7 @@ namespace DSAUnitTests.DataStructures.Lists
         {
             var list = new ArrayList<int>();
 
-            int itemCount = 100;
+            int itemCount = 1000;
 
             for (int i = 0; i < itemCount; i++)
             {
@@ -297,7 +370,7 @@ namespace DSAUnitTests.DataStructures.Lists
         {
             var list = new ArrayList<int>();
 
-            int itemCount = 100;
+            int itemCount = 1000;
 
             for (int i = 0; i < itemCount; i++)
             {
