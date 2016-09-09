@@ -232,18 +232,15 @@ namespace DSA.DataStructures.Lists
             if (index < 0 || index >= Count) throw new IndexOutOfRangeException();
             if (index + count > Count || count < 1) throw new ArgumentException();
 
-            if (index + count == Count) Count = index;
-            else
+            while (index + count < Count)
             {
-                while(index + count < Count)
-                {
-                    array[index] = array[index++ + count];
-                }
-                Count -= count;
+                array[index] = array[index++ + count];
             }
 
-            if (Count - count < Capacity / 3)
-                Resize(increase: true, minCapacity: (Count - count) * 3 / 2);
+            Count -= count;
+
+            if (Count <= Capacity / 3)
+                Resize(increase: false, minCapacity: Count * 3 / 2);
         }
 
         /// <summary>
