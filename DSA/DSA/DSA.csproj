@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="DataStructures\Arrays\HashedArrayTree.cs" />
     <Compile Include="DataStructures\Arrays\SparseMatrix.cs" />
+    <Compile Include="DataStructures\Heaps\BinaryMaxHeap.cs" />
+    <Compile Include="DataStructures\Heaps\BinaryMinHeap.cs" />
     <Compile Include="DataStructures\Interfaces\IMaxHeap.cs" />
     <Compile Include="DataStructures\Interfaces\IMinHeap.cs" />
     <Compile Include="DataStructures\Interfaces\ITree.cs" />
