@@ -9,7 +9,7 @@ namespace DSA.DataStructures.Lists
     /// Represents an array-based list structure.
     /// </summary>
     /// <typeparam name="T">The stored data type.</typeparam>
-    public class ArrayList<T> : IEnumerable<T>
+    public class ArrayList<T> : IList<T>
     {
         /// <summary>
         /// The backing array of the list.
@@ -25,6 +25,11 @@ namespace DSA.DataStructures.Lists
         /// Gets the number of elements in the <see cref="ArrayList{T}"/>.
         /// </summary>
         public int Count { get; internal set; }
+
+        /// <summary>
+        /// Gets a value indicating whether the <see cref="ArrayList{T}"/> is read-only.
+        /// </summary>
+        public bool IsReadOnly { get { return false; } }
 
         /// <summary>
         /// The element at the given index in the <see cref="ArrayList{T}"/>.
@@ -324,6 +329,16 @@ namespace DSA.DataStructures.Lists
                 newArray[i] = array[i];
             }
             return newArray;
+        }
+
+        /// <summary>
+        /// Copies the entire <see cref="ArrayList{T}"/> to compatible one-dimensional array, starting at the given index of the target array.
+        /// </summary>
+        /// <param name="array">The one-dimensional <see cref="Array"/> that is the destination of the elements copied from the <see cref="ArrayList{T}"/>. The <see cref="Array"/> must have zero-based indexing.</param>
+        /// <param name="arrayIndex">The zero-based index in the array at which the copying begin.</param>
+        public void CopyTo(T[] array, int arrayIndex)
+        {
+            Array.Copy(this.array, 0, array, arrayIndex, Count);
         }
 
         /// <summary>
