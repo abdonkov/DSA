@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="DataStructures\Arrays\SparseMatrixTests.cs" />
     <Compile Include="DataStructures\Arrays\HashedArrayTreeTests.cs" />
+    <Compile Include="DataStructures\Heaps\BinaryMinHeapTests.cs" />
     <Compile Include="DataStructures\Lists\ArrayListTests.cs" />
     <Compile Include="DataStructures\Lists\SinglyLinkedListTests.cs" />
     <Compile Include="DataStructures\Lists\DoublyLinkedListTest.cs" />
