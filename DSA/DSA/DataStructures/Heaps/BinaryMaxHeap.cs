@@ -145,32 +145,21 @@ namespace DSA.DataStructures.Heaps
                 {
                     NodeHeapifyDown(i);
                 }
+
+                Count = array.Count;
             }
         }
 
         /// <summary>
-        /// Returns a new <see cref="BinaryMaxHeap{T}"/> containing the elements of this <see cref="BinaryMaxHeap{T}"/> and the other given <see cref="BinaryMaxHeap{T}"/> using the comparer of this heap.
+        /// Merges the elements of the <see cref="BinaryMaxHeap{T}"/> with the other given <see cref="BinaryMaxHeap{T}"/>.
         /// </summary>
         /// <param name="otherMaxHeap">The other <see cref="BinaryMaxHeap{T}"/> used for merging.</param>
-        /// <returns>Returns a new <see cref="BinaryMaxHeap{T}"/> merged from this and the other <see cref="BinaryMaxHeap{T}"/>.</returns>
-        public BinaryMaxHeap<T> Merge(BinaryMaxHeap<T> otherMaxHeap)
+        public void Merge(BinaryMaxHeap<T> otherMaxHeap)
         {
-            var mergedHeap = new BinaryMaxHeap<T>(comparer);
-
-            var arrayList = new ArrayList<T>(Count + otherMaxHeap.Count);
-
-            for (int i = 0; i < Count; i++)
-            {
-                arrayList.Add(array[i]);
-            }
-
             for (int i = 0; i < otherMaxHeap.Count; i++)
             {
-                arrayList.Add(otherMaxHeap.array[i]);
+                Add(otherMaxHeap.array[i]);
             }
-
-            mergedHeap.Heapify(arrayList);
-            return mergedHeap;
         }
 
         /// <summary>

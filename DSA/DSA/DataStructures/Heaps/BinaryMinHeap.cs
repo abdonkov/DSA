@@ -145,32 +145,21 @@ namespace DSA.DataStructures.Heaps
                 {
                     NodeHeapifyDown(i);
                 }
-            }            
+
+                Count = array.Count;
+            }
         }
 
         /// <summary>
-        /// Returns a new <see cref="BinaryMinHeap{T}"/> containing the elements of this <see cref="BinaryMinHeap{T}"/> and the other given <see cref="BinaryMinHeap{T}"/> using the comparer of this heap.
+        /// Merges the elements of the <see cref="BinaryMinHeap{T}"/> with the other given <see cref="BinaryMinHeap{T}"/>.
         /// </summary>
         /// <param name="otherMinHeap">The other <see cref="BinaryMinHeap{T}"/> used for merging.</param>
-        /// <returns>Returns a new <see cref="BinaryMinHeap{T}"/> merged from this and the other <see cref="BinaryMinHeap{T}"/>.</returns>
-        public BinaryMinHeap<T> Merge(BinaryMinHeap<T> otherMinHeap)
+        public void Merge(BinaryMinHeap<T> otherMinHeap)
         {
-            var mergedHeap = new BinaryMinHeap<T>(comparer);
-
-            var arrayList = new ArrayList<T>(Count + otherMinHeap.Count);
-
-            for (int i = 0; i < Count; i++)
-            {
-                arrayList.Add(array[i]);
-            }
-
             for (int i = 0; i < otherMinHeap.Count; i++)
             {
-                arrayList.Add(otherMinHeap.array[i]);
+                Add(otherMinHeap.array[i]);
             }
-
-            mergedHeap.Heapify(arrayList);
-            return mergedHeap;
         }
 
         /// <summary>
