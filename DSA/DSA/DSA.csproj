@@ -44,6 +44,8 @@
     <Compile Include="DataStructures\Arrays\SparseMatrix.cs" />
     <Compile Include="DataStructures\Heaps\BinaryMaxHeap.cs" />
     <Compile Include="DataStructures\Heaps\BinaryMinHeap.cs" />
+    <Compile Include="DataStructures\Heaps\BinomialMaxHeap.cs" />
+    <Compile Include="DataStructures\Heaps\BinomialMinHeap.cs" />
     <Compile Include="DataStructures\Interfaces\IMaxHeap.cs" />
     <Compile Include="DataStructures\Interfaces\IMinHeap.cs" />
     <Compile Include="DataStructures\Interfaces\ITree.cs" />
