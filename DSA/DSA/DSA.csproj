@@ -46,6 +46,8 @@
     <Compile Include="DataStructures\Heaps\BinaryMinHeap.cs" />
     <Compile Include="DataStructures\Heaps\BinomialMaxHeap.cs" />
     <Compile Include="DataStructures\Heaps\BinomialMinHeap.cs" />
+    <Compile Include="DataStructures\Heaps\FibonacciMaxHeap.cs" />
+    <Compile Include="DataStructures\Heaps\FibonacciMinHeap.cs" />
     <Compile Include="DataStructures\Interfaces\IMaxHeap.cs" />
     <Compile Include="DataStructures\Interfaces\IMinHeap.cs" />
     <Compile Include="DataStructures\Interfaces\ITree.cs" />
