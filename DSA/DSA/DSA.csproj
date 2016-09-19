@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\Sorting\BubbleSorter.cs" />
+    <Compile Include="Algorithms\Sorting\InsertionSorter.cs" />
+    <Compile Include="Algorithms\Sorting\SelectionSorter.cs" />
     <Compile Include="DataStructures\Arrays\HashedArrayTree.cs" />
     <Compile Include="DataStructures\Arrays\SparseMatrix.cs" />
     <Compile Include="DataStructures\Heaps\BinaryMaxHeap.cs" />
