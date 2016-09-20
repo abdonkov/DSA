@@ -52,6 +52,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Algorithms\Sorting\BubbleSorterTests.cs" />
+    <Compile Include="Algorithms\Sorting\InsertionSorterTests.cs" />
+    <Compile Include="Algorithms\Sorting\SelectionSorterTests.cs" />
     <Compile Include="DataStructures\Arrays\SparseMatrixTests.cs" />
     <Compile Include="DataStructures\Arrays\HashedArrayTreeTests.cs" />
     <Compile Include="DataStructures\Heaps\BinaryMinHeapTests.cs" />
