@@ -105,11 +105,13 @@ namespace DSA.Algorithms.Sorting
 
             if (comparer == null) comparer = Comparer<T>.Default;
 
-            for (int i = index; i < index + count - 1; i++)
+            var maxCount = index + count;
+
+            for (int i = index; i < maxCount - 1; i++)
             {
                 int minElementIndex = i;
 
-                for (int j = i + 1; j < index + count; j++)
+                for (int j = i + 1; j < maxCount; j++)
                 {
                     if (comparer.Compare(list[minElementIndex], list[j]) > 0)
                     {
@@ -146,11 +148,13 @@ namespace DSA.Algorithms.Sorting
 
             if (comparer == null) comparer = Comparer<T>.Default;
 
-            for (int i = index; i < index + count - 1; i++)
+            var maxCount = index + count;
+
+            for (int i = index; i < maxCount - 1; i++)
             {
                 int minElementIndex = i;
 
-                for (int j = i + 1; j < index + count; j++)
+                for (int j = i + 1; j < maxCount; j++)
                 {
                     if (comparer.Compare(list[minElementIndex], list[j]) < 0)
                     {
