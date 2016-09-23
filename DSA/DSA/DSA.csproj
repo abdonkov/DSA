@@ -43,6 +43,8 @@
     <Compile Include="Algorithms\Sorting\BubbleSorter.cs" />
     <Compile Include="Algorithms\Sorting\HeapSorter.cs" />
     <Compile Include="Algorithms\Sorting\InsertionSorter.cs" />
+    <Compile Include="Algorithms\Sorting\MergeSorter.LinkedList.cs" />
+    <Compile Include="Algorithms\Sorting\MergeSorter.IList.cs" />
     <Compile Include="Algorithms\Sorting\SelectionSorter.cs" />
     <Compile Include="Algorithms\Sorting\ShellSorter.cs" />
     <Compile Include="DataStructures\Arrays\HashedArrayTree.cs" />
