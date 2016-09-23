@@ -73,6 +73,8 @@ namespace DSA.DataStructures.Lists
         /// </summary>
         internal void DecrementHeight()
         {
+            if (Height == 1) return;
+
             var newForwards = new SkipListNode<T>[Height - 1];
             for (int i = 0; i < Height - 1; i++)
             {
