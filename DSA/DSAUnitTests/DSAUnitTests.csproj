@@ -57,6 +57,8 @@
     <Compile Include="Algorithms\Sorting\SelectionSorterTests.cs" />
     <Compile Include="Algorithms\Sorting\ShellSorterTests.cs" />
     <Compile Include="Algorithms\Sorting\HeapSorterTests.cs" />
+    <Compile Include="Algorithms\Sorting\MergeSorterIListTests.cs" />
+    <Compile Include="Algorithms\Sorting\MergeSorterLinkedListTests.cs" />
     <Compile Include="DataStructures\Arrays\SparseMatrixTests.cs" />
     <Compile Include="DataStructures\Arrays\HashedArrayTreeTests.cs" />
     <Compile Include="DataStructures\Heaps\BinaryMinHeapTests.cs" />
