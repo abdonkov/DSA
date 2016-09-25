@@ -70,15 +70,30 @@ namespace DSA.DataStructures.Lists
         /// <returns>The new <see cref="DoublyLinkedListNode{T}"/> containing the value.</returns>
         public DoublyLinkedListNode<T> AddFirst(T value)
         {
-            var newNode = new DoublyLinkedListNode<T>(value, this);
-            newNode.Next = First;
-            if (First != null) First.Previous = newNode;
-            First = newNode;
+            var newNode = new DoublyLinkedListNode<T>(value);
+
+            AddFirst(newNode);
+
+            return newNode;
+        }
+
+        /// <summary>
+        /// Adds the specified new node at the start of the <see cref="DoublyLinkedList{T}"/>.
+        /// </summary>
+        /// <param name="node">The new <see cref="DoublyLinkedListNode{T}"/> to add at the start of the <see cref="DoublyLinkedList{T}"/>.</param>
+        public void AddFirst(DoublyLinkedListNode<T> node)
+        {
+            if (node == null) throw new ArgumentNullException("node");
+            if (node.List != null) throw new InvalidOperationException("node belongs to another list");
+
+            node.List = this;
+            node.Previous = null;
+            node.Next = First;
+            if (First != null) First.Previous = node;
+            First = node;
             Count++;
 
             if (First.Next == null) Last = First;
-
-            return newNode;
         }
 
         /// <summary>
@@ -94,7 +109,32 @@ namespace DSA.DataStructures.Lists
 
             if (node == Last) return AddLast(value);
 
-            var newNode = new DoublyLinkedListNode<T>(value, this);
+            var newNode = new DoublyLinkedListNode<T>(value);
+
+            AddAfter(node, newNode);
+
+            return newNode;
+        }
+
+        /// <summary>
+        /// Adds the specified new node after the specified existing node in the <see cref="DoublyLinkedList{T}"/>.
+        /// </summary>
+        /// <param name="node">The <see cref="DoublyLinkedListNode{T}"/> after which to insert newNode.</param>
+        /// <param name="newNode">The new <see cref="DoublyLinkedListNode{T}"/> to add to the <see cref="DoublyLinkedList{T}"/>.</param>
+        public void AddAfter(DoublyLinkedListNode<T> node, DoublyLinkedListNode<T> newNode)
+        {
+            if (node == null) throw new ArgumentNullException("node");
+            if (node.List != this) throw new InvalidOperationException("node doesn't belong to this list");
+            if (newNode == null) throw new ArgumentNullException("newNode");
+            if (newNode.List != null) throw new InvalidOperationException("newNode belongs to another list");
+
+            if (node == Last)
+            {
+                AddLast(node);
+                return;
+            }
+
+            newNode.List = this;
 
             node.Next.Previous = newNode;
             newNode.Next = node.Next;
@@ -103,8 +143,6 @@ namespace DSA.DataStructures.Lists
             node.Next = newNode;
 
             Count++;
-
-            return newNode;
         }
 
         /// <summary>
@@ -120,7 +158,32 @@ namespace DSA.DataStructures.Lists
 
             if (node == First) return AddFirst(value);
 
-            var newNode = new DoublyLinkedListNode<T>(value, this);
+            var newNode = new DoublyLinkedListNode<T>(value);
+
+            AddBefore(node, newNode);
+
+            return newNode;
+        }
+
+        /// <summary>
+        /// Adds the specified new node before the specified existing node in the <see cref="DoublyLinkedList{T}"/>.
+        /// </summary>
+        /// <param name="node">The <see cref="DoublyLinkedListNode{T}"/> before which to insert newNode.</param>
+        /// <param name="newNode">The new <see cref="DoublyLinkedListNode{T}"/> to add to the <see cref="DoublyLinkedList{T}"/>.</param>
+        public void AddBefore(DoublyLinkedListNode<T> node, DoublyLinkedListNode<T> newNode)
+        {
+            if (node == null) throw new ArgumentNullException("node");
+            if (node.List != this) throw new InvalidOperationException("node doesn't belong to this list");
+            if (newNode == null) throw new ArgumentNullException("newNode");
+            if (newNode.List != null) throw new InvalidOperationException("newNode belongs to another list");
+
+            if (node == First)
+            {
+                AddFirst(newNode);
+                return;
+            }
+
+            newNode.List = this;
 
             node.Previous.Next = newNode;
             newNode.Previous = node.Previous;
@@ -129,8 +192,6 @@ namespace DSA.DataStructures.Lists
             node.Previous = newNode;
 
             Count++;
-
-            return newNode;
         }
 
         /// <summary>
@@ -141,12 +202,34 @@ namespace DSA.DataStructures.Lists
         {
             if (Count == 0) return AddFirst(value);
             
-            var newNode = new DoublyLinkedListNode<T>(value, this);
-            Last.Next = newNode;
-            newNode.Previous = Last;
-            Last = newNode;
-            Count++;
+            var newNode = new DoublyLinkedListNode<T>(value);
+
+            AddLast(newNode);
+
             return newNode;
+        }
+
+        /// <summary>
+        /// Adds the specified new node at the end of the <see cref="DoublyLinkedList{T}"/>.
+        /// </summary>
+        /// <param name="node">The new <see cref="DoublyLinkedListNode{T}"/> to add at the end of the <see cref="DoublyLinkedList{T}"/>.</param>
+        public void AddLast(DoublyLinkedListNode<T> node)
+        {
+            if (node == null) throw new ArgumentNullException("node");
+            if (node.List != null) throw new InvalidOperationException("node belongs to another list");
+
+            if (Count == 0)
+            {
+                AddFirst(node);
+                return;
+            }
+
+            node.List = this;
+            node.Next = null;
+            node.Previous = Last;
+            Last.Next = node;
+            Last = node;
+            Count++;            
         }
 
         /// <summary>
