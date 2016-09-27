@@ -69,14 +69,28 @@ namespace DSA.DataStructures.Lists
         /// <returns>The new <see cref="SinglyLinkedListNode{T}"/> containing the value.</returns>
         public SinglyLinkedListNode<T> AddFirst(T value)
         {
-            var newNode = new SinglyLinkedListNode<T>(value, this);
-            newNode.Next = First;
-            First = newNode;
+            var newNode = new SinglyLinkedListNode<T>(value);
+
+            AddFirst(newNode);
+
+            return newNode;
+        }
+
+        /// <summary>
+        /// Adds the specified new node at the start of the <see cref="SinglyLinkedList{T}"/>.
+        /// </summary>
+        /// <param name="node">The new <see cref="SinglyLinkedListNode{T}"/> to add at the start of the <see cref="SinglyLinkedList{T}"/>.</param>
+        public void AddFirst(SinglyLinkedListNode<T> node)
+        {
+            if (node == null) throw new ArgumentNullException("node");
+            if (node.List != null) throw new InvalidOperationException("node belongs to another list");
+
+            node.List = this;
+            node.Next = First;
+            First = node;
             Count++;
 
             if (First.Next == null) Last = First;
-
-            return newNode;
         }
 
         /// <summary>
@@ -90,15 +104,31 @@ namespace DSA.DataStructures.Lists
             if (node == null) throw new ArgumentNullException("node");
             if (node.List != this) throw new InvalidOperationException("node doesn't belong to this list");
 
-            var newNode = new SinglyLinkedListNode<T>(value, this);
+            var newNode = new SinglyLinkedListNode<T>(value);
 
+            AddAfter(node, newNode);
+
+            return newNode;
+        }
+
+        /// <summary>
+        /// Adds the specified new node after the specified existing node in the <see cref="SinglyLinkedList{T}"/>.
+        /// </summary>
+        /// <param name="node">The <see cref="SinglyLinkedListNode{T}"/> after which to insert newNode.</param>
+        /// <param name="newNode">The new <see cref="SinglyLinkedListNode{T}"/> to add to the <see cref="SinglyLinkedList{T}"/>.</param>
+        public void AddAfter(SinglyLinkedListNode<T> node, SinglyLinkedListNode<T> newNode)
+        {
+            if (node == null) throw new ArgumentNullException("node");
+            if (node.List != this) throw new InvalidOperationException("node doesn't belong to this list");
+            if (newNode == null) throw new ArgumentNullException("newNode");
+            if (newNode.List != null) throw new InvalidOperationException("newNode belongs to another list");
+
+            newNode.List = this;
             newNode.Next = node.Next;
             node.Next = newNode;
             Count++;
 
             if (newNode.Next == null) Last = newNode;
-
-            return newNode;
         }
 
         /// <summary>
@@ -114,20 +144,42 @@ namespace DSA.DataStructures.Lists
 
             if (node == First) return AddFirst(value);
 
+            var newNode = new SinglyLinkedListNode<T>(value);
+
+            AddBefore(node, newNode);
+
+            return newNode;
+        }
+
+        /// <summary>
+        /// Adds the specified new node before the specified existing node in the <see cref="SinglyLinkedList{T}"/>.
+        /// </summary>
+        /// <param name="node">The <see cref="SinglyLinkedListNode{T}"/> before which to insert newNode.</param>
+        /// <param name="newNode">The new <see cref="SinglyLinkedListNode{T}"/> to add to the <see cref="SinglyLinkedList{T}"/>.</param>
+        public void AddBefore(SinglyLinkedListNode<T> node, SinglyLinkedListNode<T> newNode)
+        {
+            if (node == null) throw new ArgumentNullException("node");
+            if (node.List != this) throw new InvalidOperationException("node doesn't belong to this list");
+            if (newNode == null) throw new ArgumentNullException("newNode");
+            if (newNode.List != null) throw new InvalidOperationException("newNode belongs to another list");
+
+            if (node == First)
+            {
+                AddFirst(newNode);
+                return;
+            }
+
             var curNode = First;
 
-            while(curNode.Next != node)
+            while (curNode.Next != node)
             {
                 curNode = curNode.Next;
             }
 
-            var newNode = new SinglyLinkedListNode<T>(value, this);
-
+            newNode.List = this;
             curNode.Next = newNode;
             newNode.Next = node;
             Count++;
-
-            return newNode;
         }
 
         /// <summary>
@@ -138,11 +190,32 @@ namespace DSA.DataStructures.Lists
         {
             if (Count == 0) return AddFirst(value);
 
-            var newNode = new SinglyLinkedListNode<T>(value, this);
-            Last.Next = newNode;
-            Last = newNode;
-            Count++;
+            var newNode = new SinglyLinkedListNode<T>(value);
+
+            AddLast(newNode);
+
             return newNode;
+        }
+
+        /// <summary>
+        /// Adds the specified new node at the end of the <see cref="SinglyLinkedList{T}"/>.
+        /// </summary>
+        /// <param name="node">The new <see cref="SinglyLinkedListNode{T}"/> to add at the end of the <see cref="SinglyLinkedList{T}"/>.</param>
+        public void AddLast(SinglyLinkedListNode<T> node)
+        {
+            if (node == null) throw new ArgumentNullException("node");
+            if (node.List != null) throw new InvalidOperationException("node belongs to another list");
+
+            if (Count == 0)
+            {
+                AddFirst(node);
+                return;
+            }
+
+            node.List = this;
+            Last.Next = node;
+            Last = node;
+            Count++;
         }
 
         /// <summary>
