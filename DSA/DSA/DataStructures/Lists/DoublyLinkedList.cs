@@ -130,7 +130,7 @@ namespace DSA.DataStructures.Lists
 
             if (node == Last)
             {
-                AddLast(node);
+                AddLast(newNode);
                 return;
             }
 
