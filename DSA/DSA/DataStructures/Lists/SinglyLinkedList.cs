@@ -286,6 +286,26 @@ namespace DSA.DataStructures.Lists
         }
 
         /// <summary>
+        /// Removes the node after the specified node from the <see cref="SinglyLinkedList{T}"/>.
+        /// </summary>
+        /// <param name="node">The <see cref="SinglyLinkedListNode{T}"/> after which to remove a node.</param>
+        public void RemoveAfter(SinglyLinkedListNode<T> node)
+        {
+            if (node == null) throw new ArgumentNullException("node");
+            if (node.List != this) throw new InvalidOperationException("node doesn't belong to this list");
+
+            if (node.Next == null) return;
+
+            var nodeToRemove = node.Next;
+
+            node.Next = nodeToRemove.Next;
+            if (node.Next == null) Last = node;
+
+            nodeToRemove.Invalidate();
+            Count--;
+        }
+
+        /// <summary>
         /// Removes the node at the start of the <see cref="SinglyLinkedList{T}"/>.
         /// </summary>
         public void RemoveFirst()
