@@ -47,6 +47,7 @@
     <Compile Include="Algorithms\Sorting\MergeSorter.DoublyLinkedList.cs" />
     <Compile Include="Algorithms\Sorting\MergeSorter.LinkedList.cs" />
     <Compile Include="Algorithms\Sorting\MergeSorter.IList.cs" />
+    <Compile Include="Algorithms\Sorting\QuickSorter.cs" />
     <Compile Include="Algorithms\Sorting\SelectionSorter.cs" />
     <Compile Include="Algorithms\Sorting\ShellSorter.cs" />
     <Compile Include="DataStructures\Arrays\HashedArrayTree.cs" />
