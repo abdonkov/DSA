@@ -135,16 +135,23 @@ namespace DSA.Algorithms.Sorting
                 for (;;)
                 {
                     // go to the first element on the left side which is bigger or equal to the pivot
-                    while (comparer.Compare(list[++i], pivot) < 0) ;
+                    int leftCompare = comparer.Compare(list[++i], pivot);
+                    while (leftCompare < 0) leftCompare = comparer.Compare(list[++i], pivot);
                     // go to the first element on the right side which is smaller or equal to the pivot
-                    while (comparer.Compare(list[--j], pivot) > 0) if (j == leftIndex) break;// break if at the end
-                                                                                             // if the left position surpassed the right position we break the loop
+                    int rightCompare = comparer.Compare(list[--j], pivot);
+                    while (rightCompare > 0)
+                    {
+                        if (j == leftIndex) break;// break if at the end
+                        rightCompare = comparer.Compare(list[--j], pivot);
+                    }
+                    // if the left position surpassed the right position we break the loop
                     if (i >= j) break;
                     // swap the >= element on the left with the <= element on the right
                     SwapListElements(list, i, j);
                     // if an element is equal to the pivot swap it with the element on the swap position
-                    if (comparer.Compare(list[i], pivot) == 0) SwapListElements(list, ++leftSwapIndex, i);
-                    if (comparer.Compare(list[j], pivot) == 0) SwapListElements(list, --rightSwapIndex, j);
+                    // Note: rightCompare saved the comparision for the now left element because of the swap and vice versa
+                    if (rightCompare == 0) SwapListElements(list, ++leftSwapIndex, i);
+                    if (leftCompare == 0) SwapListElements(list, --rightSwapIndex, j);
                 }
                 // After the elements are rearranged we have a structure like this one:
                 // | equal to pivot | less than pivot | greater than pivot | equal to pivot | pivot |
@@ -219,16 +226,23 @@ namespace DSA.Algorithms.Sorting
                 for (;;)
                 {
                     // go to the first element on the left side which is smaller or equal to the pivot
-                    while (comparer.Compare(list[++i], pivot) > 0) ;
+                    int leftCompare = comparer.Compare(list[++i], pivot);
+                    while (leftCompare > 0) leftCompare = comparer.Compare(list[++i], pivot);
                     // go to the first element on the right side which is bigger or equal to the pivot
-                    while (comparer.Compare(list[--j], pivot) < 0) if (j == leftIndex) break;// break if at the end
+                    int rightCompare = comparer.Compare(list[--j], pivot);
+                    while (rightCompare < 0)
+                    {
+                        if (j == leftIndex) break;// break if at the end
+                        rightCompare = comparer.Compare(list[--j], pivot);
+                    }
                     // if the left position surpassed the right position we break the loop
                     if (i >= j) break;
                     // swap the <= element on the left with the >= element on the right
                     SwapListElements(list, i, j);
                     // if an element is equal to the pivot swap it with the element on the swap position
-                    if (comparer.Compare(list[i], pivot) == 0) SwapListElements(list, ++leftSwapIndex, i);
-                    if (comparer.Compare(list[j], pivot) == 0) SwapListElements(list, --rightSwapIndex, j);
+                    // Note: rightCompare saved the comparision for the now left element because of the swap and vice versa
+                    if (rightCompare == 0) SwapListElements(list, ++leftSwapIndex, i);
+                    if (leftCompare == 0) SwapListElements(list, --rightSwapIndex, j);
                 }
                 // After the elements are rearranged we have a structure like this one:
                 // | equal to pivot | greater than pivot | less than pivot | equal to pivot | pivot |
