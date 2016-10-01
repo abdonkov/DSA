@@ -62,6 +62,7 @@
     <Compile Include="Algorithms\Sorting\MergeSorterDoublyLinkedListTests.cs" />
     <Compile Include="Algorithms\Sorting\MergeSorterSinglyLinkedListTests.cs" />
     <Compile Include="Algorithms\Sorting\QuickSorterTests.cs" />
+    <Compile Include="Algorithms\Sorting\Quick3SorterTests.cs" />
     <Compile Include="DataStructures\Arrays\SparseMatrixTests.cs" />
     <Compile Include="DataStructures\Arrays\HashedArrayTreeTests.cs" />
     <Compile Include="DataStructures\Heaps\BinaryMinHeapTests.cs" />
