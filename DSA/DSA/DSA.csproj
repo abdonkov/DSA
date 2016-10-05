@@ -44,6 +44,7 @@
     <Compile Include="Algorithms\Sorting\CountingSorter.cs" />
     <Compile Include="Algorithms\Sorting\HeapSorter.cs" />
     <Compile Include="Algorithms\Sorting\InsertionSorter.cs" />
+    <Compile Include="Algorithms\Sorting\LSDRadixSorter.cs" />
     <Compile Include="Algorithms\Sorting\MergeSorter.SinglyLinkedList.cs" />
     <Compile Include="Algorithms\Sorting\MergeSorter.DoublyLinkedList.cs" />
     <Compile Include="Algorithms\Sorting\MergeSorter.LinkedList.cs" />
