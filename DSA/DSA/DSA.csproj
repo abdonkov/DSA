@@ -63,10 +63,12 @@
     <Compile Include="DataStructures\Heaps\FibonacciMaxHeap.cs" />
     <Compile Include="DataStructures\Heaps\FibonacciMinHeap.cs" />
     <Compile Include="DataStructures\Interfaces\IEdge.cs" />
+    <Compile Include="DataStructures\Interfaces\IGraph.cs" />
     <Compile Include="DataStructures\Interfaces\IMaxHeap.cs" />
     <Compile Include="DataStructures\Interfaces\IMinHeap.cs" />
     <Compile Include="DataStructures\Interfaces\ITree.cs" />
     <Compile Include="DataStructures\Interfaces\IWeightedEdge.cs" />
+    <Compile Include="DataStructures\Interfaces\IWeightedGraph.cs" />
     <Compile Include="DataStructures\Lists\ArrayList.cs" />
     <Compile Include="DataStructures\Lists\DoublyLinkedList.cs" />
     <Compile Include="DataStructures\Lists\DoublyLinkedListNode.cs" />
