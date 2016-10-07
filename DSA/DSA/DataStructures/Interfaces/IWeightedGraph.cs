@@ -13,12 +13,12 @@ namespace DSA.DataStructures.Interfaces
         where TWeight : IComparable<TWeight>
     {
         /// <summary>
-        /// Adds an edge defined by the given existing vertices, having the given weight.
+        /// Adds an edge defined by the given vertices, having the given weight. If the vertices are not present in the graph they will be added.
         /// </summary>
         /// <param name="firstVertex">The first vertex. Source of the edge if the graph is directed.</param>
         /// <param name="secondVertex">The second vertex. Destination of the edge if the graph is directed.</param>
         /// <param name="weight">The weight of the edge.</param>
-        /// <returns>Returns true if the edge was added successfully; otherwise false. Also returns false if the vertices are not present in this graph or the edge already exists.</returns>
+        /// <returns>Returns true if the edge was added successfully; otherwise false. Also returns false if the edge already exists.</returns>
         bool AddEdge(TVertex firstVertex, TVertex secondVertex, TWeight weight);
 
         /// <summary>

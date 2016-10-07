@@ -31,11 +31,11 @@ namespace DSA.DataStructures.Interfaces
         int VerticesCount { get; }
 
         /// <summary>
-        /// Adds an edge defined by the given existing vertices.
+        /// Adds an edge defined by the given vertices. If the vertices are not present in the graph they will be added.
         /// </summary>
         /// <param name="firstVertex">The first vertex. Source of the edge if the graph is directed.</param>
         /// <param name="secondVertex">The second vertex. Destination of the edge if the graph is directed.</param>
-        /// <returns>Returns true if the edge was added successfully; otherwise false. Also returns false if the vertices are not present in this graph or the edge already exists.</returns>
+        /// <returns>Returns true if the edge was added successfully; otherwise false. Also returns false if the edge already exists.</returns>
         bool AddEdge(TVertex firstVertex, TVertex secondVertex);
 
         /// <summary>
