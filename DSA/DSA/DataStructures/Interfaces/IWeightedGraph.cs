@@ -25,15 +25,15 @@ namespace DSA.DataStructures.Interfaces
         /// Returns the incoming edges of the given vertex.
         /// </summary>
         /// <param name="vertex">The vertex whose incoming edges are returned.</param>
-        /// <returns>Returns a <see cref="IList{T}"/> of <see cref="IWeightedEdge{TVertex, TWeight}"/> of all incoming edges of the given vertex.</returns>
-        new IList<IWeightedEdge<TVertex, TWeight>> IncomingEdges(TVertex vertex);
+        /// <returns>Returns a <see cref="IEnumerable{T}"/> of <see cref="IWeightedEdge{TVertex, TWeight}"/> of all incoming edges of the given vertex.</returns>
+        new IEnumerable<IWeightedEdge<TVertex, TWeight>> IncomingEdges(TVertex vertex);
 
         /// <summary>
         /// Returns the outgoing edges of the given vertex.
         /// </summary>
         /// <param name="vertex">The vertex whose outgoing edges are returned.</param>
-        /// <returns>Returns a <see cref="IList{T}"/> of <see cref="IWeightedEdge{TVertex, TWeight}"/> of all outgoing edges of the given vertex.</returns>
-        new IList<IWeightedEdge<TVertex, TWeight>> OutgoingEdges(TVertex vertex);
+        /// <returns>Returns a <see cref="IEnumerable{T}"/> of <see cref="IWeightedEdge{TVertex, TWeight}"/> of all outgoing edges of the given vertex.</returns>
+        new IEnumerable<IWeightedEdge<TVertex, TWeight>> OutgoingEdges(TVertex vertex);
 
         /// <summary>
         /// Updates the weight of the edge defined by the given existing vertices.
@@ -43,5 +43,19 @@ namespace DSA.DataStructures.Interfaces
         /// <param name="weight">The new weight of the edge.</param>
         /// <returns>Returns true if the edge weight was updated successfully; otherwise false. Also returns false if the vertices are not present in this graph.</returns>
         bool UpdateEdgeWeight(TVertex firstVertex, TVertex secondVertex, TWeight weight);
+
+        /// <summary>
+        /// Breadth-first search of the graph. Returns <see cref="IEnumerable{T}"/> of <see cref="IWeightedEdge{TVertex, TWeight}"/> representing the edges of the graph.
+        /// </summary>
+        /// <param name="vertex">The vertex from which the breadth-first search starts.</param>
+        /// <returns>.Returns <see cref="IEnumerable{T}"/> of <see cref="IWeightedEdge{TVertex, TWeight}"/> representing the edges of the graph.</returns>
+        new IEnumerable<IWeightedEdge<TVertex, TWeight>> BreadthFirstSearchEdges(TVertex vertex);
+
+        /// <summary>
+        /// Depth-first search of the graph. Returns <see cref="IEnumerable{T}"/> of <see cref="IWeightedEdge{TVertex, TWeight}"/> representing the edges of the graph.
+        /// </summary>
+        /// <param name="vertex">The vertex from which the depth-first search starts.</param>
+        /// <returns>.Returns <see cref="IEnumerable{T}"/> of <see cref="IWeightedEdge{TVertex, TWeight}"/> representing the edges of the graph.</returns>
+        new IEnumerable<IWeightedEdge<TVertex, TWeight>> DepthFirstSearchEdges(TVertex vertex);
     }
 }

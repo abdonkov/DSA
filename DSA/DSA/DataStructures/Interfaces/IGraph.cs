@@ -49,15 +49,15 @@ namespace DSA.DataStructures.Interfaces
         /// Returns the incoming edges of the given vertex.
         /// </summary>
         /// <param name="vertex">The vertex whose incoming edges are returned.</param>
-        /// <returns>Returns a <see cref="IList{T}"/> of <see cref="IEdge{TVertex}"/> of all incoming edges of the given vertex.</returns>
-        IList<IEdge<TVertex>> IncomingEdges(TVertex vertex);
+        /// <returns>Returns a <see cref="IEnumerable{T}"/> of <see cref="IEdge{TVertex}"/> of all incoming edges of the given vertex.</returns>
+        IEnumerable<IEdge<TVertex>> IncomingEdges(TVertex vertex);
 
         /// <summary>
         /// Returns the outgoing edges of the given vertex.
         /// </summary>
         /// <param name="vertex">The vertex whose outgoing edges are returned.</param>
-        /// <returns>Returns a <see cref="IList{T}"/> of <see cref="IEdge{TVertex}"/> of all outgoing edges of the given vertex.</returns>
-        IList<IEdge<TVertex>> OutgoingEdges(TVertex vertex);
+        /// <returns>Returns a <see cref="IEnumerable{T}"/> of <see cref="IEdge{TVertex}"/> of all outgoing edges of the given vertex.</returns>
+        IEnumerable<IEdge<TVertex>> OutgoingEdges(TVertex vertex);
 
         /// <summary>
         /// Determines whether the edge is presented in the graph.
@@ -100,5 +100,33 @@ namespace DSA.DataStructures.Interfaces
         /// Removes all edges and vertices from the graph.
         /// </summary>
         void Clear();
+
+        /// <summary>
+        /// Breadth-first search of the graph. Returns <see cref="IEnumerable{T}"/> of the vertices.
+        /// </summary>
+        /// <param name="vertex">The vertex from which the breadth-first search starts.</param>
+        /// <returns>Returns <see cref="IEnumerable{T}"/> of the vertices.</returns>
+        IEnumerable<TVertex> BreadthFirstSearch(TVertex vertex);
+
+        /// <summary>
+        /// Breadth-first search of the graph. Returns <see cref="IEnumerable{T}"/> of <see cref="IEdge{TVertex}"/> representing the edges of the graph.
+        /// </summary>
+        /// <param name="vertex">The vertex from which the breadth-first search starts.</param>
+        /// <returns>.Returns <see cref="IEnumerable{T}"/> of <see cref="IEdge{TVertex}"/> representing the edges of the graph.</returns>
+        IEnumerable<IEdge<TVertex>> BreadthFirstSearchEdges(TVertex vertex);
+
+        /// <summary>
+        /// Depth-first search of the graph. Returns <see cref="IEnumerable{T}"/> of the vertices.
+        /// </summary>
+        /// <param name="vertex">The vertex from which the depth-first search starts.</param>
+        /// <returns>Returns <see cref="IEnumerable{T}"/> of the vertices.</returns>
+        IEnumerable<TVertex> DepthFirstSearch(TVertex vertex);
+
+        /// <summary>
+        /// Depth-first search of the graph. Returns <see cref="IEnumerable{T}"/> of <see cref="IEdge{TVertex}"/> representing the edges of the graph.
+        /// </summary>
+        /// <param name="vertex">The vertex from which the depth-first search starts.</param>
+        /// <returns>.Returns <see cref="IEnumerable{T}"/> of <see cref="IEdge{TVertex}"/> representing the edges of the graph.</returns>
+        IEnumerable<IEdge<TVertex>> DepthFirstSearchEdges(TVertex vertex);
     }
 }
