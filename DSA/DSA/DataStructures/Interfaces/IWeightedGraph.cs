@@ -22,14 +22,14 @@ namespace DSA.DataStructures.Interfaces
         bool AddEdge(TVertex firstVertex, TVertex secondVertex, TWeight weight);
 
         /// <summary>
-        /// Returns the incoming edges of the given vertex.
+        /// Returns the incoming edges of the given vertex sorted by their source vertex.
         /// </summary>
         /// <param name="vertex">The vertex whose incoming edges are returned.</param>
         /// <returns>Returns a <see cref="IEnumerable{T}"/> of <see cref="IWeightedEdge{TVertex, TWeight}"/> of all incoming edges of the given vertex.</returns>
         new IEnumerable<IWeightedEdge<TVertex, TWeight>> IncomingEdges(TVertex vertex);
 
         /// <summary>
-        /// Returns the outgoing edges of the given vertex.
+        /// Returns the outgoing edges of the given vertex sorted by their destination vertex.
         /// </summary>
         /// <param name="vertex">The vertex whose outgoing edges are returned.</param>
         /// <returns>Returns a <see cref="IEnumerable{T}"/> of <see cref="IWeightedEdge{TVertex, TWeight}"/> of all outgoing edges of the given vertex.</returns>
@@ -45,14 +45,14 @@ namespace DSA.DataStructures.Interfaces
         bool UpdateEdgeWeight(TVertex firstVertex, TVertex secondVertex, TWeight weight);
 
         /// <summary>
-        /// Breadth-first search of the graph. Returns <see cref="IEnumerable{T}"/> of <see cref="IWeightedEdge{TVertex, TWeight}"/> representing the edges of the graph.
+        /// Breadth-first search of the graph with sorted levels. Returns <see cref="IEnumerable{T}"/> of <see cref="IWeightedEdge{TVertex, TWeight}"/> representing the edges of the graph.
         /// </summary>
         /// <param name="vertex">The vertex from which the breadth-first search starts.</param>
         /// <returns>.Returns <see cref="IEnumerable{T}"/> of <see cref="IWeightedEdge{TVertex, TWeight}"/> representing the edges of the graph.</returns>
         new IEnumerable<IWeightedEdge<TVertex, TWeight>> BreadthFirstSearchEdges(TVertex vertex);
 
         /// <summary>
-        /// Depth-first search of the graph. Returns <see cref="IEnumerable{T}"/> of <see cref="IWeightedEdge{TVertex, TWeight}"/> representing the edges of the graph.
+        /// Depth-first search of the graph with sorted levels. Returns <see cref="IEnumerable{T}"/> of <see cref="IWeightedEdge{TVertex, TWeight}"/> representing the edges of the graph.
         /// </summary>
         /// <param name="vertex">The vertex from which the depth-first search starts.</param>
         /// <returns>.Returns <see cref="IEnumerable{T}"/> of <see cref="IWeightedEdge{TVertex, TWeight}"/> representing the edges of the graph.</returns>
