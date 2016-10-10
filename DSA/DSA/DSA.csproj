@@ -57,6 +57,7 @@
     <Compile Include="DataStructures\Arrays\HashedArrayTree.cs" />
     <Compile Include="DataStructures\Arrays\SparseMatrix.cs" />
     <Compile Include="DataStructures\Graphs\ALGraph.cs" />
+    <Compile Include="DataStructures\Graphs\DirectedALGraph.cs" />
     <Compile Include="DataStructures\Graphs\UnweightedEdge.cs" />
     <Compile Include="DataStructures\Graphs\WeightedEdge.cs" />
     <Compile Include="DataStructures\Heaps\BinaryMaxHeap.cs" />
