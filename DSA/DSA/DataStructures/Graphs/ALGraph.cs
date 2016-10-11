@@ -106,7 +106,7 @@ namespace DSA.DataStructures.Graphs
         /// Returns the incoming edges of the given vertex sorted by their source vertex.
         /// </summary>
         /// <param name="vertex">The vertex whose incoming edges are returned.</param>
-        /// <returns>Returns a <see cref="IList{T}"/> of <see cref="IEdge{TVertex}"/> of all incoming edges of the given vertex.</returns>
+        /// <returns>Returns a <see cref="IEnumerable{T}"/> of <see cref="UnweightedEdge{TVertex}"/> of all incoming edges of the given vertex.</returns>
         public IEnumerable<UnweightedEdge<TVertex>> IncomingEdges(TVertex vertex)
         {
             if (!adjacencyList.ContainsKey(vertex)) throw new KeyNotFoundException("Vertex does not belong to the graph!");
@@ -126,7 +126,7 @@ namespace DSA.DataStructures.Graphs
         /// Returns the outgoing edges of the given vertex sorted by their destination vertex.
         /// </summary>
         /// <param name="vertex">The vertex whose outgoing edges are returned.</param>
-        /// <returns>Returns a <see cref="IList{T}"/> of <see cref="IEdge{TVertex}"/> of all outgoing edges of the given vertex.</returns>
+        /// <returns>Returns a <see cref="IEnumerable{T}"/> of <see cref="UnweightedEdge{TVertex}"/> of all outgoing edges of the given vertex.</returns>
         public IEnumerable<UnweightedEdge<TVertex>> OutgoingEdges(TVertex vertex)
         {
             if (!adjacencyList.ContainsKey(vertex)) throw new KeyNotFoundException("Vertex does not belong to the graph!");
