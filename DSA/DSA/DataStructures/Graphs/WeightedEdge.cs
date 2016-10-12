@@ -42,6 +42,7 @@ namespace DSA.DataStructures.Graphs
         {
             Source = source;
             Destination = destination;
+            Weight = weight;
         }
     }
 }
