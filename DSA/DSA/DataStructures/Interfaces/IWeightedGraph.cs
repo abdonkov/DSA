@@ -36,13 +36,22 @@ namespace DSA.DataStructures.Interfaces
         new IEnumerable<IWeightedEdge<TVertex, TWeight>> OutgoingEdges(TVertex vertex);
 
         /// <summary>
-        /// Updates the weight of the edge defined by the given existing vertices.
+        /// Updates the weight of the edge defined by the given vertices.
         /// </summary>
         /// <param name="firstVertex">The first vertex. Source of the edge if the graph is directed.</param>
         /// <param name="secondVertex">The second vertex. Destination of the edge if the graph is directed.</param>
         /// <param name="weight">The new weight of the edge.</param>
-        /// <returns>Returns true if the edge weight was updated successfully; otherwise false. Also returns false if the vertices are not present in this graph.</returns>
+        /// <returns>Returns true if the edge weight was updated successfully; otherwise, false. Also returns false if the vertices are not present in this graph.</returns>
         bool UpdateEdgeWeight(TVertex firstVertex, TVertex secondVertex, TWeight weight);
+
+        /// <summary>
+        /// Gets the weight of the edge defined by the given vertices.
+        /// </summary>
+        /// <param name="firstVertex">The first vertex. Source of the edge if the graph is directed.</param>
+        /// <param name="secondVertex">The second vertex. Destination of the edge if the graph is directed.</param>
+        /// <param name="weight">Contains the weight of the edge, if the edge is presented in the graph; otherwise, contains the default value for the type of the weight parameter.</param>
+        /// <returns>Returns true if the graph contains the specified edge; otherwise, false.</returns>
+        bool TryGetEdgeWeight(TVertex firstVertex, TVertex secondVertex, out TWeight weight);
 
         /// <summary>
         /// Breadth-first search of the graph with sorted levels. Returns <see cref="IEnumerable{T}"/> of <see cref="IWeightedEdge{TVertex, TWeight}"/> representing the edges of the graph.
