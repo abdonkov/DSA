@@ -70,6 +70,7 @@
     <Compile Include="DataStructures\Arrays\HashedArrayTreeTests.cs" />
     <Compile Include="DataStructures\Graphs\ALGraphTests.cs" />
     <Compile Include="DataStructures\Graphs\DirectedALGraphTests.cs" />
+    <Compile Include="DataStructures\Graphs\WeightedALGraphTests.cs" />
     <Compile Include="DataStructures\Heaps\BinaryMinHeapTests.cs" />
     <Compile Include="DataStructures\Heaps\BinaryMaxHeapTests.cs" />
     <Compile Include="DataStructures\Heaps\BinomialMinHeapTests.cs" />
