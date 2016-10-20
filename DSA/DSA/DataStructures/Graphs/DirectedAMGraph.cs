@@ -123,7 +123,7 @@ namespace DSA.DataStructures.Graphs
         /// Adds the specified collection of vertices to the graph. Only one matrix resizing is performed. If some of the vertices are already in the graph exception is not thrown.
         /// </summary>
         /// <param name="vertices">Adds the <see cref="IEnumerable{T}"/> of vertices to the graph.</param>
-        public void AddVerices(IEnumerable<TVertex> vertices)
+        public void AddVertices(IEnumerable<TVertex> vertices)
         {
             // Get matrix lenght and the current vertex ID
             int matrixCount = adjacencyMatrix.GetLength(0);

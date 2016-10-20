@@ -49,7 +49,7 @@ namespace DSA.DataStructures.Interfaces
         /// Adds the specified collection of vertices to the graph. If some of the vertices are already in the graph exception is not thrown.
         /// </summary>
         /// <param name="vertices">Adds the <see cref="IEnumerable{T}"/> of vertices to the graph.</param>
-        void AddVerices(IEnumerable<TVertex> vertices);
+        void AddVertices(IEnumerable<TVertex> vertices);
 
         /// <summary>
         /// Returns the incoming edges of the given vertex by their source vertex.

@@ -15,7 +15,7 @@ namespace DSAUnitTests.DataStructures.Graphs
 
             var graph = new DirectedWeightedALGraph<int, int>();
 
-            graph.AddVerices(vertices);
+            graph.AddVertices(vertices);
 
             Assert.IsTrue(graph.VerticesCount == vertices.Length);
 
@@ -145,7 +145,7 @@ namespace DSAUnitTests.DataStructures.Graphs
 
             var graph = new DirectedWeightedALGraph<int, int>();
 
-            graph.AddVerices(vertices);
+            graph.AddVertices(vertices);
 
             // Graph is:
             // 1 -> 3, 4
@@ -223,7 +223,7 @@ namespace DSAUnitTests.DataStructures.Graphs
 
             var graph = new DirectedWeightedALGraph<int, int>();
 
-            graph.AddVerices(vertices);
+            graph.AddVertices(vertices);
 
             // Graph is:
             // 1 -> 3, 4
@@ -301,7 +301,7 @@ namespace DSAUnitTests.DataStructures.Graphs
 
             var graph = new DirectedWeightedALGraph<int, int>();
 
-            graph.AddVerices(vertices);
+            graph.AddVertices(vertices);
 
             // Graph is:
             // 1 -> 3, 4
@@ -377,7 +377,7 @@ namespace DSAUnitTests.DataStructures.Graphs
 
             var graph = new DirectedWeightedALGraph<int, int>();
 
-            graph.AddVerices(vertices);
+            graph.AddVertices(vertices);
 
             // Graph is:
             // 1 -> 3, 4
@@ -453,7 +453,7 @@ namespace DSAUnitTests.DataStructures.Graphs
 
             var graph = new DirectedWeightedALGraph<int, int>();
 
-            graph.AddVerices(vertices);
+            graph.AddVertices(vertices);
 
             // Graph is:
             // 1 -> 3, 4
@@ -551,7 +551,7 @@ namespace DSAUnitTests.DataStructures.Graphs
 
             var graph = new DirectedWeightedALGraph<int, int>();
 
-            graph.AddVerices(vertices);
+            graph.AddVertices(vertices);
 
             // Graph is:
             // 1 -> 3, 4
@@ -650,7 +650,7 @@ namespace DSAUnitTests.DataStructures.Graphs
 
             var graph = new DirectedWeightedALGraph<int, int>();
 
-            graph.AddVerices(vertices);
+            graph.AddVertices(vertices);
 
             Assert.IsTrue(graph.VerticesCount == vertices.Length);
 
