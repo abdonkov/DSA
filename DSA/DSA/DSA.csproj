@@ -63,6 +63,7 @@
     <Compile Include="DataStructures\Graphs\DirectedWeightedALGraph.cs" />
     <Compile Include="DataStructures\Graphs\UnweightedEdge.cs" />
     <Compile Include="DataStructures\Graphs\WeightedALGraph.cs" />
+    <Compile Include="DataStructures\Graphs\WeightedAMGraph.cs" />
     <Compile Include="DataStructures\Graphs\WeightedEdge.cs" />
     <Compile Include="DataStructures\Heaps\BinaryMaxHeap.cs" />
     <Compile Include="DataStructures\Heaps\BinaryMinHeap.cs" />
