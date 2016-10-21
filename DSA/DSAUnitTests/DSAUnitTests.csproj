@@ -73,6 +73,7 @@
     <Compile Include="DataStructures\Graphs\DirectedWeightedALGraphTests.cs" />
     <Compile Include="DataStructures\Graphs\AMGraphTests.cs" />
     <Compile Include="DataStructures\Graphs\DirectedAMGraphTests.cs" />
+    <Compile Include="DataStructures\Graphs\WeightedAMGraphTests.cs" />
     <Compile Include="DataStructures\Graphs\WeightedALGraphTests.cs" />
     <Compile Include="DataStructures\Heaps\BinaryMinHeapTests.cs" />
     <Compile Include="DataStructures\Heaps\BinaryMaxHeapTests.cs" />
