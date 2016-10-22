@@ -61,6 +61,7 @@
     <Compile Include="DataStructures\Graphs\DirectedALGraph.cs" />
     <Compile Include="DataStructures\Graphs\DirectedAMGraph.cs" />
     <Compile Include="DataStructures\Graphs\DirectedWeightedALGraph.cs" />
+    <Compile Include="DataStructures\Graphs\DirectedWeightedAMGraph.cs" />
     <Compile Include="DataStructures\Graphs\UnweightedEdge.cs" />
     <Compile Include="DataStructures\Graphs\WeightedALGraph.cs" />
     <Compile Include="DataStructures\Graphs\WeightedAMGraph.cs" />
