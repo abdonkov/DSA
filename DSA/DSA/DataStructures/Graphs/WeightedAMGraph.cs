@@ -151,7 +151,7 @@ namespace DSA.DataStructures.Graphs
         }
 
         /// <summary>
-        /// Adds the specified collection of vertices to the graph. If some of the vertices are already in the graph exception is not thrown.
+        /// Adds the specified collection of vertices to the graph. Only one matrix resizing is performed. If some of the vertices are already in the graph exception is not thrown.
         /// </summary>
         /// <param name="vertices">Adds the <see cref="IEnumerable{T}"/> of vertices to the graph.</param>
         public void AddVertices(IEnumerable<TVertex> vertices)
@@ -333,6 +333,9 @@ namespace DSA.DataStructures.Graphs
 
             adjacencyMatrix[firstVertexID, secondVertexID] = false;
             adjacencyMatrix[secondVertexID, firstVertexID] = false;
+
+            edgeWeights[firstVertexID, secondVertexID] = default(TWeight);
+            edgeWeights[secondVertexID, firstVertexID] = default(TWeight);
 
             // Counted as one edge because graph is undirected
             EdgesCount--;
