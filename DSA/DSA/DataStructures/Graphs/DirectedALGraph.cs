@@ -9,7 +9,7 @@ namespace DSA.DataStructures.Graphs
     /// <summary>
     /// Represents a directed and unweighted adjacency list graph with optimized amortized O(1) edge lookup and removal.
     /// </summary>
-    /// <typeparam name="TVertex"></typeparam>
+    /// <typeparam name="TVertex">The data type of the vertices. TVertex implements <see cref="IComparable{T}"/>.</typeparam>
     public class DirectedALGraph<TVertex> : IGraph<TVertex>
         where TVertex : IComparable<TVertex>
     {
@@ -19,12 +19,12 @@ namespace DSA.DataStructures.Graphs
         internal Dictionary<TVertex, HashSet<TVertex>> adjacencyList;
 
         /// <summary>
-        /// Determines whether the graph is directed.
+        /// Determines whether the <see cref="DirectedALGraph{TVertex}"/> is directed.
         /// </summary>
         public bool IsDirected { get { return true; } }
 
         /// <summary>
-        /// Deteremines whether the graph is weighted.
+        /// Deteremines whether the <see cref="DirectedALGraph{TVertex}"/> is weighted.
         /// </summary>
         public bool IsWeighted { get { return false; } }
 
@@ -49,7 +49,7 @@ namespace DSA.DataStructures.Graphs
         }
 
         /// <summary>
-        /// Adds an edge defined by the given vertices. If the vertices are not present in the graph they will be added.
+        /// Adds an edge defined by the given vertices to the <see cref="DirectedALGraph{TVertex}"/>. If the vertices are not present in the graph they will be added.
         /// </summary>
         /// <param name="source">The source vertex of the edge.</param>
         /// <param name="destination">The destination vertex of the edge.</param>
@@ -86,7 +86,7 @@ namespace DSA.DataStructures.Graphs
         }
 
         /// <summary>
-        /// Adds the specified collection of vertices to the graph. If some of the vertices are already in the graph exception is not thrown.
+        /// Adds the specified collection of vertices to the <see cref="DirectedALGraph{TVertex}"/>. If some of the vertices are already in the graph exception is not thrown.
         /// </summary>
         /// <param name="vertices">Adds the <see cref="IEnumerable{T}"/> of vertices to the graph.</param>
         public void AddVertices(IEnumerable<TVertex> vertices)
@@ -165,7 +165,7 @@ namespace DSA.DataStructures.Graphs
         }
 
         /// <summary>
-        /// Removes the edge defined by the given vertices.
+        /// Removes the edge defined by the given vertices from the <see cref="DirectedALGraph{TVertex}"/>.
         /// </summary>
         /// <param name="source">The source vertex of the edge.</param>
         /// <param name="destination">The destination vertex of the edge.</param>
@@ -182,7 +182,7 @@ namespace DSA.DataStructures.Graphs
         }
 
         /// <summary>
-        /// Removes the given vertex.
+        /// Removes the given vertex from the <see cref="DirectedALGraph{TVertex}"/>.
         /// </summary>
         /// <param name="vertex">The vertex to remove.</param>
         /// <returns>Returns true if the vertex was removed successfully; otherwise false. Also returns false if the vertex does not exist.</returns>
@@ -206,7 +206,7 @@ namespace DSA.DataStructures.Graphs
         }
 
         /// <summary>
-        /// Returns the degree of the given vertex.
+        /// Returns the degree of the given vertex presented in the <see cref="DirectedALGraph{TVertex}"/>.
         /// </summary>
         /// <param name="vertex">The vertex to calculate its degeree.</param>
         /// <returns>Returns the degree of the given vertex.</returns>
@@ -237,7 +237,7 @@ namespace DSA.DataStructures.Graphs
         }
 
         /// <summary>
-        /// Breadth-first search of the graph with sorted levels. Returns <see cref="IEnumerable{T}"/> of the vertices.
+        /// Breadth-first search of the <see cref="DirectedALGraph{TVertex}"/> with sorted levels. Returns <see cref="IEnumerable{T}"/> of the vertices.
         /// </summary>
         /// <param name="vertex">The vertex from which the breadth-first search starts.</param>
         /// <returns>Returns <see cref="IEnumerable{T}"/> of the vertices.</returns>
@@ -281,7 +281,7 @@ namespace DSA.DataStructures.Graphs
         }
 
         /// <summary>
-        /// Breadth-first search of the graph with sorted levels. Returns <see cref="IEnumerable{T}"/> of <see cref="UnweightedEdge{TVertex}"/> representing the edges of the graph.
+        /// Breadth-first search of the <see cref="DirectedALGraph{TVertex}"/> with sorted levels. Returns <see cref="IEnumerable{T}"/> of <see cref="UnweightedEdge{TVertex}"/> representing the edges of the graph.
         /// </summary>
         /// <param name="vertex">The vertex from which the breadth-first search starts.</param>
         /// <returns>.Returns <see cref="IEnumerable{T}"/> of <see cref="UnweightedEdge{TVertex}"/> representing the edges of the graph.</returns>
@@ -325,7 +325,7 @@ namespace DSA.DataStructures.Graphs
         }
 
         /// <summary>
-        /// Depth-first search of the graph with sorted levels. Returns <see cref="IEnumerable{T}"/> of the vertices.
+        /// Depth-first search of the <see cref="DirectedALGraph{TVertex}"/> with sorted levels. Returns <see cref="IEnumerable{T}"/> of the vertices.
         /// </summary>
         /// <param name="vertex">The vertex from which the depth-first search starts.</param>
         /// <returns>Returns <see cref="IEnumerable{T}"/> of the vertices.</returns>
@@ -372,7 +372,7 @@ namespace DSA.DataStructures.Graphs
         }
 
         /// <summary>
-        /// Depth-first search of the graph with sorted levels. Returns <see cref="IEnumerable{T}"/> of <see cref="UnweightedEdge{TVertex}"/> representing the edges of the graph.
+        /// Depth-first search of the <see cref="DirectedALGraph{TVertex}"/> with sorted levels. Returns <see cref="IEnumerable{T}"/> of <see cref="UnweightedEdge{TVertex}"/> representing the edges of the graph.
         /// </summary>
         /// <param name="vertex">The vertex from which the depth-first search starts.</param>
         /// <returns>.Returns <see cref="IEnumerable{T}"/> of <see cref="UnweightedEdge{TVertex}"/> representing the edges of the graph.</returns>

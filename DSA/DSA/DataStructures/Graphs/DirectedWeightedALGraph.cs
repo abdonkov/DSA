@@ -9,7 +9,8 @@ namespace DSA.DataStructures.Graphs
     /// <summary>
     /// Represents a directed and weighted adjacency list graph with optimized amortized O(1) edge lookup and removal.
     /// </summary>
-    /// <typeparam name="TVertex"></typeparam>
+    /// <typeparam name="TVertex">The data type of the vertices. TVertex implements <see cref="IComparable{T}"/>.</typeparam>
+    /// <typeparam name="TWeight">The data type of the weight of the edges. TWeight implements <see cref="IComparable{T}"/>.</typeparam>
     public class DirectedWeightedALGraph<TVertex, TWeight> : IWeightedGraph<TVertex, TWeight>
         where TVertex : IComparable<TVertex>
         where TWeight : IComparable<TWeight>
@@ -20,12 +21,12 @@ namespace DSA.DataStructures.Graphs
         internal Dictionary<TVertex, Dictionary<TVertex, TWeight>> adjacencyList;
 
         /// <summary>
-        /// Determines whether the graph is directed.
+        /// Determines whether the <see cref="DirectedWeightedALGraph{TVertex, TWeight}"/> is directed.
         /// </summary>
         public bool IsDirected { get { return true; } }
 
         /// <summary>
-        /// Deteremines whether the graph is weighted.
+        /// Deteremines whether the <see cref="DirectedWeightedALGraph{TVertex, TWeight}"/> is weighted.
         /// </summary>
         public bool IsWeighted { get { return true; } }
 
@@ -50,7 +51,7 @@ namespace DSA.DataStructures.Graphs
         }
 
         /// <summary>
-        /// Adds an edge defined by the given vertices. If the vertices are not present in the graph they will be added.
+        /// Adds an edge defined by the given vertices to the <see cref="DirectedWeightedALGraph{TVertex, TWeight}"/> with weight being the <see cref="TWeight"/> default value of the <see cref="DirectedWeightedALGraph{TVertex, TWeight}"/>. If the vertices are not present in the graph they will be added.
         /// </summary>
         /// <param name="source">The source vertex of the edge.</param>
         /// <param name="destination">The destination vertex of the edge.</param>
@@ -61,7 +62,7 @@ namespace DSA.DataStructures.Graphs
         }
 
         /// <summary>
-        /// Adds an edge defined by the given vertices with weight being the <see cref="TWeight"/> default value of the <see cref="WeightedALGraph{TVertex, TWeight}"/>. If the vertices are not present in the graph they will be added.
+        /// Adds an edge defined by the given vertices to the <see cref="DirectedWeightedALGraph{TVertex, TWeight}"/> with the given weight. If the vertices are not present in the graph they will be added.
         /// </summary>
         /// <param name="source">The source vertex of the edge.</param>
         /// <param name="destination">The destination vertex of the edge.</param>
@@ -99,7 +100,7 @@ namespace DSA.DataStructures.Graphs
         }
 
         /// <summary>
-        /// Adds the specified collection of vertices to the graph. If some of the vertices are already in the graph exception is not thrown.
+        /// Adds the specified collection of vertices to the <see cref="DirectedWeightedALGraph{TVertex, TWeight}"/>. If some of the vertices are already in the graph exception is not thrown.
         /// </summary>
         /// <param name="vertices">Adds the <see cref="IEnumerable{T}"/> of vertices to the graph.</param>
         public void AddVertices(IEnumerable<TVertex> vertices)
@@ -181,7 +182,7 @@ namespace DSA.DataStructures.Graphs
         }
 
         /// <summary>
-        /// Updates the weight of the edge defined by the given vertices.
+        /// Updates the weight of the edge defined by the given vertices in the <see cref="DirectedWeightedALGraph{TVertex, TWeight}"/>.
         /// </summary>
         /// <param name="source">The source vertex of the edge.</param>
         /// <param name="destination">The destination vertex of the edge.</param>
@@ -196,7 +197,7 @@ namespace DSA.DataStructures.Graphs
         }
 
         /// <summary>
-        /// Gets the weight of the edge defined by the given vertices.
+        /// Gets the weight of the edge defined by the given vertices in the <see cref="DirectedWeightedALGraph{TVertex, TWeight}"/>.
         /// </summary>
         /// <param name="source">The source vertex of the edge.</param>
         /// <param name="destination">The destination vertex of the edge.</param>
@@ -213,7 +214,7 @@ namespace DSA.DataStructures.Graphs
         }
 
         /// <summary>
-        /// Removes the edge defined by the given vertices.
+        /// Removes the edge defined by the given vertices from the <see cref="DirectedWeightedALGraph{TVertex, TWeight}"/>.
         /// </summary>
         /// <param name="source">The source vertex of the edge.</param>
         /// <param name="destination">The destination vertex of the edge.</param>
@@ -230,7 +231,7 @@ namespace DSA.DataStructures.Graphs
         }
 
         /// <summary>
-        /// Removes the given vertex.
+        /// Removes the given vertex from the <see cref="DirectedWeightedALGraph{TVertex, TWeight}"/>.
         /// </summary>
         /// <param name="vertex">The vertex to remove.</param>
         /// <returns>Returns true if the vertex was removed successfully; otherwise false. Also returns false if the vertex does not exist.</returns>
@@ -254,7 +255,7 @@ namespace DSA.DataStructures.Graphs
         }
 
         /// <summary>
-        /// Returns the degree of the given vertex.
+        /// Returns the degree of the given vertex presented in the <see cref="DirectedWeightedALGraph{TVertex, TWeight}"/>.
         /// </summary>
         /// <param name="vertex">The vertex to calculate its degeree.</param>
         /// <returns>Returns the degree of the given vertex.</returns>
@@ -285,7 +286,7 @@ namespace DSA.DataStructures.Graphs
         }
 
         /// <summary>
-        /// Breadth-first search of the graph with sorted levels. Returns <see cref="IEnumerable{T}"/> of the vertices.
+        /// Breadth-first search of the <see cref="DirectedWeightedALGraph{TVertex, TWeight}"/> with sorted levels. Returns <see cref="IEnumerable{T}"/> of the vertices.
         /// </summary>
         /// <param name="vertex">The vertex from which the breadth-first search starts.</param>
         /// <returns>Returns <see cref="IEnumerable{T}"/> of the vertices.</returns>
@@ -329,7 +330,7 @@ namespace DSA.DataStructures.Graphs
         }
 
         /// <summary>
-        /// Breadth-first search of the graph with sorted levels. Returns <see cref="IEnumerable{T}"/> of <see cref="WeightedEdge{TVertex, TWeight}"/> representing the edges of the graph.
+        /// Breadth-first search of the <see cref="DirectedWeightedALGraph{TVertex, TWeight}"/> with sorted levels. Returns <see cref="IEnumerable{T}"/> of <see cref="WeightedEdge{TVertex, TWeight}"/> representing the edges of the graph.
         /// </summary>
         /// <param name="vertex">The vertex from which the breadth-first search starts.</param>
         /// <returns>.Returns <see cref="IEnumerable{T}"/> of <see cref="WeightedEdge{TVertex, TWeight}"/> representing the edges of the graph.</returns>
@@ -374,7 +375,7 @@ namespace DSA.DataStructures.Graphs
         }
 
         /// <summary>
-        /// Depth-first search of the graph with sorted levels. Returns <see cref="IEnumerable{T}"/> of the vertices.
+        /// Depth-first search of the <see cref="DirectedWeightedALGraph{TVertex, TWeight}"/> with sorted levels. Returns <see cref="IEnumerable{T}"/> of the vertices.
         /// </summary>
         /// <param name="vertex">The vertex from which the depth-first search starts.</param>
         /// <returns>Returns <see cref="IEnumerable{T}"/> of the vertices.</returns>
@@ -421,7 +422,7 @@ namespace DSA.DataStructures.Graphs
         }
 
         /// <summary>
-        /// Depth-first search of the graph with sorted levels. Returns <see cref="IEnumerable{T}"/> of <see cref="WeightedEdge{TVertex, TWeight}"/> representing the edges of the graph.
+        /// Depth-first search of the <see cref="DirectedWeightedALGraph{TVertex, TWeight}"/> with sorted levels. Returns <see cref="IEnumerable{T}"/> of <see cref="WeightedEdge{TVertex, TWeight}"/> representing the edges of the graph.
         /// </summary>
         /// <param name="vertex">The vertex from which the depth-first search starts.</param>
         /// <returns>.Returns <see cref="IEnumerable{T}"/> of <see cref="WeightedEdge{TVertex, TWeight}"/> representing the edges of the graph.</returns>
