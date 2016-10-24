@@ -341,7 +341,7 @@ namespace DSAUnitTests.DataStructures.Graphs
 
             // Vertex 1 expected incoming edges: 2
             var expected = new int[] { 2 };
-            var edges = graph.IncomingEdges(1).ToList();
+            var edges = graph.IncomingEdgesSorted(1).ToList();
             Assert.IsTrue(edges.Count == expected.Length);
             for (int i = 0; i < expected.Length; i++)
             {
@@ -351,7 +351,7 @@ namespace DSAUnitTests.DataStructures.Graphs
 
             // Vertex 2 expected incoming edges: 3 5 6
             expected = new int[] { 3, 5, 6 };
-            edges = graph.IncomingEdges(2).ToList();
+            edges = graph.IncomingEdgesSorted(2).ToList();
             Assert.IsTrue(edges.Count == expected.Length);
             for (int i = 0; i < expected.Length; i++)
             {
@@ -361,7 +361,7 @@ namespace DSAUnitTests.DataStructures.Graphs
 
             // Vertex 7 expected incoming edges: 5 8
             expected = new int[] { 5, 8 };
-            edges = graph.IncomingEdges(7).ToList();
+            edges = graph.IncomingEdgesSorted(7).ToList();
             Assert.IsTrue(edges.Count == expected.Length);
             for (int i = 0; i < expected.Length; i++)
             {
@@ -417,7 +417,7 @@ namespace DSAUnitTests.DataStructures.Graphs
 
             // Vertex 1 expected outgoing edges: 3 4
             var expected = new int[] { 3, 4 };
-            var edges = graph.OutgoingEdges(1).ToList();
+            var edges = graph.OutgoingEdgesSorted(1).ToList();
             Assert.IsTrue(edges.Count == expected.Length);
             for (int i = 0; i < expected.Length; i++)
             {
@@ -427,7 +427,7 @@ namespace DSAUnitTests.DataStructures.Graphs
 
             // Vertex 5 expected outgoing edges: 2 7 8
             expected = new int[] { 2, 7, 8 };
-            edges = graph.OutgoingEdges(5).ToList();
+            edges = graph.OutgoingEdgesSorted(5).ToList();
             Assert.IsTrue(edges.Count == expected.Length);
             for (int i = 0; i < expected.Length; i++)
             {
@@ -437,7 +437,7 @@ namespace DSAUnitTests.DataStructures.Graphs
 
             // Vertex 7 expected outgoing edges: 4
             expected = new int[] { 4 };
-            edges = graph.OutgoingEdges(7).ToList();
+            edges = graph.OutgoingEdgesSorted(7).ToList();
             Assert.IsTrue(edges.Count == expected.Length);
             for (int i = 0; i < expected.Length; i++)
             {

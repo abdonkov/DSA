@@ -22,18 +22,32 @@ namespace DSA.DataStructures.Interfaces
         bool AddEdge(TVertex firstVertex, TVertex secondVertex, TWeight weight);
 
         /// <summary>
-        /// Returns the incoming edges of the given vertex sorted by their source vertex.
+        /// Returns the incoming edges of the given vertex.
         /// </summary>
         /// <param name="vertex">The vertex whose incoming edges are returned.</param>
         /// <returns>Returns a <see cref="IEnumerable{T}"/> of <see cref="IWeightedEdge{TVertex, TWeight}"/> of all incoming edges of the given vertex.</returns>
         new IEnumerable<IWeightedEdge<TVertex, TWeight>> IncomingEdges(TVertex vertex);
 
         /// <summary>
-        /// Returns the outgoing edges of the given vertex sorted by their destination vertex.
+        /// Returns the outgoing edges of the given vertex.
         /// </summary>
         /// <param name="vertex">The vertex whose outgoing edges are returned.</param>
         /// <returns>Returns a <see cref="IEnumerable{T}"/> of <see cref="IWeightedEdge{TVertex, TWeight}"/> of all outgoing edges of the given vertex.</returns>
         new IEnumerable<IWeightedEdge<TVertex, TWeight>> OutgoingEdges(TVertex vertex);
+
+        /// <summary>
+        /// Returns the incoming edges of the given vertex sorted by their source vertex.
+        /// </summary>
+        /// <param name="vertex">The vertex whose incoming edges are returned.</param>
+        /// <returns>Returns a <see cref="IEnumerable{T}"/> of <see cref="IWeightedEdge{TVertex, TWeight}"/> of all incoming edges of the given vertex.</returns>
+        new IEnumerable<IWeightedEdge<TVertex, TWeight>> IncomingEdgesSorted(TVertex vertex);
+
+        /// <summary>
+        /// Returns the outgoing edges of the given vertex sorted by their destination vertex.
+        /// </summary>
+        /// <param name="vertex">The vertex whose outgoing edges are returned.</param>
+        /// <returns>Returns a <see cref="IEnumerable{T}"/> of <see cref="IWeightedEdge{TVertex, TWeight}"/> of all outgoing edges of the given vertex.</returns>
+        new IEnumerable<IWeightedEdge<TVertex, TWeight>> OutgoingEdgesSorted(TVertex vertex);
 
         /// <summary>
         /// Updates the weight of the edge defined by the given vertices.

@@ -192,11 +192,71 @@ namespace DSA.DataStructures.Graphs
         }
 
         /// <summary>
-        /// Returns the incoming edges of the given vertex sorted by their source vertex.
+        /// Returns the incoming edges of the given vertex.
         /// </summary>
         /// <param name="vertex">The vertex whose incoming edges are returned.</param>
         /// <returns>Returns a <see cref="IEnumerable{T}"/> of <see cref="WeightedEdge{TVertex, TWeight}"/> of all incoming edges of the given vertex.</returns>
         public IEnumerable<WeightedEdge<TVertex, TWeight>> IncomingEdges(TVertex vertex)
+        {
+            if (!verticesIDs.ContainsKey(vertex)) throw new KeyNotFoundException("Vertex does not belong to the graph!");
+
+            // Get vertexID and matrix length
+            int vertexID = verticesIDs[vertex];
+            int mLength = adjacencyMatrix.GetLength(0);
+
+            // Add the adjacent vertices and the weights of the edges to a list
+            var adjacent = new List<KeyValuePair<TVertex, TWeight>>(mLength);
+            for (int i = 0; i < mLength; i++)
+            {
+                if (adjacencyMatrix[i, vertexID])
+                    adjacent.Add(new KeyValuePair<TVertex, TWeight>(vertices[i], edgeWeights[i, vertexID]));
+            }
+
+            if (adjacent.Count > 0)
+            {
+                for (int i = 0; i < adjacent.Count; i++)
+                {
+                    yield return new WeightedEdge<TVertex, TWeight>(adjacent[i].Key, vertex, adjacent[i].Value);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Returns the outgoing edges of the given vertex.
+        /// </summary>
+        /// <param name="vertex">The vertex whose outgoing edges are returned.</param>
+        /// <returns>Returns a <see cref="IEnumerable{T}"/> of <see cref="WeightedEdge{TVertex, TWeight}"/> of all outgoing edges of the given vertex.</returns>
+        public IEnumerable<WeightedEdge<TVertex, TWeight>> OutgoingEdges(TVertex vertex)
+        {
+            if (!verticesIDs.ContainsKey(vertex)) throw new KeyNotFoundException("Vertex does not belong to the graph!");
+
+            // Get vertexID and matrix length
+            int vertexID = verticesIDs[vertex];
+            int mLength = adjacencyMatrix.GetLength(0);
+
+            // Add the adjacent vertices and the weights of the edges to a list
+            var adjacent = new List<KeyValuePair<TVertex, TWeight>>(mLength);
+            for (int i = 0; i < mLength; i++)
+            {
+                if (adjacencyMatrix[vertexID, i])
+                    adjacent.Add(new KeyValuePair<TVertex, TWeight>(vertices[i], edgeWeights[vertexID, i]));
+            }
+
+            if (adjacent.Count > 0)
+            {
+                for (int i = 0; i < adjacent.Count; i++)
+                {
+                    yield return new WeightedEdge<TVertex, TWeight>(vertex, adjacent[i].Key, adjacent[i].Value);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Returns the incoming edges of the given vertex sorted by their source vertex.
+        /// </summary>
+        /// <param name="vertex">The vertex whose incoming edges are returned.</param>
+        /// <returns>Returns a <see cref="IEnumerable{T}"/> of <see cref="WeightedEdge{TVertex, TWeight}"/> of all incoming edges of the given vertex.</returns>
+        public IEnumerable<WeightedEdge<TVertex, TWeight>> IncomingEdgesSorted(TVertex vertex)
         {
             if (!verticesIDs.ContainsKey(vertex)) throw new KeyNotFoundException("Vertex does not belong to the graph!");
 
@@ -216,9 +276,10 @@ namespace DSA.DataStructures.Graphs
 
             if (adjacent.Count > 0)
             {
-                foreach (var kvp in adjacent.QuickSort(kvpComparer))
+                adjacent.QuickSort(kvpComparer);
+                for (int i = 0; i < adjacent.Count; i++)
                 {
-                    yield return new WeightedEdge<TVertex, TWeight>(kvp.Key, vertex, kvp.Value);
+                    yield return new WeightedEdge<TVertex, TWeight>(adjacent[i].Key, vertex, adjacent[i].Value);
                 }
             }
         }
@@ -228,7 +289,7 @@ namespace DSA.DataStructures.Graphs
         /// </summary>
         /// <param name="vertex">The vertex whose outgoing edges are returned.</param>
         /// <returns>Returns a <see cref="IEnumerable{T}"/> of <see cref="WeightedEdge{TVertex, TWeight}"/> of all outgoing edges of the given vertex.</returns>
-        public IEnumerable<WeightedEdge<TVertex, TWeight>> OutgoingEdges(TVertex vertex)
+        public IEnumerable<WeightedEdge<TVertex, TWeight>> OutgoingEdgesSorted(TVertex vertex)
         {
             if (!verticesIDs.ContainsKey(vertex)) throw new KeyNotFoundException("Vertex does not belong to the graph!");
 
@@ -248,9 +309,10 @@ namespace DSA.DataStructures.Graphs
 
             if (adjacent.Count > 0)
             {
-                foreach (var kvp in adjacent.QuickSort(kvpComparer))
+                adjacent.QuickSort(kvpComparer);
+                for (int i = 0; i < adjacent.Count; i++)
                 {
-                    yield return new WeightedEdge<TVertex, TWeight>(vertex, kvp.Key, kvp.Value);
+                    yield return new WeightedEdge<TVertex, TWeight>(vertex, adjacent[i].Key, adjacent[i].Value);
                 }
             }
         }
@@ -677,7 +739,17 @@ namespace DSA.DataStructures.Graphs
 
         IEnumerable<IEdge<TVertex>> IGraph<TVertex>.OutgoingEdges(TVertex vertex)
         {
-            return IncomingEdges(vertex);
+            return OutgoingEdges(vertex);
+        }
+
+        IEnumerable<IEdge<TVertex>> IGraph<TVertex>.IncomingEdgesSorted(TVertex vertex)
+        {
+            return IncomingEdgesSorted(vertex);
+        }
+
+        IEnumerable<IEdge<TVertex>> IGraph<TVertex>.OutgoingEdgesSorted(TVertex vertex)
+        {
+            return OutgoingEdgesSorted(vertex);
         }
 
         IEnumerable<IWeightedEdge<TVertex, TWeight>> IWeightedGraph<TVertex, TWeight>.IncomingEdges(TVertex vertex)
@@ -687,7 +759,17 @@ namespace DSA.DataStructures.Graphs
 
         IEnumerable<IWeightedEdge<TVertex, TWeight>> IWeightedGraph<TVertex, TWeight>.OutgoingEdges(TVertex vertex)
         {
-            return IncomingEdges(vertex);
+            return OutgoingEdges(vertex);
+        }
+
+        IEnumerable<IWeightedEdge<TVertex, TWeight>> IWeightedGraph<TVertex, TWeight>.IncomingEdgesSorted(TVertex vertex)
+        {
+            return IncomingEdgesSorted(vertex);
+        }
+
+        IEnumerable<IWeightedEdge<TVertex, TWeight>> IWeightedGraph<TVertex, TWeight>.OutgoingEdgesSorted(TVertex vertex)
+        {
+            return OutgoingEdgesSorted(vertex);
         }
 
         IEnumerable<IEdge<TVertex>> IGraph<TVertex>.BreadthFirstSearchEdges(TVertex vertex)

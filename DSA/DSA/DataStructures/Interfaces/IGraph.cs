@@ -52,18 +52,32 @@ namespace DSA.DataStructures.Interfaces
         void AddVertices(IEnumerable<TVertex> vertices);
 
         /// <summary>
-        /// Returns the incoming edges of the given vertex by their source vertex.
+        /// Returns the incoming edges of the given vertex.
         /// </summary>
         /// <param name="vertex">The vertex whose incoming edges are returned.</param>
         /// <returns>Returns a <see cref="IEnumerable{T}"/> of <see cref="IEdge{TVertex}"/> of all incoming edges of the given vertex.</returns>
         IEnumerable<IEdge<TVertex>> IncomingEdges(TVertex vertex);
 
         /// <summary>
-        /// Returns the outgoing edges of the given vertex sorted by their destination vertex.
+        /// Returns the outgoing edges of the given vertex.
         /// </summary>
         /// <param name="vertex">The vertex whose outgoing edges are returned.</param>
         /// <returns>Returns a <see cref="IEnumerable{T}"/> of <see cref="IEdge{TVertex}"/> of all outgoing edges of the given vertex.</returns>
         IEnumerable<IEdge<TVertex>> OutgoingEdges(TVertex vertex);
+
+        /// <summary>
+        /// Returns the incoming edges of the given vertex sorted by their source vertex.
+        /// </summary>
+        /// <param name="vertex">The vertex whose incoming edges are returned.</param>
+        /// <returns>Returns a <see cref="IEnumerable{T}"/> of <see cref="IEdge{TVertex}"/> of all incoming edges of the given vertex.</returns>
+        IEnumerable<IEdge<TVertex>> IncomingEdgesSorted(TVertex vertex);
+
+        /// <summary>
+        /// Returns the outgoing edges of the given vertex sorted by their destination vertex.
+        /// </summary>
+        /// <param name="vertex">The vertex whose outgoing edges are returned.</param>
+        /// <returns>Returns a <see cref="IEnumerable{T}"/> of <see cref="IEdge{TVertex}"/> of all outgoing edges of the given vertex.</returns>
+        IEnumerable<IEdge<TVertex>> OutgoingEdgesSorted(TVertex vertex);
 
         /// <summary>
         /// Determines whether the edge is presented in the graph.
