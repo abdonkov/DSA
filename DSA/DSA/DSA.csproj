@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithms\Graphs\Delegates.cs" />
+    <Compile Include="Algorithms\Graphs\UnweightedGraphShortestPaths.cs" />
     <Compile Include="Algorithms\Sorting\BubbleSorter.cs" />
     <Compile Include="Algorithms\Sorting\CountingSorter.cs" />
     <Compile Include="Algorithms\Sorting\HeapSorter.cs" />
