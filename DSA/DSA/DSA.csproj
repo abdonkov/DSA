@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithms\Graphs\Delegates.cs" />
+    <Compile Include="Algorithms\Graphs\DijkstraShortestPathsFinder.cs" />
     <Compile Include="Algorithms\Graphs\UnweightedGraphShortestPaths.cs" />
     <Compile Include="Algorithms\Graphs\WeightedGraphShortestPaths.cs" />
     <Compile Include="Algorithms\Sorting\BubbleSorter.cs" />
