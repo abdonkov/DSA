@@ -39,6 +39,59 @@ namespace DSA.DataStructures.Graphs
         public int VerticesCount { get; internal set; }
 
         /// <summary>
+        /// Gets the vertices in the <see cref="ALGraph{TVertex}"/>.
+        /// </summary>
+        public IEnumerable<TVertex> Vertices
+        {
+            get
+            {
+                List<TVertex> vertices = new List<TVertex>(VerticesCount);
+                foreach (var vertex in adjacencyList.Keys)
+                {
+                    vertices.Add(vertex);
+                }
+                return vertices;
+            }
+        }
+
+        /// <summary>
+        /// Gets the vertices in the <see cref="ALGraph{TVertex}"/> in sorted ascending order.
+        /// </summary>
+        public IEnumerable<TVertex> VerticesSorted
+        {
+            get
+            {
+                List<TVertex> vertices = new List<TVertex>(VerticesCount);
+                foreach (var vertex in adjacencyList.Keys)
+                {
+                    vertices.Add(vertex);
+                }
+
+                if (vertices.Count > 0)
+                    vertices.QuickSort();
+
+                return vertices;
+            }
+        }
+
+        /// <summary>
+        /// Gets the edges in the <see cref="ALGraph{TVertex}"/>. For each edge in the graph returns two <see cref="UnweightedEdge{TVertex}"/> objects with swapped source and destination vertices.
+        /// </summary>
+        public IEnumerable<UnweightedEdge<TVertex>> Edges
+        {
+            get
+            {
+                foreach (var kvp in adjacencyList)
+                {
+                    foreach (var adjacent in kvp.Value)
+                    {
+                        yield return new UnweightedEdge<TVertex>(kvp.Key, adjacent);
+                    }
+                }
+            }
+        }
+        
+        /// <summary>
         /// Creates a new instance of the <see cref="ALGraph{TVertex}"/>.
         /// </summary>
         public ALGraph()
@@ -472,6 +525,8 @@ namespace DSA.DataStructures.Graphs
                 }
             }
         }
+
+        IEnumerable<IEdge<TVertex>> IGraph<TVertex>.Edges { get { return Edges; } }
 
         IEnumerable<IEdge<TVertex>> IGraph<TVertex>.IncomingEdges(TVertex vertex)
         {

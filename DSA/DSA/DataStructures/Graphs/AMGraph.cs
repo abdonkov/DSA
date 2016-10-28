@@ -49,6 +49,61 @@ namespace DSA.DataStructures.Graphs
         public int VerticesCount { get; internal set; }
 
         /// <summary>
+        /// Gets the vertices in the <see cref="AMGraph{TVertex}"/>.
+        /// </summary>
+        public IEnumerable<TVertex> Vertices
+        {
+            get
+            {
+                List<TVertex> vertices = new List<TVertex>(VerticesCount);
+                foreach (var vertex in verticesIDs.Keys)
+                {
+                    vertices.Add(vertex);
+                }
+                return vertices;
+            }
+        }
+
+        /// <summary>
+        /// Gets the vertices in the <see cref="AMGraph{TVertex}"/> in sorted ascending order.
+        /// </summary>
+        public IEnumerable<TVertex> VerticesSorted
+        {
+            get
+            {
+                List<TVertex> vertices = new List<TVertex>(VerticesCount);
+                foreach (var vertex in verticesIDs.Keys)
+                {
+                    vertices.Add(vertex);
+                }
+
+                if (vertices.Count > 0)
+                    vertices.QuickSort();
+
+                return vertices;
+            }
+        }
+
+        /// <summary>
+        /// Gets the edges in the <see cref="AMGraph{TVertex}"/>. For each edge in the graph returns two <see cref="UnweightedEdge{TVertex}"/> objects with swapped source and destination vertices.
+        /// </summary>
+        public IEnumerable<UnweightedEdge<TVertex>> Edges
+        {
+            get
+            {
+                int mLength = adjacencyMatrix.GetLength(0);
+                for (int i = 0; i < mLength; i++)
+                {
+                    for (int j = 0; j < mLength; j++)
+                    {
+                        if (adjacencyMatrix[i, j])
+                            yield return new UnweightedEdge<TVertex>(vertices[i], vertices[j]);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Creates a new instance of the <see cref="AMGraph{TVertex}"/>.
         /// </summary>
         public AMGraph()
@@ -647,6 +702,8 @@ namespace DSA.DataStructures.Graphs
                 }
             }
         }
+
+        IEnumerable<IEdge<TVertex>> IGraph<TVertex>.Edges { get { return Edges; } }
 
         IEnumerable<IEdge<TVertex>> IGraph<TVertex>.IncomingEdges(TVertex vertex)
         {

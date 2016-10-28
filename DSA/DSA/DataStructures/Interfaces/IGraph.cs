@@ -31,6 +31,21 @@ namespace DSA.DataStructures.Interfaces
         int VerticesCount { get; }
 
         /// <summary>
+        /// Gets the vertices in the graph.
+        /// </summary>
+        IEnumerable<TVertex> Vertices { get; }
+
+        /// <summary>
+        /// Gets the vertices in the graph in sorted ascending order.
+        /// </summary>
+        IEnumerable<TVertex> VerticesSorted { get; }
+
+        /// <summary>
+        /// Gets the edges in the graph.
+        /// </summary>
+        IEnumerable<IEdge<TVertex>> Edges { get; }
+
+        /// <summary>
         /// Adds an edge defined by the given vertices. If the vertices are not present in the graph they will be added.
         /// </summary>
         /// <param name="firstVertex">The first vertex. Source of the edge if the graph is directed.</param>

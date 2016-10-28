@@ -56,6 +56,61 @@ namespace DSA.DataStructures.Graphs
         public int VerticesCount { get; internal set; }
 
         /// <summary>
+        /// Gets the vertices in the <see cref="DirectedWeightedAMGraph{TVertex, TWeight}"/>.
+        /// </summary>
+        public IEnumerable<TVertex> Vertices
+        {
+            get
+            {
+                List<TVertex> vertices = new List<TVertex>(VerticesCount);
+                foreach (var vertex in verticesIDs.Keys)
+                {
+                    vertices.Add(vertex);
+                }
+                return vertices;
+            }
+        }
+
+        /// <summary>
+        /// Gets the vertices in the <see cref="DirectedWeightedAMGraph{TVertex, TWeight}"/> in sorted ascending order.
+        /// </summary>
+        public IEnumerable<TVertex> VerticesSorted
+        {
+            get
+            {
+                List<TVertex> vertices = new List<TVertex>(VerticesCount);
+                foreach (var vertex in verticesIDs.Keys)
+                {
+                    vertices.Add(vertex);
+                }
+
+                if (vertices.Count > 0)
+                    vertices.QuickSort();
+
+                return vertices;
+            }
+        }
+
+        /// <summary>
+        /// Gets the edges in the <see cref="DirectedWeightedAMGraph{TVertex, TWeight}"/>.
+        /// </summary>
+        public IEnumerable<WeightedEdge<TVertex, TWeight>> Edges
+        {
+            get
+            {
+                int mLength = adjacencyMatrix.GetLength(0);
+                for (int i = 0; i < mLength; i++)
+                {
+                    for (int j = 0; j < mLength; j++)
+                    {
+                        if (adjacencyMatrix[i, j])
+                            yield return new WeightedEdge<TVertex, TWeight>(vertices[i], vertices[j], edgeWeights[i, j]);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Creates a new instance of the <see cref="DirectedWeightedAMGraph{TVertex, TWeight}"/>.
         /// </summary>
         public DirectedWeightedAMGraph()
@@ -719,6 +774,10 @@ namespace DSA.DataStructures.Graphs
                 }
             }
         }
+
+        IEnumerable<IEdge<TVertex>> IGraph<TVertex>.Edges { get { return Edges; } }
+
+        IEnumerable<IWeightedEdge<TVertex, TWeight>> IWeightedGraph<TVertex, TWeight>.Edges { get { return Edges; } }
 
         IEnumerable<IEdge<TVertex>> IGraph<TVertex>.IncomingEdges(TVertex vertex)
         {

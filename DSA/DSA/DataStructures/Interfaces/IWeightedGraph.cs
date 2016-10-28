@@ -13,6 +13,11 @@ namespace DSA.DataStructures.Interfaces
         where TWeight : IComparable<TWeight>
     {
         /// <summary>
+        /// Gets the edges in the graph.
+        /// </summary>
+        new IEnumerable<IWeightedEdge<TVertex, TWeight>> Edges { get; }
+
+        /// <summary>
         /// Adds an edge defined by the given vertices, having the given weight. If the vertices are not present in the graph they will be added.
         /// </summary>
         /// <param name="firstVertex">The first vertex. Source of the edge if the graph is directed.</param>
