@@ -10,7 +10,7 @@ namespace DSA.Algorithms.Graphs
     public static class DijkstraShortestPathsFinder
     {
         /// <summary>
-        /// Uses Dijkstra's algorith to compute the shortest paths in a weighted graph. Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object containing the shortest paths. TWeight being the type of <see cref="long"/>.
+        /// Uses Dijkstra's algorithm to compute the shortest paths in a weighted graph. Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object containing the shortest paths. TWeight being the type of <see cref="long"/>.
         /// </summary>
         /// <typeparam name="TVertex"></typeparam>
         /// <param name="graph">The graph structure that implements <see cref="IWeightedGraph{TVertex, TWeight}"/> with TWeight being of type <see cref="long"/>.</param>
@@ -23,7 +23,7 @@ namespace DSA.Algorithms.Graphs
         }
 
         /// <summary>
-        /// Uses Dijkstra's algorith to compute the shortest paths in a weighted graph. Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object containing the shortest paths. TWeight being the type of <see cref="int"/>.
+        /// Uses Dijkstra's algorithm to compute the shortest paths in a weighted graph. Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object containing the shortest paths. TWeight being the type of <see cref="int"/>.
         /// </summary>
         /// <typeparam name="TVertex"></typeparam>
         /// <param name="graph">The graph structure that implements <see cref="IWeightedGraph{TVertex, TWeight}"/> with TWeight being of type <see cref="int"/>.</param>
@@ -36,7 +36,7 @@ namespace DSA.Algorithms.Graphs
         }
 
         /// <summary>
-        /// Uses Dijkstra's algorith to compute the shortest paths in a weighted graph. Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object containing the shortest paths. TWeight being the type of <see cref="short"/>.
+        /// Uses Dijkstra's algorithm to compute the shortest paths in a weighted graph. Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object containing the shortest paths. TWeight being the type of <see cref="short"/>.
         /// </summary>
         /// <typeparam name="TVertex"></typeparam>
         /// <param name="graph">The graph structure that implements <see cref="IWeightedGraph{TVertex, TWeight}"/> with TWeight being of type <see cref="short"/>.</param>
@@ -49,7 +49,7 @@ namespace DSA.Algorithms.Graphs
         }
 
         /// <summary>
-        /// Uses Dijkstra's algorith to compute the shortest paths in a weighted graph. Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object containing the shortest paths. TWeight being the type of <see cref="ulong"/>.
+        /// Uses Dijkstra's algorithm to compute the shortest paths in a weighted graph. Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object containing the shortest paths. TWeight being the type of <see cref="ulong"/>.
         /// </summary>
         /// <typeparam name="TVertex"></typeparam>
         /// <param name="graph">The graph structure that implements <see cref="IWeightedGraph{TVertex, TWeight}"/> with TWeight being of type <see cref="ulong"/>.</param>
@@ -62,7 +62,7 @@ namespace DSA.Algorithms.Graphs
         }
 
         /// <summary>
-        /// Uses Dijkstra's algorith to compute the shortest paths in a weighted graph. Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object containing the shortest paths. TWeight being the type of <see cref="uint"/>.
+        /// Uses Dijkstra's algorithm to compute the shortest paths in a weighted graph. Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object containing the shortest paths. TWeight being the type of <see cref="uint"/>.
         /// </summary>
         /// <typeparam name="TVertex"></typeparam>
         /// <param name="graph">The graph structure that implements <see cref="IWeightedGraph{TVertex, TWeight}"/> with TWeight being of type <see cref="uint"/>.</param>
@@ -75,7 +75,7 @@ namespace DSA.Algorithms.Graphs
         }
 
         /// <summary>
-        /// Uses Dijkstra's algorith to compute the shortest paths in a weighted graph. Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object containing the shortest paths. TWeight being the type of <see cref="ushort"/>.
+        /// Uses Dijkstra's algorithm to compute the shortest paths in a weighted graph. Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object containing the shortest paths. TWeight being the type of <see cref="ushort"/>.
         /// </summary>
         /// <typeparam name="TVertex"></typeparam>
         /// <param name="graph">The graph structure that implements <see cref="IWeightedGraph{TVertex, TWeight}"/> with TWeight being of type <see cref="ushort"/>.</param>
@@ -88,7 +88,7 @@ namespace DSA.Algorithms.Graphs
         }
 
         /// <summary>
-        /// Uses Dijkstra's algorith to compute the shortest paths in a weighted graph. Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object containing the shortest paths. TWeight being the type of <see cref="decimal"/>.
+        /// Uses Dijkstra's algorithm to compute the shortest paths in a weighted graph. Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object containing the shortest paths. TWeight being the type of <see cref="decimal"/>.
         /// </summary>
         /// <typeparam name="TVertex"></typeparam>
         /// <param name="graph">The graph structure that implements <see cref="IWeightedGraph{TVertex, TWeight}"/> with TWeight being of type <see cref="decimal"/>.</param>
@@ -101,7 +101,7 @@ namespace DSA.Algorithms.Graphs
         }
 
         /// <summary>
-        /// Uses Dijkstra's algorith to compute the shortest paths in a weighted graph. Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object containing the shortest paths. TWeight being the type of <see cref="double"/>.
+        /// Uses Dijkstra's algorithm to compute the shortest paths in a weighted graph. Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object containing the shortest paths. TWeight being the type of <see cref="double"/>.
         /// </summary>
         /// <typeparam name="TVertex"></typeparam>
         /// <param name="graph">The graph structure that implements <see cref="IWeightedGraph{TVertex, TWeight}"/> with TWeight being of type <see cref="double"/>.</param>
@@ -114,7 +114,7 @@ namespace DSA.Algorithms.Graphs
         }
 
         /// <summary>
-        /// Uses Dijkstra's algorith to compute the shortest paths in a weighted graph. Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object containing the shortest paths. TWeight being the type of <see cref="float"/>.
+        /// Uses Dijkstra's algorithm to compute the shortest paths in a weighted graph. Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object containing the shortest paths. TWeight being the type of <see cref="float"/>.
         /// </summary>
         /// <typeparam name="TVertex"></typeparam>
         /// <param name="graph">The graph structure that implements <see cref="IWeightedGraph{TVertex, TWeight}"/> with TWeight being of type <see cref="float"/>.</param>
@@ -127,7 +127,7 @@ namespace DSA.Algorithms.Graphs
         }
 
         /// <summary>
-        /// Uses Dijkstra's algorith to compute the shortest paths in a weighted graph. Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object containing the shortest paths.
+        /// Uses Dijkstra's algorithm to compute the shortest paths in a weighted graph. Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object containing the shortest paths.
         /// </summary>
         /// <typeparam name="TVertex">The data type of the vertices. TVertex implements <see cref="IComparable{T}"/>.</typeparam>
         /// <typeparam name="TWeight">The data type of weight of the edges. TWeight implements <see cref="IComparable{T}"/>.</typeparam>
@@ -157,7 +157,7 @@ namespace DSA.Algorithms.Graphs
                     else return int.MinValue;
                 }
                 if (y.Key == null) return int.MaxValue;
-                // normal check if both weight are not null
+                // normal check if both weights are not null
                 cmp = x.Key.CompareTo(y.Key);
                 if (cmp == 0) cmp = x.Value.Key.CompareTo(y.Value.Key);
                 if (cmp == 0) cmp = x.Value.Value.CompareTo(y.Value.Value);
@@ -218,7 +218,7 @@ namespace DSA.Algorithms.Graphs
         }
 
         /// <summary>
-        /// Uses Dijkstra's algorith to compute the shortest paths in an unweighted graph. Shortest paths are computed with the distance between the vertices. Returns an <see cref="UnweightedGraphShortestPaths{TVertex}"/> object containg the shortest paths.
+        /// Uses Dijkstra's algorithm to compute the shortest paths in an unweighted graph. Shortest paths are computed with the distance between the vertices. Returns an <see cref="UnweightedGraphShortestPaths{TVertex}"/> object containg the shortest paths.
         /// </summary>
         /// <typeparam name="TVertex">The data type of the vertices. TVertex implements <see cref="IComparable{T}"/>.</typeparam>
         /// <param name="graph">The graph structure that implements <see cref="IGraph{TVertex}"/>.</param>
