@@ -14,7 +14,7 @@ namespace DSA.Algorithms.Graphs
         /// <summary>
         /// Uses Bellman-Ford's algorithm to compute the shortest paths in a weighted graph. Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object containing the shortest paths. TWeight being the type of <see cref="long"/>.
         /// </summary>
-        /// <typeparam name="TVertex"></typeparam>
+        /// <typeparam name="TVertex">The data type of the vertices. TVertex implements <see cref="IComparable{T}"/>.</typeparam>
         /// <param name="graph">The graph structure that implements <see cref="IWeightedGraph{TVertex, TWeight}"/> with TWeight being of type <see cref="long"/>.</param>
         /// <param name="source">The source vertex for which the shortest paths are computed.</param>
         /// <returns>Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> containing the shortest paths for the given source vertex. TWeight being the type of <see cref="long"/>.</returns>
@@ -25,9 +25,23 @@ namespace DSA.Algorithms.Graphs
         }
 
         /// <summary>
+        /// Tries to compute the shortest paths in a weighted graph with the Bellman-Ford's algorithm. Returns true if successful; otherwise false.
+        /// </summary>
+        /// <typeparam name="TVertex">The data type of the vertices. TVertex implements <see cref="IComparable{T}"/>.</typeparam>
+        /// <param name="graph">The graph structure that implements <see cref="IWeightedGraph{TVertex, TWeight}"/> with TWeight being of type <see cref="long"/>.</param>
+        /// <param name="source">The source vertex for which the shortest paths are computed.</param>
+        /// <param name="shortestPaths">The <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object (TWeight being the type of <see cref="long"/>) that contains the shortest paths of the graph if the algorithm was successful; otherwise <see cref="null"/>.</param>
+        /// <returns>Returns true if the shortest paths were successfully computed; otherwise false. Also returns false if the given source vertex does not belong to the graph.</returns>
+        public static bool TryGetBellmanFordShortestPaths<TVertex>(this IWeightedGraph<TVertex, long> graph, TVertex source, out WeightedGraphShortestPaths<TVertex, long> shortestPaths)
+            where TVertex : IComparable<TVertex>
+        {
+            return TryGetBellmanFordShortestPaths(graph, source, out shortestPaths, (x, y) => x + y);
+        }
+
+        /// <summary>
         /// Uses Bellman-Ford's algorithm to compute the shortest paths in a weighted graph. Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object containing the shortest paths. TWeight being the type of <see cref="int"/>.
         /// </summary>
-        /// <typeparam name="TVertex"></typeparam>
+        /// <typeparam name="TVertex">The data type of the vertices. TVertex implements <see cref="IComparable{T}"/>.</typeparam>
         /// <param name="graph">The graph structure that implements <see cref="IWeightedGraph{TVertex, TWeight}"/> with TWeight being of type <see cref="int"/>.</param>
         /// <param name="source">The source vertex for which the shortest paths are computed.</param>
         /// <returns>Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> containing the shortest paths for the given source vertex. TWeight being the type of <see cref="int"/>.</returns>
@@ -38,9 +52,23 @@ namespace DSA.Algorithms.Graphs
         }
 
         /// <summary>
+        /// Tries to compute the shortest paths in a weighted graph with the Bellman-Ford's algorithm. Returns true if successful; otherwise false.
+        /// </summary>
+        /// <typeparam name="TVertex">The data type of the vertices. TVertex implements <see cref="IComparable{T}"/>.</typeparam>
+        /// <param name="graph">The graph structure that implements <see cref="IWeightedGraph{TVertex, TWeight}"/> with TWeight being of type <see cref="int"/>.</param>
+        /// <param name="source">The source vertex for which the shortest paths are computed.</param>
+        /// <param name="shortestPaths">The <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object (TWeight being the type of <see cref="int"/>) that contains the shortest paths of the graph if the algorithm was successful; otherwise <see cref="null"/>.</param>
+        /// <returns>Returns true if the shortest paths were successfully computed; otherwise false. Also returns false if the given source vertex does not belong to the graph.</returns>
+        public static bool TryGetBellmanFordShortestPaths<TVertex>(this IWeightedGraph<TVertex, int> graph, TVertex source, out WeightedGraphShortestPaths<TVertex, int> shortestPaths)
+            where TVertex : IComparable<TVertex>
+        {
+            return TryGetBellmanFordShortestPaths(graph, source, out shortestPaths, (x, y) => x + y);
+        }
+
+        /// <summary>
         /// Uses Bellman-Ford's algorithm to compute the shortest paths in a weighted graph. Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object containing the shortest paths. TWeight being the type of <see cref="short"/>.
         /// </summary>
-        /// <typeparam name="TVertex"></typeparam>
+        /// <typeparam name="TVertex">The data type of the vertices. TVertex implements <see cref="IComparable{T}"/>.</typeparam>
         /// <param name="graph">The graph structure that implements <see cref="IWeightedGraph{TVertex, TWeight}"/> with TWeight being of type <see cref="short"/>.</param>
         /// <param name="source">The source vertex for which the shortest paths are computed.</param>
         /// <returns>Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> containing the shortest paths for the given source vertex. TWeight being the type of <see cref="short"/>.</returns>
@@ -51,9 +79,23 @@ namespace DSA.Algorithms.Graphs
         }
 
         /// <summary>
+        /// Tries to compute the shortest paths in a weighted graph with the Bellman-Ford's algorithm. Returns true if successful; otherwise false.
+        /// </summary>
+        /// <typeparam name="TVertex">The data type of the vertices. TVertex implements <see cref="IComparable{T}"/>.</typeparam>
+        /// <param name="graph">The graph structure that implements <see cref="IWeightedGraph{TVertex, TWeight}"/> with TWeight being of type <see cref="short"/>.</param>
+        /// <param name="source">The source vertex for which the shortest paths are computed.</param>
+        /// <param name="shortestPaths">The <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object (TWeight being the type of <see cref="short"/>) that contains the shortest paths of the graph if the algorithm was successful; otherwise <see cref="null"/>.</param>
+        /// <returns>Returns true if the shortest paths were successfully computed; otherwise false. Also returns false if the given source vertex does not belong to the graph.</returns>
+        public static bool TryGetBellmanFordShortestPaths<TVertex>(this IWeightedGraph<TVertex, short> graph, TVertex source, out WeightedGraphShortestPaths<TVertex, short> shortestPaths)
+            where TVertex : IComparable<TVertex>
+        {
+            return TryGetBellmanFordShortestPaths(graph, source, out shortestPaths, (x, y) => (short)(x + y));
+        }
+
+        /// <summary>
         /// Uses Bellman-Ford's algorithm to compute the shortest paths in a weighted graph. Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object containing the shortest paths. TWeight being the type of <see cref="ulong"/>.
         /// </summary>
-        /// <typeparam name="TVertex"></typeparam>
+        /// <typeparam name="TVertex">The data type of the vertices. TVertex implements <see cref="IComparable{T}"/>.</typeparam>
         /// <param name="graph">The graph structure that implements <see cref="IWeightedGraph{TVertex, TWeight}"/> with TWeight being of type <see cref="ulong"/>.</param>
         /// <param name="source">The source vertex for which the shortest paths are computed.</param>
         /// <returns>Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> containing the shortest paths for the given source vertex. TWeight being the type of <see cref="ulong"/>.</returns>
@@ -64,9 +106,23 @@ namespace DSA.Algorithms.Graphs
         }
 
         /// <summary>
+        /// Tries to compute the shortest paths in a weighted graph with the Bellman-Ford's algorithm. Returns true if successful; otherwise false.
+        /// </summary>
+        /// <typeparam name="TVertex">The data type of the vertices. TVertex implements <see cref="IComparable{T}"/>.</typeparam>
+        /// <param name="graph">The graph structure that implements <see cref="IWeightedGraph{TVertex, TWeight}"/> with TWeight being of type <see cref="ulong"/>.</param>
+        /// <param name="source">The source vertex for which the shortest paths are computed.</param>
+        /// <param name="shortestPaths">The <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object (TWeight being the type of <see cref="ulong"/>) that contains the shortest paths of the graph if the algorithm was successful; otherwise <see cref="null"/>.</param>
+        /// <returns>Returns true if the shortest paths were successfully computed; otherwise false. Also returns false if the given source vertex does not belong to the graph.</returns>
+        public static bool TryGetBellmanFordShortestPaths<TVertex>(this IWeightedGraph<TVertex, ulong> graph, TVertex source, out WeightedGraphShortestPaths<TVertex, ulong> shortestPaths)
+            where TVertex : IComparable<TVertex>
+        {
+            return TryGetBellmanFordShortestPaths(graph, source, out shortestPaths, (x, y) => x + y);
+        }
+
+        /// <summary>
         /// Uses Bellman-Ford's algorithm to compute the shortest paths in a weighted graph. Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object containing the shortest paths. TWeight being the type of <see cref="uint"/>.
         /// </summary>
-        /// <typeparam name="TVertex"></typeparam>
+        /// <typeparam name="TVertex">The data type of the vertices. TVertex implements <see cref="IComparable{T}"/>.</typeparam>
         /// <param name="graph">The graph structure that implements <see cref="IWeightedGraph{TVertex, TWeight}"/> with TWeight being of type <see cref="uint"/>.</param>
         /// <param name="source">The source vertex for which the shortest paths are computed.</param>
         /// <returns>Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> containing the shortest paths for the given source vertex. TWeight being the type of <see cref="uint"/>.</returns>
@@ -77,9 +133,23 @@ namespace DSA.Algorithms.Graphs
         }
 
         /// <summary>
+        /// Tries to compute the shortest paths in a weighted graph with the Bellman-Ford's algorithm. Returns true if successful; otherwise false.
+        /// </summary>
+        /// <typeparam name="TVertex">The data type of the vertices. TVertex implements <see cref="IComparable{T}"/>.</typeparam>
+        /// <param name="graph">The graph structure that implements <see cref="IWeightedGraph{TVertex, TWeight}"/> with TWeight being of type <see cref="uint"/>.</param>
+        /// <param name="source">The source vertex for which the shortest paths are computed.</param>
+        /// <param name="shortestPaths">The <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object (TWeight being the type of <see cref="uint"/>) that contains the shortest paths of the graph if the algorithm was successful; otherwise <see cref="null"/>.</param>
+        /// <returns>Returns true if the shortest paths were successfully computed; otherwise false. Also returns false if the given source vertex does not belong to the graph.</returns>
+        public static bool TryGetBellmanFordShortestPaths<TVertex>(this IWeightedGraph<TVertex, uint> graph, TVertex source, out WeightedGraphShortestPaths<TVertex, uint> shortestPaths)
+            where TVertex : IComparable<TVertex>
+        {
+            return TryGetBellmanFordShortestPaths(graph, source, out shortestPaths, (x, y) => x + y);
+        }
+
+        /// <summary>
         /// Uses Bellman-Ford's algorithm to compute the shortest paths in a weighted graph. Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object containing the shortest paths. TWeight being the type of <see cref="ushort"/>.
         /// </summary>
-        /// <typeparam name="TVertex"></typeparam>
+        /// <typeparam name="TVertex">The data type of the vertices. TVertex implements <see cref="IComparable{T}"/>.</typeparam>
         /// <param name="graph">The graph structure that implements <see cref="IWeightedGraph{TVertex, TWeight}"/> with TWeight being of type <see cref="ushort"/>.</param>
         /// <param name="source">The source vertex for which the shortest paths are computed.</param>
         /// <returns>Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> containing the shortest paths for the given source vertex. TWeight being the type of <see cref="ushort"/>.</returns>
@@ -90,9 +160,23 @@ namespace DSA.Algorithms.Graphs
         }
 
         /// <summary>
+        /// Tries to compute the shortest paths in a weighted graph with the Bellman-Ford's algorithm. Returns true if successful; otherwise false.
+        /// </summary>
+        /// <typeparam name="TVertex">The data type of the vertices. TVertex implements <see cref="IComparable{T}"/>.</typeparam>
+        /// <param name="graph">The graph structure that implements <see cref="IWeightedGraph{TVertex, TWeight}"/> with TWeight being of type <see cref="ushort"/>.</param>
+        /// <param name="source">The source vertex for which the shortest paths are computed.</param>
+        /// <param name="shortestPaths">The <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object (TWeight being the type of <see cref="ushort"/>) that contains the shortest paths of the graph if the algorithm was successful; otherwise <see cref="null"/>.</param>
+        /// <returns>Returns true if the shortest paths were successfully computed; otherwise false. Also returns false if the given source vertex does not belong to the graph.</returns>
+        public static bool TryGetBellmanFordShortestPaths<TVertex>(this IWeightedGraph<TVertex, ushort> graph, TVertex source, out WeightedGraphShortestPaths<TVertex, ushort> shortestPaths)
+            where TVertex : IComparable<TVertex>
+        {
+            return TryGetBellmanFordShortestPaths(graph, source, out shortestPaths, (x, y) => (ushort)(x + y));
+        }
+
+        /// <summary>
         /// Uses Bellman-Ford's algorithm to compute the shortest paths in a weighted graph. Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object containing the shortest paths. TWeight being the type of <see cref="decimal"/>.
         /// </summary>
-        /// <typeparam name="TVertex"></typeparam>
+        /// <typeparam name="TVertex">The data type of the vertices. TVertex implements <see cref="IComparable{T}"/>.</typeparam>
         /// <param name="graph">The graph structure that implements <see cref="IWeightedGraph{TVertex, TWeight}"/> with TWeight being of type <see cref="decimal"/>.</param>
         /// <param name="source">The source vertex for which the shortest paths are computed.</param>
         /// <returns>Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> containing the shortest paths for the given source vertex. TWeight being the type of <see cref="decimal"/>.</returns>
@@ -103,9 +187,23 @@ namespace DSA.Algorithms.Graphs
         }
 
         /// <summary>
+        /// Tries to compute the shortest paths in a weighted graph with the Bellman-Ford's algorithm. Returns true if successful; otherwise false.
+        /// </summary>
+        /// <typeparam name="TVertex">The data type of the vertices. TVertex implements <see cref="IComparable{T}"/>.</typeparam>
+        /// <param name="graph">The graph structure that implements <see cref="IWeightedGraph{TVertex, TWeight}"/> with TWeight being of type <see cref="decimal"/>.</param>
+        /// <param name="source">The source vertex for which the shortest paths are computed.</param>
+        /// <param name="shortestPaths">The <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object (TWeight being the type of <see cref="decimal"/>) that contains the shortest paths of the graph if the algorithm was successful; otherwise <see cref="null"/>.</param>
+        /// <returns>Returns true if the shortest paths were successfully computed; otherwise false. Also returns false if the given source vertex does not belong to the graph.</returns>
+        public static bool TryGetBellmanFordShortestPaths<TVertex>(this IWeightedGraph<TVertex, decimal> graph, TVertex source, out WeightedGraphShortestPaths<TVertex, decimal> shortestPaths)
+            where TVertex : IComparable<TVertex>
+        {
+            return TryGetBellmanFordShortestPaths(graph, source, out shortestPaths, (x, y) => x + y);
+        }
+
+        /// <summary>
         /// Uses Bellman-Ford's algorithm to compute the shortest paths in a weighted graph. Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object containing the shortest paths. TWeight being the type of <see cref="double"/>.
         /// </summary>
-        /// <typeparam name="TVertex"></typeparam>
+        /// <typeparam name="TVertex">The data type of the vertices. TVertex implements <see cref="IComparable{T}"/>.</typeparam>
         /// <param name="graph">The graph structure that implements <see cref="IWeightedGraph{TVertex, TWeight}"/> with TWeight being of type <see cref="double"/>.</param>
         /// <param name="source">The source vertex for which the shortest paths are computed.</param>
         /// <returns>Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> containing the shortest paths for the given source vertex. TWeight being the type of <see cref="double"/>.</returns>
@@ -116,9 +214,23 @@ namespace DSA.Algorithms.Graphs
         }
 
         /// <summary>
+        /// Tries to compute the shortest paths in a weighted graph with the Bellman-Ford's algorithm. Returns true if successful; otherwise false.
+        /// </summary>
+        /// <typeparam name="TVertex">The data type of the vertices. TVertex implements <see cref="IComparable{T}"/>.</typeparam>
+        /// <param name="graph">The graph structure that implements <see cref="IWeightedGraph{TVertex, TWeight}"/> with TWeight being of type <see cref="double"/>.</param>
+        /// <param name="source">The source vertex for which the shortest paths are computed.</param>
+        /// <param name="shortestPaths">The <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object (TWeight being the type of <see cref="double"/>) that contains the shortest paths of the graph if the algorithm was successful; otherwise <see cref="null"/>.</param>
+        /// <returns>Returns true if the shortest paths were successfully computed; otherwise false. Also returns false if the given source vertex does not belong to the graph.</returns>
+        public static bool TryGetBellmanFordShortestPaths<TVertex>(this IWeightedGraph<TVertex, double> graph, TVertex source, out WeightedGraphShortestPaths<TVertex, double> shortestPaths)
+            where TVertex : IComparable<TVertex>
+        {
+            return TryGetBellmanFordShortestPaths(graph, source, out shortestPaths, (x, y) => x + y);
+        }
+
+        /// <summary>
         /// Uses Bellman-Ford's algorithm to compute the shortest paths in a weighted graph. Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object containing the shortest paths. TWeight being the type of <see cref="float"/>.
         /// </summary>
-        /// <typeparam name="TVertex"></typeparam>
+        /// <typeparam name="TVertex">The data type of the vertices. TVertex implements <see cref="IComparable{T}"/>.</typeparam>
         /// <param name="graph">The graph structure that implements <see cref="IWeightedGraph{TVertex, TWeight}"/> with TWeight being of type <see cref="float"/>.</param>
         /// <param name="source">The source vertex for which the shortest paths are computed.</param>
         /// <returns>Returns a <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> containing the shortest paths for the given source vertex. TWeight being the type of <see cref="float"/>.</returns>
@@ -126,6 +238,20 @@ namespace DSA.Algorithms.Graphs
             where TVertex : IComparable<TVertex>
         {
             return BellmanFordShortestPaths(graph, source, (x, y) => x + y);
+        }
+
+        /// <summary>
+        /// Tries to compute the shortest paths in a weighted graph with the Bellman-Ford's algorithm. Returns true if successful; otherwise false.
+        /// </summary>
+        /// <typeparam name="TVertex">The data type of the vertices. TVertex implements <see cref="IComparable{T}"/>.</typeparam>
+        /// <param name="graph">The graph structure that implements <see cref="IWeightedGraph{TVertex, TWeight}"/> with TWeight being of type <see cref="float"/>.</param>
+        /// <param name="source">The source vertex for which the shortest paths are computed.</param>
+        /// <param name="shortestPaths">The <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object (TWeight being the type of <see cref="float"/>) that contains the shortest paths of the graph if the algorithm was successful; otherwise <see cref="null"/>.</param>
+        /// <returns>Returns true if the shortest paths were successfully computed; otherwise false. Also returns false if the given source vertex does not belong to the graph.</returns>
+        public static bool TryGetBellmanFordShortestPaths<TVertex>(this IWeightedGraph<TVertex, float> graph, TVertex source, out WeightedGraphShortestPaths<TVertex, float> shortestPaths)
+            where TVertex : IComparable<TVertex>
+        {
+            return TryGetBellmanFordShortestPaths(graph, source, out shortestPaths, (x, y) => x + y);
         }
 
         /// <summary>
@@ -144,6 +270,33 @@ namespace DSA.Algorithms.Graphs
             if (!graph.ContainsVertex(source))
                 throw new ArgumentException("Vertex does not belong to the graph!");
 
+            WeightedGraphShortestPaths<TVertex, TWeight> shortestPaths;
+
+            if (TryGetBellmanFordShortestPaths(graph, source, out shortestPaths, weightAdder))
+                return shortestPaths;
+            else
+                throw new InvalidOperationException("Negative weight cycle found!");
+        }
+
+        /// <summary>
+        /// Tries to compute the shortest paths in a weighted graph with the Bellman-Ford's algorithm. Returns true if successful; otherwise false.
+        /// </summary>
+        /// <typeparam name="TVertex">The data type of the vertices. TVertex implements <see cref="IComparable{T}"/>.</typeparam>
+        /// <typeparam name="TWeight">The data type of weight of the edges. TWeight implements <see cref="IComparable{T}"/>.</typeparam>
+        /// <param name="graph">The graph structure that implements <see cref="IWeightedGraph{TVertex, TWeight}"/>.</param>
+        /// <param name="source">The source vertex for which the shortest paths are computed.</param>
+        /// <param name="shortestPaths">The <see cref="WeightedGraphShortestPaths{TVertex, TWeight}"/> object that contains the shortest paths of the graph if the algorithm was successful; otherwise <see cref="null"/>.</param>
+        /// <param name="weightAdder">The method corresponding to the <see cref="AddWeights{TWeight}"/> delegate used for calculating the sum of two edge weights.</param>
+        /// <returns>Returns true if the shortest paths were successfully computed; otherwise false. Also returns false if the given source vertex does not belong to the graph.</returns>
+        public static bool TryGetBellmanFordShortestPaths<TVertex, TWeight>(this IWeightedGraph<TVertex, TWeight> graph, TVertex source, out WeightedGraphShortestPaths<TVertex, TWeight> shortestPaths, AddWeights<TWeight> weightAdder)
+            where TVertex : IComparable<TVertex>
+            where TWeight : IComparable<TWeight>
+        {
+            shortestPaths = null;
+
+            if (!graph.ContainsVertex(source))
+                return false;
+
             // A dictionary holding a vertex as key and as value a key-value pair of its previous vertex in the path(being the key) and the weight of the edge connecting them(being the value).
             var previousVertices = new Dictionary<TVertex, KeyValuePair<TVertex, TWeight>>();
             // The dictionary holding a vertex as key and as value a key-value pair holding the weight of the path from the source vertex(being the key) and the distance from the source vertex(being the value).
@@ -155,7 +308,7 @@ namespace DSA.Algorithms.Graphs
             // Get all edges and sort them by their source and then by their destination vertex to create a consistent shortest paths output.
             var allEdges = graph.Edges.ToList();
             if (allEdges.Count > 0)
-                allEdges.QuickSort((x,y) =>
+                allEdges.QuickSort((x, y) =>
                 {
                     int cmp = x.Source.CompareTo(y.Source);
                     if (cmp == 0) cmp = x.Destination.CompareTo(y.Destination);
@@ -203,7 +356,7 @@ namespace DSA.Algorithms.Graphs
                         }
 
                         if (i == lastStep)// if we need to relax on the last iteration we have a negative cycle
-                            throw new InvalidOperationException("Negative weight cycle found");
+                            return false;
 
                         // Else we save the path
                         previousVertices[edgeDestination] = new KeyValuePair<TVertex, TWeight>(edgeSource, edgeWeight);
@@ -215,8 +368,8 @@ namespace DSA.Algorithms.Graphs
             // Remove source vertex from weight and distance dictionary
             weightAndDistance.Remove(source);
 
-            var shortestPaths = new WeightedGraphShortestPaths<TVertex, TWeight>(source, previousVertices, weightAndDistance);
-            return shortestPaths;
+            shortestPaths = new WeightedGraphShortestPaths<TVertex, TWeight>(source, previousVertices, weightAndDistance);
+            return true;
         }
 
         /// <summary>
@@ -231,6 +384,30 @@ namespace DSA.Algorithms.Graphs
         {
             if (!graph.ContainsVertex(source))
                 throw new ArgumentException("Vertex does not belong to the graph!");
+
+            UnweightedGraphShortestPaths<TVertex> shortestPaths;
+
+            if (TryGetBellmanFordShortestPaths(graph, source, out shortestPaths))
+                return shortestPaths;
+            else
+                throw new InvalidOperationException("Negative weight cycle found!");
+        }
+
+        /// <summary>
+        /// Tries to compute the shortest paths in an unweighted graph with the Bellman-Ford's algorithm. Shortest paths are computed with the distance between the vertices. Returns true if successful; otherwise false.
+        /// </summary>
+        /// <typeparam name="TVertex">The data type of the vertices. TVertex implements <see cref="IComparable{T}"/>.</typeparam>
+        /// <param name="graph">The graph structure that implements <see cref="IGraph{TVertex}"/>.</param>
+        /// <param name="source">The source vertex for which the shortest paths are computed.</param>
+        /// <param name="shortestPaths">The <see cref="UnweightedGraphShortestPaths{TVertex}"/> object that contains the shortest paths of the graph if the algorithm was successful; otherwise <see cref="null"/>.</param>
+        /// <returns>Returns true if the shortest paths were successfully computed; otherwise false. Also returns false if the given source vertex does not belong to the graph.</returns>
+        public static bool TryGetBellmanFordShortestPaths<TVertex>(this IGraph<TVertex> graph, TVertex source, out UnweightedGraphShortestPaths<TVertex> shortestPaths)
+            where TVertex : IComparable<TVertex>
+        {
+            shortestPaths = null;
+
+            if (!graph.ContainsVertex(source))
+                return false;
 
             // A dictionary holding a vertex as key and its previous vertex in the path as value.
             var previousVertices = new Dictionary<TVertex, TVertex>();
@@ -276,7 +453,7 @@ namespace DSA.Algorithms.Graphs
                                 continue;
 
                         if (i == lastStep)// if we need to relax on the last iteration we have a negative cycle
-                            throw new InvalidOperationException("Negative weight cycle found");
+                            return false;
 
                         // Else we save the path
                         previousVertices[edgeDestination] = edgeSource;
@@ -288,8 +465,8 @@ namespace DSA.Algorithms.Graphs
             // Remove source vertex from path distance dictionary
             pathDistance.Remove(source);
 
-            var shortestPaths = new UnweightedGraphShortestPaths<TVertex>(source, previousVertices, pathDistance);
-            return shortestPaths;
+            shortestPaths = new UnweightedGraphShortestPaths<TVertex>(source, previousVertices, pathDistance);
+            return true;
         }
     }
 }
