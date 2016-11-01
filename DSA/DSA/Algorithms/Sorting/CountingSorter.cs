@@ -12,6 +12,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<int> CountingSort(this IList<int> list)
         {
+            if (list.Count == 0) return list;
+
             return CountingSort(list, 0, list.Count);
         }
 
@@ -22,6 +24,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<int> CountingSortDescending(this IList<int> list)
         {
+            if (list.Count == 0) return list;
+
             return CountingSortDescending(list, 0, list.Count);
         }
 
@@ -177,6 +181,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<KeyValuePair<int, TValue>> CountingSortKeys<TValue>(this IList<KeyValuePair<int, TValue>> list)
         {
+            if (list.Count == 0) return list;
+
             return CountingSortKeys(list, 0, list.Count);
         }
 
@@ -188,6 +194,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<KeyValuePair<int, TValue>> CountingSortDescendingKeys<TValue>(this IList<KeyValuePair<int, TValue>> list)
         {
+            if (list.Count == 0) return list;
+
             return CountingSortDescendingKeys(list, 0, list.Count);
         }
 
@@ -345,6 +353,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<KeyValuePair<TKey, int>> CountingSortValues<TKey>(this IList<KeyValuePair<TKey, int>> list)
         {
+            if (list.Count == 0) return list;
+
             return CountingSortValues(list, 0, list.Count);
         }
 
@@ -356,6 +366,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<KeyValuePair<TKey, int>> CountingSortDescendingValues<TKey>(this IList<KeyValuePair<TKey, int>> list)
         {
+            if (list.Count == 0) return list;
+
             return CountingSortDescendingValues(list, 0, list.Count);
         }
 

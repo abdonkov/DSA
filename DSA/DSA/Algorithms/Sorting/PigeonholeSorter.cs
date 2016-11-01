@@ -13,6 +13,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<int> PigeonholeSort(this IList<int> list)
         {
+            if (list.Count == 0) return list;
+
             return PigeonholeSort(list, 0, list.Count);
         }
 
@@ -23,6 +25,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<int> PigeonholeSortDescending(this IList<int> list)
         {
+            if (list.Count == 0) return list;
+
             return PigeonholeSortDescending(list, 0, list.Count);
         }
 
@@ -170,6 +174,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<KeyValuePair<int, TValue>> PigeonholeSortKeys<TValue>(this IList<KeyValuePair<int, TValue>> list)
         {
+            if (list.Count == 0) return list;
+
             return PigeonholeSortKeys(list, 0, list.Count);
         }
 
@@ -181,6 +187,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<KeyValuePair<int, TValue>> PigeonholeSortDescendingKeys<TValue>(this IList<KeyValuePair<int, TValue>> list)
         {
+            if (list.Count == 0) return list;
+
             return PigeonholeSortDescendingKeys(list, 0, list.Count);
         }
 
@@ -330,6 +338,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<KeyValuePair<TKey, int>> PigeonholeSortValues<TKey>(this IList<KeyValuePair<TKey, int>> list)
         {
+            if (list.Count == 0) return list;
+
             return PigeonholeSortValues(list, 0, list.Count);
         }
 
@@ -341,6 +351,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<KeyValuePair<TKey, int>> PigeonholeSortDescendingValues<TKey>(this IList<KeyValuePair<TKey, int>> list)
         {
+            if (list.Count == 0) return list;
+
             return PigeonholeSortDescendingValues(list, 0, list.Count);
         }
 

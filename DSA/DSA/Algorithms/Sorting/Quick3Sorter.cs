@@ -13,6 +13,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<T> Quick3Sort<T>(this IList<T> list)
         {
+            if (list.Count == 0) return list;
+
             return Quick3Sort(list, Comparer<T>.Default);
         }
 
@@ -24,6 +26,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<T> Quick3SortDescending<T>(this IList<T> list)
         {
+            if (list.Count == 0) return list;
+
             return Quick3SortDescending(list, Comparer<T>.Default);
         }
 
@@ -37,6 +41,8 @@ namespace DSA.Algorithms.Sorting
         public static IList<T> Quick3Sort<T>(this IList<T> list, Comparison<T> comparison)
         {
             if (comparison == null) throw new ArgumentNullException("comparison");
+
+            if (list.Count == 0) return list;
 
             return Quick3Sort(list, Comparer<T>.Create(comparison));
         }
@@ -52,6 +58,8 @@ namespace DSA.Algorithms.Sorting
         {
             if (comparison == null) throw new ArgumentNullException("comparison");
 
+            if (list.Count == 0) return list;
+
             return Quick3SortDescending(list, Comparer<T>.Create(comparison));
         }
 
@@ -65,6 +73,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<T> Quick3Sort<T>(this IList<T> list, IComparer<T> comparer)
         {
+            if (list.Count == 0) return list;
+
             return Quick3Sort(list, 0, list.Count, comparer);
         }
 
@@ -78,6 +88,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<T> Quick3SortDescending<T>(this IList<T> list, IComparer<T> comparer)
         {
+            if (list.Count == 0) return list;
+
             return Quick3SortDescending(list, 0, list.Count, comparer);
         }
 

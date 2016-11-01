@@ -16,6 +16,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<T> InsertionSort<T>(this IList<T> list)
         {
+            if (list.Count == 0) return list;
+
             return InsertionSort(list, Comparer<T>.Default);
         }
 
@@ -27,6 +29,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<T> InsertionSortDescending<T>(this IList<T> list)
         {
+            if (list.Count == 0) return list;
+
             return InsertionSortDescending(list, Comparer<T>.Default);
         }
 
@@ -40,6 +44,8 @@ namespace DSA.Algorithms.Sorting
         public static IList<T> InsertionSort<T>(this IList<T> list, Comparison<T> comparison)
         {
             if (comparison == null) throw new ArgumentNullException("comparison");
+
+            if (list.Count == 0) return list;
 
             return InsertionSort(list, Comparer<T>.Create(comparison));
         }
@@ -55,6 +61,8 @@ namespace DSA.Algorithms.Sorting
         {
             if (comparison == null) throw new ArgumentNullException("comparison");
 
+            if (list.Count == 0) return list;
+
             return InsertionSortDescending(list, Comparer<T>.Create(comparison));
         }
 
@@ -68,6 +76,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<T> InsertionSort<T>(this IList<T> list, IComparer<T> comparer)
         {
+            if (list.Count == 0) return list;
+
             return InsertionSort(list, 0, list.Count, comparer);
         }
 
@@ -81,6 +91,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<T> InsertionSortDescending<T>(this IList<T> list, IComparer<T> comparer)
         {
+            if (list.Count == 0) return list;
+
             return InsertionSortDescending(list, 0, list.Count, comparer);
         }
 

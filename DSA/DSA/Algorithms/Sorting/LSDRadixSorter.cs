@@ -12,6 +12,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<int> LSDRadixSort(this IList<int> list)
         {
+            if (list.Count == 0) return list;
+
             return LSDRadixSort(list, 0, list.Count);
         }
 
@@ -22,6 +24,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<int> LSDRadixSortDescending(this IList<int> list)
         {
+            if (list.Count == 0) return list;
+
             return LSDRadixSortDescending(list, 0, list.Count);
         }
 
@@ -185,6 +189,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<KeyValuePair<int, TValue>> LSDRadixSortKeys<TValue>(this IList<KeyValuePair<int, TValue>> list)
         {
+            if (list.Count == 0) return list;
+
             return LSDRadixSortKeys(list, 0, list.Count);
         }
 
@@ -196,6 +202,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<KeyValuePair<int, TValue>> LSDRadixSortDescendingKeys<TValue>(this IList<KeyValuePair<int, TValue>> list)
         {
+            if (list.Count == 0) return list;
+
             return LSDRadixSortDescendingKeys(list, 0, list.Count);
         }
 
@@ -355,6 +363,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<KeyValuePair<TKey, int>> LSDRadixSortValues<TKey>(this IList<KeyValuePair<TKey, int>> list)
         {
+            if (list.Count == 0) return list;
+
             return LSDRadixSortValues(list, 0, list.Count);
         }
 
@@ -366,6 +376,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<KeyValuePair<TKey, int>> LSDRadixSortDescendingValues<TKey>(this IList<KeyValuePair<TKey, int>> list)
         {
+            if (list.Count == 0) return list;
+
             return LSDRadixSortDescendingValues(list, 0, list.Count);
         }
 
