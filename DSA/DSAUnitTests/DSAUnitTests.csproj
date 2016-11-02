@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Algorithms\Graphs\DijkstraShortestPathsFinderTests.cs" />
     <Compile Include="Algorithms\Graphs\BellmanFordShortestPathsFinderTests.cs" />
+    <Compile Include="Algorithms\Graphs\BipartiteColorerTests.cs" />
     <Compile Include="Algorithms\Sorting\BubbleSorterTests.cs" />
     <Compile Include="Algorithms\Sorting\InsertionSorterTests.cs" />
     <Compile Include="Algorithms\Sorting\SelectionSorterTests.cs" />
