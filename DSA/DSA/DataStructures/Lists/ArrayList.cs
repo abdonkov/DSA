@@ -83,10 +83,12 @@ namespace DSA.DataStructures.Lists
 
             Resize(increase: true, minCapacity: colSize);
 
+            int i = 0;
             foreach (var item in collection)
             {
-                Add(item);
-            }          
+                array[i++] = item;
+            }
+            Count = i;
         }
 
         /// <summary>
@@ -101,9 +103,9 @@ namespace DSA.DataStructures.Lists
                 if (increase)
                 {
                     if (Capacity == 0) Capacity = 1;
-                    else Capacity *= 2;
+                    else Capacity = Capacity << 1;
                 }
-                else Capacity /= 2;
+                else Capacity = Capacity >> 1;
             }
             else// if minCapacity is set
             {
@@ -112,13 +114,13 @@ namespace DSA.DataStructures.Lists
                     while (Capacity < minCapacity)
                     {
                         if (Capacity == 0) Capacity = 1;
-                        else Capacity *= 2;
+                        else Capacity = Capacity << 1;
                     }
                 }
                 else
                 {
-                    while (minCapacity < Capacity) Capacity /= 2;
-                    Capacity *= 2;
+                    while (minCapacity < Capacity) Capacity = Capacity >> 1;
+                    Capacity = Capacity << 1;
                 }
             }
 
@@ -312,7 +314,7 @@ namespace DSA.DataStructures.Lists
         /// </summary>
         public void Clear()
         {
-            Capacity = 10;
+            Capacity = 4;
             array = new T[Capacity];
             Count = 0;
         }
