@@ -90,6 +90,7 @@
     <Compile Include="DataStructures\Lists\SinglyLinkedListTests.cs" />
     <Compile Include="DataStructures\Lists\DoublyLinkedListTest.cs" />
     <Compile Include="DataStructures\Lists\SkipListTests.cs" />
+    <Compile Include="DataStructures\Stacks\ArrayStackTests.cs" />
     <Compile Include="DataStructures\Trees\AVLTreeTests.cs" />
     <Compile Include="DataStructures\Trees\BinarySearchTreeTests.cs" />
     <Compile Include="DataStructures\Trees\SplayTreeTests.cs" />
