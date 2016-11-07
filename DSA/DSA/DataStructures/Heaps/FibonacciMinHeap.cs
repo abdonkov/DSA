@@ -14,7 +14,7 @@ namespace DSA.DataStructures.Heaps
         /// <summary>
         /// The min node of the <see cref="FibonacciMinHeap{T}"/>.
         /// </summary>
-        internal FibonacciNode<T> minNode;
+        internal FibonacciNode minNode;
 
         /// <summary>
         /// Gets the number of elements in the <see cref="FibonacciMinHeap{T}"/>.
@@ -37,7 +37,7 @@ namespace DSA.DataStructures.Heaps
         /// <param name="first">The first <see cref="FibonacciNode{T}"/>.</param>
         /// <param name="second">The second <see cref="FibonacciNode{T}"/>.</param>
         /// <returns>Returns the node with the smaller value.</returns>
-        internal FibonacciNode<T> MergeNodeLists(FibonacciNode<T> first, FibonacciNode<T> second)
+        internal FibonacciNode MergeNodeLists(FibonacciNode first, FibonacciNode second)
         {
             // if one of the nodes is null
             if (first == null || second == null)
@@ -60,7 +60,7 @@ namespace DSA.DataStructures.Heaps
         /// Removes a <see cref="FibonacciNode{T}"/> from the list of nodes, in which it belongs.
         /// </summary>
         /// <param name="node">The <see cref="FibonacciNode{T}"/> to remove.</param>
-        internal void RemoveNodeFromList(FibonacciNode<T> node)
+        internal void RemoveNodeFromList(FibonacciNode node)
         {
             var prev = node.Previous;
             var next = node.Next;
@@ -80,7 +80,7 @@ namespace DSA.DataStructures.Heaps
             if (minNode == null) return;
 
             // Get root nodes
-            var rootNodes = new List<FibonacciNode<T>>();
+            var rootNodes = new List<FibonacciNode>();
             var rNode = minNode;
             do
             {
@@ -90,7 +90,7 @@ namespace DSA.DataStructures.Heaps
 
             // List of the nodes saving them to be used for merging. Indexed by their degree
             // and using them for merging when another node of the same degree is present
-            var degreeList = new List<FibonacciNode<T>>();
+            var degreeList = new List<FibonacciNode>();
 
             // Iterate over root nodes and merge trees with of same order
             foreach (var node in rootNodes)
@@ -104,8 +104,8 @@ namespace DSA.DataStructures.Heaps
                 // while having a node with same degree as the current we merge them
                 while (degreeList[current.Degree] != null)
                 {
-                    FibonacciNode<T> bigger;
-                    FibonacciNode<T> smaller;
+                    FibonacciNode bigger;
+                    FibonacciNode smaller;
 
                     // check if the current or the node in the list has a bigger value
                     if (current.Value.CompareTo(degreeList[current.Degree].Value) > 0)
@@ -195,7 +195,7 @@ namespace DSA.DataStructures.Heaps
         /// <param name="value">The value to add.</param>
         public void Add(T value)
         {
-            var newNode = new FibonacciNode<T>(value);
+            var newNode = new FibonacciNode(value);
             minNode = MergeNodeLists(minNode, newNode);
             Count++;
         }
@@ -234,7 +234,7 @@ namespace DSA.DataStructures.Heaps
             }
 
             // Get next tree root
-            FibonacciNode<T> nextNode = minCopy.Next == minCopy ? null : minCopy.Next;
+            FibonacciNode nextNode = minCopy.Next == minCopy ? null : minCopy.Next;
 
             // Remove node from the list of tree roots
             RemoveNodeFromList(minCopy);
@@ -297,7 +297,7 @@ namespace DSA.DataStructures.Heaps
 
             var current = minNode;
 
-            var queue = new Queue<FibonacciNode<T>>(Count);
+            var queue = new Queue<FibonacciNode>(Count);
 
             // Adding roots of trees to the queue
             var node = current;
@@ -352,8 +352,7 @@ namespace DSA.DataStructures.Heaps
         /// Represents a node in the <see cref="FibonacciMinHeap{T}"/>.
         /// </summary>
         /// <typeparam name="T">T implements <see cref="IComparable{T}"/>.</typeparam>
-        internal class FibonacciNode<T>
-            where T : IComparable<T>
+        internal class FibonacciNode
         {
             /// <summary>
             /// Gets the value of the node.
@@ -368,22 +367,22 @@ namespace DSA.DataStructures.Heaps
             /// <summary>
             /// Gets the parent node.
             /// </summary>
-            internal FibonacciNode<T> Parent { get; set; }
+            internal FibonacciNode Parent { get; set; }
 
             /// <summary>
             /// Gets the child node.
             /// </summary>
-            internal FibonacciNode<T> Child { get; set; }
+            internal FibonacciNode Child { get; set; }
 
             /// <summary>
             /// Gets the previous node.
             /// </summary>
-            internal FibonacciNode<T> Previous { get; set; }
+            internal FibonacciNode Previous { get; set; }
 
             /// <summary>
             /// Gets the next node.
             /// </summary>
-            internal FibonacciNode<T> Next { get; set; }
+            internal FibonacciNode Next { get; set; }
 
             /// <summary>
             /// Creates a new instance of the <see cref="FibonacciNode{T}"/> class, containing the specified value.

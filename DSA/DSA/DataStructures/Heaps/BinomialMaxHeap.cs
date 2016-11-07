@@ -15,7 +15,7 @@ namespace DSA.DataStructures.Heaps
         /// <summary>
         /// The head node of the <see cref="BinomialMaxHeap{T}"/>.
         /// </summary>
-        internal BinomialNode<T> head;
+        internal BinomialNode head;
 
         /// <summary>
         /// Gets the number of elements in the <see cref="BinomialMaxHeap{T}"/>.
@@ -36,7 +36,7 @@ namespace DSA.DataStructures.Heaps
         /// Creates a new instance of the <see cref="BinomialMaxHeap{T}"/> class, with the specified node as head.
         /// </summary>
         /// <param name="head">The head node.</param>
-        internal BinomialMaxHeap(BinomialNode<T> head)
+        internal BinomialMaxHeap(BinomialNode head)
         {
             this.head = head;
             Count = 1;
@@ -69,7 +69,7 @@ namespace DSA.DataStructures.Heaps
         /// </summary>
         /// <param name="treeRoot">The root node of the binomial tree.</param>
         /// <param name="previous">The <see cref="BinomialNode{T}"/> before the tree root.</param>
-        internal void RemoveBinomialTreeRoot(BinomialNode<T> treeRoot, BinomialNode<T> previous)
+        internal void RemoveBinomialTreeRoot(BinomialNode treeRoot, BinomialNode previous)
         {
             if (treeRoot == head)
             {
@@ -81,7 +81,7 @@ namespace DSA.DataStructures.Heaps
             }
 
             // Reversing order of root children and creating a new heap
-            BinomialNode<T> newHead = null;
+            BinomialNode newHead = null;
             var child = treeRoot.Child;
             while (child != null)
             {
@@ -102,7 +102,7 @@ namespace DSA.DataStructures.Heaps
         /// </summary>
         /// <param name="biggerNode">The <see cref="BinomialNode{T}"/> with the bigger value.</param>
         /// <param name="smallerNode">The <see cref="BinomialNode{T}"/> with the smaller value.</param>
-        internal void MergeBinomialTrees(BinomialNode<T> biggerNode, BinomialNode<T> smallerNode)
+        internal void MergeBinomialTrees(BinomialNode biggerNode, BinomialNode smallerNode)
         {
             smallerNode.Parent = biggerNode;
             smallerNode.Sibling = biggerNode.Child;
@@ -132,7 +132,7 @@ namespace DSA.DataStructures.Heaps
 
             // if both heaps have elements
 
-            BinomialNode<T> newHead;
+            BinomialNode newHead;
 
             var firstHeapNextNode = head;
             var secondHeapNextNode = otherMaxHeap.head;
@@ -183,9 +183,9 @@ namespace DSA.DataStructures.Heaps
             // we have to leave at most one tree of each order. We can do this by merging every
             // two trees of order k to a new tree of order k + 1
 
-            BinomialNode<T> previous = null;
-            BinomialNode<T> current = newHead;
-            BinomialNode<T> next = newHead.Sibling;
+            BinomialNode previous = null;
+            BinomialNode current = newHead;
+            BinomialNode next = newHead.Sibling;
 
             while (next != null)
             {
@@ -243,7 +243,7 @@ namespace DSA.DataStructures.Heaps
         /// <param name="value">The value to add.</param>
         public void Add(T value)
         {
-            var newNode = new BinomialNode<T>(value);
+            var newNode = new BinomialNode(value);
             var tempHeap = new BinomialMaxHeap<T>(newNode);
             Merge(tempHeap);
         }
@@ -279,10 +279,10 @@ namespace DSA.DataStructures.Heaps
         {
             if (IsEmpty) throw new InvalidOperationException("Heap is empty!");
 
-            BinomialNode<T> max = head;// max node
-            BinomialNode<T> maxPrev = null;// node before the max node
-            BinomialNode<T> current = max.Sibling;// current node in the traversal
-            BinomialNode<T> last = max;// the last traversed node
+            BinomialNode max = head;// max node
+            BinomialNode maxPrev = null;// node before the max node
+            BinomialNode current = max.Sibling;// current node in the traversal
+            BinomialNode last = max;// the last traversed node
 
             while (current != null)
             {
@@ -350,7 +350,7 @@ namespace DSA.DataStructures.Heaps
 
             var current = head;
 
-            var queue = new Queue<BinomialNode<T>>(Count);
+            var queue = new Queue<BinomialNode>(Count);
 
             while (current != null)
             {
@@ -393,8 +393,7 @@ namespace DSA.DataStructures.Heaps
         /// Represents a node in the <see cref="BinomialMaxHeap{T}"/>.
         /// </summary>
         /// <typeparam name="T">T implements <see cref="IComparable{T}"/>.</typeparam>
-        internal class BinomialNode<T>
-            where T : IComparable<T>
+        internal class BinomialNode
         {
             /// <summary>
             /// Gets the value of the node.
@@ -409,17 +408,17 @@ namespace DSA.DataStructures.Heaps
             /// <summary>
             /// Gets the parent node.
             /// </summary>
-            internal BinomialNode<T> Parent { get; set; }
+            internal BinomialNode Parent { get; set; }
 
             /// <summary>
             /// Gets the child node.
             /// </summary>
-            internal BinomialNode<T> Child { get; set; }
+            internal BinomialNode Child { get; set; }
 
             /// <summary>
             /// Gets the sibling node.
             /// </summary>
-            internal BinomialNode<T> Sibling { get; set; }
+            internal BinomialNode Sibling { get; set; }
 
             /// <summary>
             /// Creates a new instance of the <see cref="BinomialNode{T}"/> class, containing the specified value.
