@@ -12,7 +12,7 @@ namespace DSAUnitTests.DataStructures.Stacks
         {
             var stack = new ArrayStack<int>();
 
-            int itemCount = 1000;
+            int itemCount = 500000;
 
             for (int i = 0; i < itemCount; i++)
             {
@@ -38,7 +38,7 @@ namespace DSAUnitTests.DataStructures.Stacks
         {
             var stack = new ArrayStack<int>();
 
-            int itemCount = 1000;
+            int itemCount = 500000;
 
             for (int i = 0; i < itemCount; i++)
             {
@@ -67,7 +67,7 @@ namespace DSAUnitTests.DataStructures.Stacks
         {
             var stack = new ArrayStack<int>();
 
-            int itemCount = 1000;
+            int itemCount = 500000;
 
             for (int i = 0; i < itemCount; i++)
             {
@@ -97,7 +97,7 @@ namespace DSAUnitTests.DataStructures.Stacks
         {
             var stack = new ArrayStack<int>(0);
 
-            int itemCount = 100;
+            int itemCount = 500000;
 
             for (int i = 0; i < itemCount; i++)
             {
@@ -122,7 +122,7 @@ namespace DSAUnitTests.DataStructures.Stacks
         {
             var stack = new ArrayStack<int>();
 
-            int itemCount = 1000;
+            int itemCount = 500000;
 
             for (int i = 0; i < itemCount; i++)
             {
@@ -162,7 +162,7 @@ namespace DSAUnitTests.DataStructures.Stacks
         {
             var stack = new ArrayStack<int>();
 
-            int itemCount = 1000;
+            int itemCount = 10000;
 
             for (int i = 0; i < itemCount; i++)
             {
@@ -191,7 +191,7 @@ namespace DSAUnitTests.DataStructures.Stacks
         {
             var stack = new ArrayStack<int>();
 
-            int itemCount = 1000;
+            int itemCount = 500000;
 
             for (int i = 0; i < itemCount; i++)
             {
@@ -223,7 +223,7 @@ namespace DSAUnitTests.DataStructures.Stacks
         {
             var stack = new ArrayStack<int>();
 
-            int itemCount = 1000;
+            int itemCount = 500000;
 
             for (int i = 0; i < itemCount; i++)
             {
@@ -247,7 +247,7 @@ namespace DSAUnitTests.DataStructures.Stacks
         {
             var stack = new ArrayStack<int>();
 
-            int itemCount = 1000;
+            int itemCount = 500000;
 
             for (int i = 0; i < itemCount; i++)
             {
