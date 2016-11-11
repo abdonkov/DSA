@@ -47,6 +47,8 @@ namespace DSA.DataStructures.Queues
         /// <param name="capacity">The capacity of the backing array.</param>
         public ArrayQueue(int capacity)
         {
+            if (capacity < 0) throw new ArgumentOutOfRangeException();
+
             Capacity = capacity;
             array = new T[capacity];
             Count = 0;

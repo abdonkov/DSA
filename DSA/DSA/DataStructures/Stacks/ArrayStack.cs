@@ -37,6 +37,8 @@ namespace DSA.DataStructures.Stacks
         /// <param name="capacity">The capacity of the backing array.</param>
         public ArrayStack(int capacity)
         {
+            if (capacity < 0) throw new ArgumentOutOfRangeException();
+
             Capacity = capacity;
             array = new T[capacity];
         }
