@@ -95,6 +95,7 @@
     <Compile Include="DataStructures\Lists\SkipListNode.cs" />
     <Compile Include="DataStructures\Queues\ArrayQueue.cs" />
     <Compile Include="DataStructures\Queues\LinkedQueue.cs" />
+    <Compile Include="DataStructures\Queues\MaxPriorityQueue.cs" />
     <Compile Include="DataStructures\Queues\MinPriorityQueue.cs" />
     <Compile Include="DataStructures\Stacks\ArrayStack.cs" />
     <Compile Include="DataStructures\Stacks\LinkedStack.cs" />
