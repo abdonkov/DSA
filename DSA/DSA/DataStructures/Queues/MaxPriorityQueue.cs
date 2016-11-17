@@ -16,9 +16,19 @@ namespace DSA.DataStructures.Queues
         internal ArrayList<KeyValuePair<TPriority, TValue>> array;
 
         /// <summary>
-        /// The comparer of the elements in the <see cref="MaxPriorityQueue{TPriority, TValue}"/>.
+        /// The priority only comparer of the elements in the <see cref="MaxPriorityQueue{TPriority, TValue}"/>.
         /// </summary>
-        internal Comparer<TPriority> comparer;
+        internal Comparer<TPriority> priorityComparer;
+
+        /// <summary>
+        /// The kvp comparer of the elements in the <see cref="MaxPriorityQueue{TPriority, TValue}"/>.
+        /// </summary>
+        internal Comparer<KeyValuePair<TPriority, TValue>> kvpComparer;
+
+        /// <summary>
+        /// Determines wheter the elements are compared only by priority(with priorityComparer) or not(with kvpComparer).
+        /// </summary>
+        internal bool onlyPriorityComparison;
 
         /// <summary>
         /// Gets the number of elements in the <see cref="MaxPriorityQueue{TPriority, TValue}"/>.
@@ -33,29 +43,56 @@ namespace DSA.DataStructures.Queues
         /// <summary>
         /// Creates a new instance of the <see cref="MaxPriorityQueue{TPriority, TValue}"/> class with default capacity and using the default comparer.
         /// </summary>
-        public MaxPriorityQueue() : this(4, null) { }
+        public MaxPriorityQueue() : this(4, priorityComparer: null) { }
 
         /// <summary>
         /// Creates a new instance of the <see cref="MaxPriorityQueue{TPriority, TValue}"/> class with the given capacity for the backing <see cref="ArrayList{T}"/> and default comparer.
         /// </summary>
         /// <param name="capacity">The capacity for the underlying <see cref="ArrayList{T}"/>.</param>
-        public MaxPriorityQueue(int capacity) : this(capacity, null) { }
+        public MaxPriorityQueue(int capacity) : this(capacity, priorityComparer: null) { }
 
         /// <summary>
         /// Creates a new instance of the <see cref="MaxPriorityQueue{TPriority, TValue}"/> class with the specified comparer and default capacity.
         /// </summary>
-        /// <param name="comparer">The comparer of the elements in the <see cref="MaxPriorityQueue{TPriority, TValue}"/>.</param>
-        public MaxPriorityQueue(Comparer<TPriority> comparer) : this(4, comparer) { }
+        /// <param name="priorityComparer">The comparer of the elements in the <see cref="MaxPriorityQueue{TPriority, TValue}"/>.</param>
+        public MaxPriorityQueue(Comparer<TPriority> priorityComparer) : this(4, priorityComparer) { }
+
+        /// <summary>
+        /// Creates a new instance of the <see cref="MaxPriorityQueue{TPriority, TValue}"/> class with the specified comparer and default capacity.
+        /// </summary>
+        /// <param name="kvpComparer">The comparer of the elements in the <see cref="MaxPriorityQueue{TPriority, TValue}"/>.</param>
+        public MaxPriorityQueue(Comparer<KeyValuePair<TPriority, TValue>> kvpComparer) : this(4, kvpComparer) { }
 
         /// <summary>
         /// Creates a new instance of the <see cref="MaxPriorityQueue{TPriority, TValue}"/> class with the specified comparer and the given capacity for the backing <see cref="ArrayList{T}"/>.
         /// </summary>
         /// <param name="capacity">The capacity for the underlying <see cref="ArrayList{T}"/>.</param>
-        /// <param name="comparer">The comparer of the elements in the <see cref="MaxPriorityQueue{TPriority, TValue}"/>.</param>
-        public MaxPriorityQueue(int capacity, Comparer<TPriority> comparer)
+        /// <param name="priorityComparer">The comparer of the elements in the <see cref="MaxPriorityQueue{TPriority, TValue}"/>.</param>
+        public MaxPriorityQueue(int capacity, Comparer<TPriority> priorityComparer)
         {
             array = new ArrayList<KeyValuePair<TPriority, TValue>>(capacity);
-            this.comparer = comparer ?? Comparer<TPriority>.Default;
+            this.priorityComparer = priorityComparer ?? Comparer<TPriority>.Default;
+            onlyPriorityComparison = true;
+        }
+
+        /// <summary>
+        /// Creates a new instance of the <see cref="MaxPriorityQueue{TPriority, TValue}"/> class with the specified comparer and the given capacity for the backing <see cref="ArrayList{T}"/>.
+        /// </summary>
+        /// <param name="capacity">The capacity for the underlying <see cref="ArrayList{T}"/>.</param>
+        /// <param name="kvpComparer">The comparer of the elements in the <see cref="MaxPriorityQueue{TPriority, TValue}"/>.</param>
+        public MaxPriorityQueue(int capacity, Comparer<KeyValuePair<TPriority, TValue>> kvpComparer)
+        {
+            array = new ArrayList<KeyValuePair<TPriority, TValue>>(capacity);
+            if (kvpComparer == null)
+            {
+                this.priorityComparer = Comparer<TPriority>.Default;
+                onlyPriorityComparison = true;
+            }
+            else
+            {
+                this.kvpComparer = kvpComparer;
+                onlyPriorityComparison = false;
+            }
         }
 
         /// <summary>
@@ -69,7 +106,10 @@ namespace DSA.DataStructures.Queues
                 // Getting the parent node
                 int parentIndex = (nodeIndex - 1) / 2;
 
-                if (comparer.Compare(array[parentIndex].Key, array[nodeIndex].Key) < 0)
+                int cmp = onlyPriorityComparison ?
+                    priorityComparer.Compare(array[parentIndex].Key, array[nodeIndex].Key)
+                    : kvpComparer.Compare(array[parentIndex], array[nodeIndex]);
+                if (cmp < 0)
                 {// if the parent is smaller that the current node
                     // we have to swap them
                     var temp = array[parentIndex];
@@ -100,11 +140,19 @@ namespace DSA.DataStructures.Queues
 
                 // compare right child with the biggest node(current node for now)
                 if (rigthChildIndex < array.Count)// needed checking if there is a right node also
-                    if (comparer.Compare(array[rigthChildIndex].Key, array[biggestNodeIndex].Key) > 0)
+                {
+                    int rcmp = onlyPriorityComparison ?
+                        priorityComparer.Compare(array[rigthChildIndex].Key, array[biggestNodeIndex].Key)
+                        : kvpComparer.Compare(array[rigthChildIndex], array[biggestNodeIndex]);
+                    if (rcmp > 0)
                         biggestNodeIndex = rigthChildIndex;
+                }
 
                 // compare left child with the biggest node(current node or right child)
-                if (comparer.Compare(array[leftChildIndex].Key, array[biggestNodeIndex].Key) > 0)
+                int lcmp = onlyPriorityComparison ?
+                    priorityComparer.Compare(array[leftChildIndex].Key, array[biggestNodeIndex].Key)
+                    : kvpComparer.Compare(array[leftChildIndex], array[biggestNodeIndex]);
+                if (lcmp > 0)
                     biggestNodeIndex = leftChildIndex;
 
                 // if the current node is the biggest
