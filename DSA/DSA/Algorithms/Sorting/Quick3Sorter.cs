@@ -128,7 +128,7 @@ namespace DSA.Algorithms.Sorting
         /// <param name="comparer">The <see cref="IComparable{T}"/> implementation used for comparing the elements.</param>
         private static void Quick3SortRecursion<T>(IList<T> list, int leftIndex, int rightIndex, IComparer<T> comparer)
         {
-            if (leftIndex < rightIndex)// if we have 1 element or less it is considered sorted
+            while (leftIndex < rightIndex)// if we have 1 element or less it is considered sorted
             {
                 // Partition the elements and get the pivot position
 
@@ -177,10 +177,18 @@ namespace DSA.Algorithms.Sorting
                 // move equal elements on the right side to the middle
                 for (int l = rightIndex - 1; l > rightSwapIndex; l--, i++) SwapListElements(list, l, i);
 
-                // Recursive sort for the left and right partiotions.
+                // Recursive sort for the smaller partionion. Ensures maximum recursion level is log(n).
                 // Note: i is the index of the first greater than pivot element and j is the index of last less than pivot element
-                Quick3SortRecursion(list, leftIndex, j, comparer);
-                Quick3SortRecursion(list, i, rightIndex, comparer);
+                if (j - leftIndex < rightIndex - i)
+                {
+                    Quick3SortRecursion(list, leftIndex, j, comparer);
+                    leftIndex = i;
+                }
+                else
+                {
+                    Quick3SortRecursion(list, i, rightIndex, comparer);
+                    rightIndex = j;
+                }
             }
         }
 
@@ -219,7 +227,7 @@ namespace DSA.Algorithms.Sorting
         /// <param name="comparer">The <see cref="IComparable{T}"/> implementation used for comparing the elements.</param>
         private static void Quick3SortRecursionDescending<T>(IList<T> list, int leftIndex, int rightIndex, IComparer<T> comparer)
         {
-            if (leftIndex < rightIndex)// if we have 1 element or less it is considered sorted
+            while (leftIndex < rightIndex)// if we have 1 element or less it is considered sorted
             {
                 // Partition the elements and get the pivot position
 
@@ -268,10 +276,18 @@ namespace DSA.Algorithms.Sorting
                 // move equal elements on the right side to the middle
                 for (int l = rightIndex - 1; l > rightSwapIndex; l--, i++) SwapListElements(list, l, i);
 
-                // Recursive sort for the left and right partiotions.
+                // Recursive sort for the smaller partionion. Ensures maximum recursion level is log(n).
                 // Note: i is the index of the first less than pivot element and j is the index of last greater than pivot element
-                Quick3SortRecursionDescending(list, leftIndex, j, comparer);
-                Quick3SortRecursionDescending(list, i, rightIndex, comparer);
+                if (j - leftIndex < rightIndex - i)
+                {
+                    Quick3SortRecursionDescending(list, leftIndex, j, comparer);
+                    leftIndex = i;
+                }
+                else
+                {
+                    Quick3SortRecursionDescending(list, i, rightIndex, comparer);
+                    rightIndex = j;
+                }
             }
         }
 

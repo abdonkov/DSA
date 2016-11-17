@@ -128,13 +128,22 @@ namespace DSA.Algorithms.Sorting
         /// <param name="comparer">The <see cref="IComparable{T}"/> implementation used for comparing the elements.</param>
         private static void QuickSortRecursion<T>(IList<T> list, int leftIndex, int rightIndex, IComparer<T> comparer)
         {
-            if (leftIndex < rightIndex)// if we have 1 element or less it is considered sorted
+            while (leftIndex < rightIndex)// if we have 1 element or less it is considered sorted
             {
                 // Partition the elements and get the pivot position
                 int pivotIndex = QuickSortPartition(list, leftIndex, rightIndex, comparer);
-                // Recursive sort for the left and right partiotions. Note: the pivot is on its right place
-                QuickSortRecursion(list, leftIndex, pivotIndex - 1, comparer);
-                QuickSortRecursion(list, pivotIndex + 1, rightIndex, comparer);
+                
+                // Recursive sort for the smaller partionion. Ensures maximum recursion level is log(n).
+                if (pivotIndex - leftIndex < rightIndex - pivotIndex)
+                {
+                    QuickSortRecursion(list, leftIndex, pivotIndex - 1, comparer);
+                    leftIndex = pivotIndex + 1;
+                }
+                else
+                {
+                    QuickSortRecursion(list, pivotIndex + 1, rightIndex, comparer);
+                    rightIndex = pivotIndex - 1;
+                }
             }
         }
 
@@ -151,37 +160,52 @@ namespace DSA.Algorithms.Sorting
         {
             // Get the middle element as pivot. Better performance on nearly sorted collections.
             int pivotIndex = leftIndex + (rightIndex - leftIndex) / 2;// no overflow
-            // Swap pivot position with last element position. Easier partitioning.
+            //Swap pivot position with first element position. Easier partitioning.
             T pivot = list[pivotIndex];
-            list[pivotIndex] = list[rightIndex];
-            list[rightIndex] = pivot;
-            // Index of the element to swap with
-            int swapIndex = leftIndex;
-            // for every element except the last(which is the pivot)
-            for (int j = leftIndex; j < rightIndex; j++)
-            {
-                // if the current element is smaller or equal to the pivot
-                if (comparer.Compare(list[j], pivot) <= 0)
-                {
-                    // we swap it with the element on the swap position
-                    if (swapIndex != j)// swap is needed only if the elements are on different positions
-                    {
-                        T temp = list[swapIndex];
-                        list[swapIndex] = list[j];
-                        list[j] = temp;
-                    }
-                    // increase swap position
-                    swapIndex++;
-                }
-            }
-            // After all element are rearranged we swap the pivot with the element
-            // on the swap position which is the first element bigger than the pivot
-            // so everything is ok
-            T temp2 = list[swapIndex];
-            list[swapIndex] = list[rightIndex];
-            list[rightIndex] = temp2;
+            list[pivotIndex] = list[leftIndex];
+            list[leftIndex] = pivot;
 
-            return swapIndex;// returns the index of the pivot
+            // indexes for comparing left and right sides of the array
+            int i = leftIndex - 1;
+            int j = rightIndex + 1;
+
+            while (true)
+            {
+                // find the first element on the left side bigger than the pivot
+                do
+                {
+                    i = i + 1;
+                    if (i > rightIndex)// if we iterate past the last element
+                    {
+                        // change the first element(pivot) with the last element
+                        T temp = list[leftIndex];
+                        list[leftIndex] = list[rightIndex];
+                        list[rightIndex] = temp;
+
+                        return rightIndex;// return pivot index
+                    }
+                }
+                while (comparer.Compare(list[i], pivot) <= 0);
+
+                // find first element smaller or equal to the pivot from the right side(going right to left)
+                while (comparer.Compare(list[--j], pivot) > 0) ;
+
+                if (i >= j)// if i surpassed j we end the partition
+                {
+                    // swap the element on j position(last element smaller or equal to the pivot)
+                    // with the first element(pivot)
+                    T temp = list[leftIndex];
+                    list[leftIndex] = list[j];
+                    list[j] = temp;
+
+                    return j;// return pivot index
+                }
+
+                // swap i and j
+                T swap = list[i];
+                list[i] = list[j];
+                list[j] = swap;
+            }
         }
 
         /// <summary>
@@ -219,13 +243,22 @@ namespace DSA.Algorithms.Sorting
         /// <param name="comparer">The <see cref="IComparable{T}"/> implementation used for comparing the elements.</param>
         private static void QuickSortRecursionDescending<T>(IList<T> list, int leftIndex, int rightIndex, IComparer<T> comparer)
         {
-            if (leftIndex < rightIndex)// if we have 1 element or less it is considered sorted
+            while (leftIndex < rightIndex)// if we have 1 element or less it is considered sorted
             {
                 // Partition the elements and get the pivot position
                 int pivotIndex = QuickSortPartitionDescending(list, leftIndex, rightIndex, comparer);
-                // Recursive sort for the left and right partiotions. Note: the pivot is on its right place
-                QuickSortRecursionDescending(list, leftIndex, pivotIndex - 1, comparer);
-                QuickSortRecursionDescending(list, pivotIndex + 1, rightIndex, comparer);
+
+                // Recursive sort for the smaller partionion. Ensures maximum recursion level is log(n).
+                if (pivotIndex - leftIndex < rightIndex - pivotIndex)
+                {
+                    QuickSortRecursionDescending(list, leftIndex, pivotIndex - 1, comparer);
+                    leftIndex = pivotIndex + 1;
+                }
+                else
+                {
+                    QuickSortRecursionDescending(list, pivotIndex + 1, rightIndex, comparer);
+                    rightIndex = pivotIndex - 1;
+                }
             }
         }
 
@@ -242,37 +275,52 @@ namespace DSA.Algorithms.Sorting
         {
             // Get the middle element as pivot. Better performance on nearly sorted collections.
             int pivotIndex = leftIndex + (rightIndex - leftIndex) / 2;// no overflow
-            // Swap pivot position with last element position. Easier partitioning.
+            //Swap pivot position with first element position. Easier partitioning.
             T pivot = list[pivotIndex];
-            list[pivotIndex] = list[rightIndex];
-            list[rightIndex] = pivot;
-            // Index of the element to swap with
-            int swapIndex = leftIndex;
-            // for every element except the last(which is the pivot)
-            for (int j = leftIndex; j < rightIndex; j++)
-            {
-                // if the current element is bigger or equal to the pivot
-                if (comparer.Compare(list[j], pivot) >= 0)
-                {
-                    // we swap it with the element on the swap position
-                    if (swapIndex != j)// swap is needed only if the elements are on different positions
-                    {
-                        T temp = list[swapIndex];
-                        list[swapIndex] = list[j];
-                        list[j] = temp;
-                    }
-                    // increase swap position
-                    swapIndex++;
-                }
-            }
-            // After all element are rearranged we swap the pivot with the element
-            // on the swap position which is the first element bigger than the pivot
-            // so everything is ok
-            T temp2 = list[swapIndex];
-            list[swapIndex] = list[rightIndex];
-            list[rightIndex] = temp2;
+            list[pivotIndex] = list[leftIndex];
+            list[leftIndex] = pivot;
 
-            return swapIndex;// returns the index of the pivot
+            // indexes for comparing left and right sides of the array
+            int i = leftIndex - 1;
+            int j = rightIndex + 1;
+
+            while (true)
+            {
+                // find the first element on the left side smaller than the pivot
+                do
+                {
+                    i = i + 1;
+                    if (i > rightIndex)// if we iterate past the last element
+                    {
+                        // change the first element(pivot) with the last element
+                        T temp = list[leftIndex];
+                        list[leftIndex] = list[rightIndex];
+                        list[rightIndex] = temp;
+
+                        return rightIndex;// return pivot index
+                    }
+                }
+                while (comparer.Compare(list[i], pivot) >= 0);
+
+                // find first element bigger or equal to the pivot from the right side(going right to left)
+                while (comparer.Compare(list[--j], pivot) < 0) ;
+
+                if (i >= j)// if i surpassed j we end the partition
+                {
+                    // swap the element on j position(last element bigger or equal to the pivot)
+                    // with the first element(pivot)
+                    T temp = list[leftIndex];
+                    list[leftIndex] = list[j];
+                    list[j] = temp;
+
+                    return j;// return pivot index
+                }
+
+                // swap i and j
+                T swap = list[i];
+                list[i] = list[j];
+                list[j] = swap;
+            }
         }
     }
 }
