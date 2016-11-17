@@ -1,4 +1,5 @@
 ﻿using DSA.DataStructures.Interfaces;
+using DSA.DataStructures.Queues;
 using System;
 using System.Collections.Generic;
 
@@ -153,26 +154,31 @@ namespace DSA.Algorithms.Graphs
                 // null checking because TWeight can be null
                 if (x.Key == null)
                 {
-                    if (y.Key == null) return 0;
+                    if (y.Key == null) cmp = -1; // change cmp to skip next comparisons
                     else return int.MinValue;
                 }
-                if (y.Key == null) return int.MaxValue;
-                // normal check if both weights are not null
-                cmp = x.Key.CompareTo(y.Key);
+
+                if (cmp == 0)// if x.Key and y.Key are not null
+                {
+                    if (y.Key == null) return int.MaxValue;
+                    // normal check if both weights are not null
+                    cmp = x.Key.CompareTo(y.Key);
+                }
+                else cmp = 0;// if x.Key and y.Key were both null, compare the kvp value
+
                 if (cmp == 0) cmp = x.Value.Key.CompareTo(y.Value.Key);
                 if (cmp == 0) cmp = x.Value.Value.CompareTo(y.Value.Value);
                 return cmp;
             });
             // Sorted set containing the vertices for computing. Having a kvp with the path weight as key and as value another kvp with the vertex as key and the distance from the source as value.
-            var sortedSet = new SortedSet<KeyValuePair<TWeight, KeyValuePair<TVertex, int>>>(kvpComparer);
+            var priorityQueue = new MinPriorityQueue<TWeight, KeyValuePair<TVertex, int>>(kvpComparer);
 
             // Add the source vertex
-            sortedSet.Add(new KeyValuePair<TWeight, KeyValuePair<TVertex, int>>(default(TWeight), new KeyValuePair<TVertex, int>(source, 0)));
+            priorityQueue.Enqueue(default(TWeight), new KeyValuePair<TVertex, int>(source, 0));
 
-            while (sortedSet.Count > 0)
+            while (priorityQueue.Count > 0)
             {
-                var curKVP = sortedSet.Min;
-                sortedSet.Remove(curKVP);
+                var curKVP = priorityQueue.Dequeue();
                 TWeight curWeight = curKVP.Key;
                 TVertex curVertex = curKVP.Value.Key;
                 int curDistance = curKVP.Value.Value;
@@ -209,7 +215,7 @@ namespace DSA.Algorithms.Graphs
                     weightAndDistance[edgeDestination] = new KeyValuePair<TWeight, int>(pathWeight, curDistance + 1);
 
                     // Add the destination vertex for computing
-                    sortedSet.Add(new KeyValuePair<TWeight, KeyValuePair<TVertex, int>>(pathWeight, new KeyValuePair<TVertex, int>(edgeDestination, curDistance + 1)));
+                    priorityQueue.Enqueue(pathWeight, new KeyValuePair<TVertex, int>(edgeDestination, curDistance + 1));
                 }
             }
 
@@ -242,15 +248,14 @@ namespace DSA.Algorithms.Graphs
                 return cmp;
             });
             // Sorted set containing the vertices for computing. Having a kvp with the distance from the source vertex as a key and the vertex as a value
-            var sortedSet = new SortedSet<KeyValuePair<int, TVertex>>(kvpComparer);
+            var priorityQueue = new MinPriorityQueue<int, TVertex>(kvpComparer);
 
             // Add the source vertex
-            sortedSet.Add(new KeyValuePair<int, TVertex>(0, source));
+            priorityQueue.Enqueue(0, source);
 
-            while (sortedSet.Count > 0)
+            while (priorityQueue.Count > 0)
             {
-                var curKVP = sortedSet.Min;
-                sortedSet.Remove(curKVP);
+                var curKVP = priorityQueue.Dequeue();
                 TVertex curVertex = curKVP.Value;
                 int curDistance = curKVP.Key;
 
@@ -273,7 +278,7 @@ namespace DSA.Algorithms.Graphs
                     pathDistance[edgeDestination] = newDistance;
 
                     // Add the destination vertex for computing
-                    sortedSet.Add(new KeyValuePair<int, TVertex>(newDistance, edgeDestination));
+                    priorityQueue.Enqueue(newDistance, edgeDestination);
                 }
             }
 
