@@ -114,32 +114,20 @@ namespace DSA.Algorithms.Sorting
 
             if (comparer == null) comparer = Comparer<T>.Default;
 
-            IList<T> minHeap;
+            if (count == 0) return list;
 
-            if (index == 0 && count == list.Count)
+            MaxHeapify(list, index, index + count - 1, comparer);
+
+            int heapCount = count;
+
+            while (heapCount > 0)
             {
-                minHeap = MinHeapify(list, comparer);
-            }
-            else
-            {
-                var maxCount = index + count;
-                var neededElements = new List<T>(count);
-                for (int i = index; i < maxCount; i++)
-                {
-                    neededElements.Add(list[i]);
-                }
-                minHeap = MinHeapify(neededElements, comparer);
-            }
+                var temp = list[index];
+                list[index] = list[index + heapCount - 1];
+                list[index + heapCount - 1] = temp;
 
-            int curIndex = index;
-
-            while (minHeap.Count > 0)
-            {
-                list[curIndex++] = minHeap[0];
-
-                minHeap[0] = minHeap[minHeap.Count - 1];
-                minHeap.RemoveAt(minHeap.Count - 1);
-                NodeMinHeapifyDown(minHeap, 0, comparer);
+                heapCount--;
+                NodeMaxHeapifyDown(list, index, index + heapCount - 1, index, comparer);
             }
 
             return list;
@@ -163,32 +151,20 @@ namespace DSA.Algorithms.Sorting
 
             if (comparer == null) comparer = Comparer<T>.Default;
 
-            IList<T> maxHeap;
+            if (count == 0) return list;
 
-            if (index == 0 && count == list.Count)
+            MinHeapify(list, index, index + count - 1, comparer);
+
+            int heapCount = count;
+
+            while (heapCount > 0)
             {
-                maxHeap = MaxHeapify(list, comparer);
-            }
-            else
-            {
-                var maxCount = index + count;
-                var neededElements = new List<T>(count);
-                for (int i = index; i < maxCount; i++)
-                {
-                    neededElements.Add(list[i]);
-                }
-                maxHeap = MaxHeapify(neededElements, comparer);
-            }
+                var temp = list[index];
+                list[index] = list[index + heapCount - 1];
+                list[index + heapCount - 1] = temp;
 
-            int curIndex = index;
-
-            while (maxHeap.Count > 0)
-            {
-                list[curIndex++] = maxHeap[0];
-
-                maxHeap[0] = maxHeap[maxHeap.Count - 1];
-                maxHeap.RemoveAt(maxHeap.Count - 1);
-                NodeMaxHeapifyDown(maxHeap, 0, comparer);
+                heapCount--;
+                NodeMinHeapifyDown(list, index, index + heapCount - 1, index, comparer);
             }
 
             return list;
@@ -199,23 +175,22 @@ namespace DSA.Algorithms.Sorting
         /// </summary>
         /// <typeparam name="T">The data type of the <see cref="IList{T}"/>.</typeparam>
         /// <param name="list">The <see cref="IList{T}"/> containing the elements used for building the min heap.</param>
+        /// <param name="start">The start zero-based index of the heap.</param>
+        /// <param name="end">The end zero-based index of the heap.</param>
         /// <param name="comparer">The <see cref="IComparable{T}"/> implementation used for comparing the elements.</param>
         /// <returns>Returns a <see cref="IList{T}"/> representing the backing array of the min heap.</returns>
-        private static IList<T> MinHeapify<T>(IList<T> list, IComparer<T> comparer)
+        private static void MinHeapify<T>(IList<T> list, int start, int end, IComparer<T> comparer)
         {
-            List<T> heap = new List<T>(list);
-
-            if (heap.Count > 0)
+            int count = end - start + 1;
+            if (count > 0)
             {
                 // Building the binary heap
-                int lastNodeWithChildrenIndex = (list.Count - 2) / 2;
-                for (int i = lastNodeWithChildrenIndex; i >= 0; i--)
+                int lastNodeWithChildrenIndex = start + (count - 2) / 2;
+                for (int i = lastNodeWithChildrenIndex; i >= start; i--)
                 {
-                    NodeMinHeapifyDown(heap, i, comparer);
+                    NodeMinHeapifyDown(list, start, end, i, comparer);
                 }
             }
-
-            return heap;
         }
 
         /// <summary>
@@ -223,21 +198,24 @@ namespace DSA.Algorithms.Sorting
         /// </summary>
         /// <typeparam name="T">The data type of the <see cref="IList{T}"/>.</typeparam>
         /// <param name="list">The <see cref="IList{T}"/> representing the backing array of the min heap.</param>
+        /// <param name="start">The start zero-based index of the heap.</param>
+        /// <param name="end">The end zero-based index of the heap.</param>
         /// <param name="nodeIndex">The zero-based index of the node for heapify-down operation.</param>
         /// <param name="comparer">The <see cref="IComparable{T}"/> implementation used for comparing the elements.</param>
-        private static void NodeMinHeapifyDown<T>(IList<T> list, int nodeIndex, IComparer<T> comparer)
+        private static void NodeMinHeapifyDown<T>(IList<T> list, int start, int end, int nodeIndex, IComparer<T> comparer)
         {
-            var leftChildIndex = 2 * nodeIndex + 1;
-            var rigthChildIndex = 2 * nodeIndex + 2;
+            int relativeIndex = nodeIndex - start;
+            int leftChildIndex = start + 2 * relativeIndex + 1;
+            int rigthChildIndex = start + 2 * relativeIndex + 2;
 
             // while the current node has children
-            while (leftChildIndex < list.Count)
+            while (leftChildIndex <= end)
             {
                 // saving the index of the smallest node of the three(current node and its children)
                 var smallestNodeIndex = nodeIndex;
 
                 // compare right child with the smallest node(current node for now)
-                if (rigthChildIndex < list.Count)// needed checking if there is a right node also
+                if (rigthChildIndex <= end)// needed checking if there is a right node also
                     if (comparer.Compare(list[rigthChildIndex], list[smallestNodeIndex]) < 0)
                         smallestNodeIndex = rigthChildIndex;
 
@@ -256,8 +234,9 @@ namespace DSA.Algorithms.Sorting
 
                 // continue downwards with the comparison
                 nodeIndex = smallestNodeIndex;
-                leftChildIndex = 2 * nodeIndex + 1;
-                rigthChildIndex = 2 * nodeIndex + 2;
+                relativeIndex = nodeIndex - start;
+                leftChildIndex = start + 2 * relativeIndex + 1;
+                rigthChildIndex = start + 2 * relativeIndex + 2;
             }
         }
 
@@ -266,23 +245,22 @@ namespace DSA.Algorithms.Sorting
         /// </summary>
         /// <typeparam name="T">The data type of the <see cref="IList{T}"/>.</typeparam>
         /// <param name="list">The <see cref="IList{T}"/> containing the elements used for building the max heap.</param>
+        /// <param name="start">The start zero-based index of the heap.</param>
+        /// <param name="end">The end zero-based index of the heap.</param>
         /// <param name="comparer">The <see cref="IComparable{T}"/> implementation used for comparing the elements.</param>
         /// <returns>Returns a <see cref="IList{T}"/> representing the backing array of the max heap.</returns>
-        private static IList<T> MaxHeapify<T>(IList<T> list, IComparer<T> comparer)
+        private static void MaxHeapify<T>(IList<T> list, int start, int end, IComparer<T> comparer)
         {
-            List<T> heap = new List<T>(list);
-
-            if (heap.Count > 0)
+            int count = end - start + 1;
+            if (count > 0)
             {
                 // Building the binary heap
-                int lastNodeWithChildrenIndex = (list.Count - 2) / 2;
-                for (int i = lastNodeWithChildrenIndex; i >= 0; i--)
+                int lastNodeWithChildrenIndex = start + (count - 2) / 2;
+                for (int i = lastNodeWithChildrenIndex; i >= start; i--)
                 {
-                    NodeMaxHeapifyDown(heap, i, comparer);
+                    NodeMaxHeapifyDown(list, start, end, i, comparer);
                 }
             }
-
-            return heap;
         }
 
         /// <summary>
@@ -290,21 +268,24 @@ namespace DSA.Algorithms.Sorting
         /// </summary>
         /// <typeparam name="T">The data type of the <see cref="IList{T}"/>.</typeparam>
         /// <param name="list">The <see cref="IList{T}"/> representing the backing array of the max heap.</param>
+        /// <param name="start">The start zero-based index of the heap.</param>
+        /// <param name="end">The end zero-based index of the heap.</param>
         /// <param name="nodeIndex">The zero-based index of the node for heapify-down operation.</param>
         /// <param name="comparer">The <see cref="IComparable{T}"/> implementation used for comparing the elements.</param>
-        private static void NodeMaxHeapifyDown<T>(IList<T> list, int nodeIndex, IComparer<T> comparer)
+        private static void NodeMaxHeapifyDown<T>(IList<T> list, int start, int end, int nodeIndex, IComparer<T> comparer)
         {
-            var leftChildIndex = 2 * nodeIndex + 1;
-            var rigthChildIndex = 2 * nodeIndex + 2;
+            int relativeIndex = nodeIndex - start;
+            int leftChildIndex = start + 2 * relativeIndex + 1;
+            int rigthChildIndex = start + 2 * relativeIndex + 2;
 
             // while the current node has children
-            while (leftChildIndex < list.Count)
+            while (leftChildIndex <= end)
             {
                 // saving the index of the biggest node of the three(current node and its children)
                 var biggestNodeIndex = nodeIndex;
 
                 // compare right child with the biggest node(current node for now)
-                if (rigthChildIndex < list.Count)// needed checking if there is a right node also
+                if (rigthChildIndex <= end)// needed checking if there is a right node also
                     if (comparer.Compare(list[rigthChildIndex], list[biggestNodeIndex]) > 0)
                         biggestNodeIndex = rigthChildIndex;
 
@@ -323,8 +304,9 @@ namespace DSA.Algorithms.Sorting
 
                 // continue downwards with the comparison
                 nodeIndex = biggestNodeIndex;
-                leftChildIndex = 2 * nodeIndex + 1;
-                rigthChildIndex = 2 * nodeIndex + 2;
+                relativeIndex = nodeIndex - start;
+                leftChildIndex = start + 2 * relativeIndex + 1;
+                rigthChildIndex = start + 2 * relativeIndex + 2;
             }
         }
     }
