@@ -7,8 +7,18 @@ using System.Linq;
 
 namespace DSA.Algorithms.Graphs
 {
+    /// <summary>
+    /// A static class containing extension methods for minimum spanning tree finding using Prim's algorithm.
+    /// </summary>
     public static class PrimMSTFinder
     {
+        /// <summary>
+        /// Uses Prim's algorithm to find the minimum spanning tree of the undirected weighted graph. Returns a <see cref="WeightedALGraph{TVertex, TWeight}"/> representing the MST.
+        /// </summary>
+        /// <typeparam name="TVertex">The data type of the vertices. TVertex implements <see cref="IComparable{T}"/>.</typeparam>
+        /// <typeparam name="TWeight">The data type of weight of the edges. TWeight implements <see cref="IComparable{T}"/>.</typeparam>
+        /// <param name="graph">The graph structure that implements <see cref="IWeightedGraph{TVertex, TWeight}"/>.</param>
+        /// <returns>Returns a <see cref="WeightedALGraph{TVertex, TWeight}"/> representing the MST.</returns>
         public static WeightedALGraph<TVertex, TWeight> PrimMST<TVertex, TWeight>(this IWeightedGraph<TVertex, TWeight> graph)
             where TVertex : IComparable<TVertex>
             where TWeight : IComparable<TWeight>
