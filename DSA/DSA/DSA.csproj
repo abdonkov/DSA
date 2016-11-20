@@ -44,6 +44,7 @@
     <Compile Include="Algorithms\Graphs\BipartiteColorer.cs" />
     <Compile Include="Algorithms\Graphs\Delegates.cs" />
     <Compile Include="Algorithms\Graphs\DijkstraShortestPathsFinder.cs" />
+    <Compile Include="Algorithms\Graphs\KruskalMSTFinder.cs" />
     <Compile Include="Algorithms\Graphs\PrimMSTFinder.cs" />
     <Compile Include="Algorithms\Graphs\TopologicalSorter.cs" />
     <Compile Include="Algorithms\Graphs\UnweightedGraphShortestPaths.cs" />
