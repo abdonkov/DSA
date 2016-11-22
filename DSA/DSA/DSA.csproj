@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Algorithms\Graphs\BellmanFordShortestPathsFinder.cs" />
     <Compile Include="Algorithms\Graphs\BipartiteColorer.cs" />
+    <Compile Include="Algorithms\Graphs\CyclesDetector.cs" />
     <Compile Include="Algorithms\Graphs\Delegates.cs" />
     <Compile Include="Algorithms\Graphs\DijkstraShortestPathsFinder.cs" />
     <Compile Include="Algorithms\Graphs\KruskalMSTFinder.cs" />
