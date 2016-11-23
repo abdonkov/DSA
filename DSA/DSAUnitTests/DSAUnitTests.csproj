@@ -58,6 +58,7 @@
     <Compile Include="Algorithms\Graphs\TopologicalSorterTests.cs" />
     <Compile Include="Algorithms\Graphs\PrimMSTFinderTests.cs" />
     <Compile Include="Algorithms\Graphs\KruskalMSTFinderTests.cs" />
+    <Compile Include="Algorithms\Graphs\CyclesDetectorTests.cs" />
     <Compile Include="Algorithms\Sorting\BubbleSorterTests.cs" />
     <Compile Include="Algorithms\Sorting\InsertionSorterTests.cs" />
     <Compile Include="Algorithms\Sorting\SelectionSorterTests.cs" />
