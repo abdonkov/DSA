@@ -73,6 +73,7 @@
     <Compile Include="Algorithms\Sorting\CountingSorterTests.cs" />
     <Compile Include="Algorithms\Sorting\PigeonholeSorterTests.cs" />
     <Compile Include="Algorithms\Sorting\LSDRadixSorterTests.cs" />
+    <Compile Include="Algorithms\Sorting\ParallelQuickSorterTests.cs" />
     <Compile Include="DataStructures\Arrays\SparseMatrixTests.cs" />
     <Compile Include="DataStructures\Arrays\HashedArrayTreeTests.cs" />
     <Compile Include="DataStructures\Graphs\ALGraphTests.cs" />
