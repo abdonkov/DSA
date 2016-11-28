@@ -60,6 +60,7 @@
     <Compile Include="Algorithms\Sorting\MergeSorter.LinkedList.cs" />
     <Compile Include="Algorithms\Sorting\MergeSorter.IList.cs" />
     <Compile Include="Algorithms\Sorting\ParallelMergeSorter.IList.cs" />
+    <Compile Include="Algorithms\Sorting\ParallelMergeSorter.LinkedList.cs" />
     <Compile Include="Algorithms\Sorting\ParallelQuickSorter.cs" />
     <Compile Include="Algorithms\Sorting\PigeonholeSorter.cs" />
     <Compile Include="Algorithms\Sorting\Quick3Sorter.cs" />
