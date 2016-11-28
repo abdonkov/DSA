@@ -128,7 +128,7 @@ namespace DSA.Algorithms.Sorting
         /// <param name="list">The <see cref="IList{T}"/> containing the elements for sorting.</param>
         /// <param name="leftIndex">The zero-based inclusive starting index of the range for partitioning.</param>
         /// <param name="rightIndex">The zero-based inclusive ending index of the range for partitioning.</param>
-        /// <param name="depthRemaining">The remaining depth of the recursion for each parallel tasks are invoked.</param>
+        /// <param name="depthRemaining">The remaining depth of the recursion for which parallel tasks are invoked.</param>
         /// <param name="comparer">The <see cref="IComparable{T}"/> implementation used for comparing the elements.</param>
         private static void ParallelQuickSortRecursion<T>(IList<T> list, int leftIndex, int rightIndex, int depthRemaining, IComparer<T> comparer)
         {
@@ -138,7 +138,7 @@ namespace DSA.Algorithms.Sorting
                 int pivotIndex = ParallelQuickSortPartition(list, leftIndex, rightIndex, comparer);
 
                 // Recursive sort for both partitions
-                if (depthRemaining > 0) // if recursion depth is low enough create new patallel tasks
+                if (depthRemaining > 0) // if recursion depth is low enough create new parallel tasks
                 {
                     Parallel.Invoke
                         (
@@ -278,7 +278,7 @@ namespace DSA.Algorithms.Sorting
         /// <param name="list">The <see cref="IList{T}"/> containing the elements for sorting.</param>
         /// <param name="leftIndex">The zero-based inclusive starting index of the range for partitioning.</param>
         /// <param name="rightIndex">The zero-based inclusive ending index of the range for partitioning.</param>
-        /// <param name="depthRemaining">The remaining depth of the recursion for each parallel tasks are invoked.</param>
+        /// <param name="depthRemaining">The remaining depth of the recursion for which parallel tasks are invoked.</param>
         /// <param name="comparer">The <see cref="IComparable{T}"/> implementation used for comparing the elements.</param>
         private static void ParallelQuickSortRecursionDescending<T>(IList<T> list, int leftIndex, int rightIndex, int depthRemaining, IComparer<T> comparer)
         {
