@@ -59,6 +59,7 @@
     <Compile Include="Algorithms\Sorting\MergeSorter.DoublyLinkedList.cs" />
     <Compile Include="Algorithms\Sorting\MergeSorter.LinkedList.cs" />
     <Compile Include="Algorithms\Sorting\MergeSorter.IList.cs" />
+    <Compile Include="Algorithms\Sorting\ParallelMergeSorter.DoublyLinkedList.cs" />
     <Compile Include="Algorithms\Sorting\ParallelMergeSorter.IList.cs" />
     <Compile Include="Algorithms\Sorting\ParallelMergeSorter.LinkedList.cs" />
     <Compile Include="Algorithms\Sorting\ParallelMergeSorter.SinglyLinkedList.cs" />
