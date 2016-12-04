@@ -50,6 +50,7 @@
     <Compile Include="Algorithms\Graphs\TopologicalSorter.cs" />
     <Compile Include="Algorithms\Graphs\UnweightedGraphShortestPaths.cs" />
     <Compile Include="Algorithms\Graphs\WeightedGraphShortestPaths.cs" />
+    <Compile Include="Algorithms\Searching\BinarySearcher.cs" />
     <Compile Include="Algorithms\Sorting\BubbleSorter.cs" />
     <Compile Include="Algorithms\Sorting\CountingSorter.cs" />
     <Compile Include="Algorithms\Sorting\HeapSorter.cs" />
