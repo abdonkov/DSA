@@ -62,6 +62,7 @@
     <Compile Include="Algorithms\Searching\BinarySearcherTests.cs" />
     <Compile Include="Algorithms\Searching\LinearSearcherIListTests.cs" />
     <Compile Include="Algorithms\Searching\LinearSearcherLinkedListTests.cs" />
+    <Compile Include="Algorithms\Searching\LinearSearcherSinglyLinkedListTests.cs" />
     <Compile Include="Algorithms\Sorting\BubbleSorterTests.cs" />
     <Compile Include="Algorithms\Sorting\InsertionSorterTests.cs" />
     <Compile Include="Algorithms\Sorting\SelectionSorterTests.cs" />
