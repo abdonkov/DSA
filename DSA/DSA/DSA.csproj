@@ -55,6 +55,7 @@
     <Compile Include="Algorithms\Searching\LinearSearcher.IList.cs" />
     <Compile Include="Algorithms\Searching\LinearSearcher.LinkedList.cs" />
     <Compile Include="Algorithms\Searching\LinearSearcher.SinglyLinkedList.cs" />
+    <Compile Include="Algorithms\Searching\QuickSelector.cs" />
     <Compile Include="Algorithms\Sorting\BubbleSorter.cs" />
     <Compile Include="Algorithms\Sorting\CountingSorter.cs" />
     <Compile Include="Algorithms\Sorting\HeapSorter.cs" />
