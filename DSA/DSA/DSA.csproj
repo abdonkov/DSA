@@ -97,7 +97,6 @@
     <Compile Include="DataStructures\Interfaces\IGraph.cs" />
     <Compile Include="DataStructures\Interfaces\IMaxHeap.cs" />
     <Compile Include="DataStructures\Interfaces\IMinHeap.cs" />
-    <Compile Include="DataStructures\Interfaces\ITree.cs" />
     <Compile Include="DataStructures\Interfaces\IWeightedEdge.cs" />
     <Compile Include="DataStructures\Interfaces\IWeightedGraph.cs" />
     <Compile Include="DataStructures\Lists\ArrayList.cs" />

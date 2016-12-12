@@ -1,7 +1,5 @@
-﻿using DSA.DataStructures.Interfaces;
-using DSA.DataStructures.Lists;
+﻿using DSA.DataStructures.Lists;
 using System.Collections.Generic;
-using System;
 using System.Collections;
 using System.Text;
 
@@ -10,7 +8,7 @@ namespace DSA.DataStructures.Trees
     /// <summary>
     /// Represents a Trie (Prefix Tree).
     /// </summary>
-    public class Trie : ITree<string>, IEnumerable<string>
+    public class Trie : IEnumerable<string>
     {
         /// <summary>
         /// Gets the tree root of the <see cref="Trie"/>.
