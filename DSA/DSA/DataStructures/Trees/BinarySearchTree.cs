@@ -1,5 +1,4 @@
-﻿using DSA.DataStructures.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections;
 
@@ -8,10 +7,13 @@ namespace DSA.DataStructures.Trees
     /// <summary>
     /// Represents a binary search tree.
     /// </summary>
-    /// <typeparam name="T">T implements <see cref="IComparable{T}">.</typeparam>
-    public class BinarySearchTree<T> : ITree<T>, IEnumerable<T>
-        where T : IComparable<T>
+    public class BinarySearchTree<T> : IEnumerable<T>
     {
+        /// <summary>
+        /// The comparer of the elements in the <see cref="BinarySearchTree{T}"/>.
+        /// </summary>
+        internal IComparer<T> comparer;
+
         /// <summary>
         /// Gets the tree root of the <see cref="BinarySearchTree{T}"/>.
         /// </summary>
@@ -23,10 +25,17 @@ namespace DSA.DataStructures.Trees
         public virtual int Count { get; internal set; }
 
         /// <summary>
-        /// Creates a new instance of the <see cref="BinarySearchTree{T}"/> class.
+        /// Creates a new instance of the <see cref="BinarySearchTree{T}"/> class and uses the default <see cref="IComparer{T}"/> implementation to compare elements.
         /// </summary>
-        public BinarySearchTree()
+        public BinarySearchTree() : this(null) { }
+
+        /// <summary>
+        ///  Creates a new instance of the <see cref="BinarySearchTree{T}"/> class and uses the specified <see cref="IComparer{T}"/> implementation to compare elements.
+        /// </summary>
+        /// <param name="comparer">The <see cref="IComparer{T}"/> implementation to use when comparing elements, or null to use the default comparer <see cref="Comparer{T}.Default"/>.</param>
+        public BinarySearchTree(IComparer<T> comparer)
         {
+            this.comparer = comparer ?? Comparer<T>.Default;
             Root = null;
             Count = 0;
         }
@@ -50,7 +59,7 @@ namespace DSA.DataStructures.Trees
 
             while (curNode != null)
             {
-                int cmp = value.CompareTo(curNode.Value);
+                int cmp = comparer.Compare(value, curNode.Value);
 
                 if (cmp < 0)
                 {
@@ -94,7 +103,7 @@ namespace DSA.DataStructures.Trees
 
             while (curNode != null)
             {
-                int cmp = value.CompareTo(curNode.Value);
+                int cmp = comparer.Compare(value, curNode.Value);
 
                 if (cmp < 0)
                 {
@@ -148,7 +157,9 @@ namespace DSA.DataStructures.Trees
             return false;
         }
 
-        //Finds the min node in the subtree and returns the root of the new subtree
+        /// <summary>
+        /// Finds the min node in the subtree and returns the root of the new subtree
+        /// </summary>
         private BinarySearchTreeNode<T> FindAndRemoveMin(BinarySearchTreeNode<T> subtreeRoot, ref BinarySearchTreeNode<T> min)
         {
             if (subtreeRoot.Left == null)
@@ -191,7 +202,7 @@ namespace DSA.DataStructures.Trees
             var curNode = Root;
             while (curNode != null)
             {
-                int cmp = value.CompareTo(curNode.Value);
+                int cmp = comparer.Compare(value, curNode.Value);
                 if (cmp == 0) return true;
                 if (cmp < 0) curNode = curNode.Left;
                 if (cmp > 0) curNode = curNode.Right;

@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DSA.DataStructures.Trees
+﻿namespace DSA.DataStructures.Trees
 {
     /// <summary>
     /// Represents a node in the <see cref="SplayTree{T}"/>.
     /// </summary>
-    /// <typeparam name="T">T implements <see cref="IComparable{T}">.</typeparam>
     public class SplayTreeNode<T> : BinarySearchTreeNode<T>
-        where T : IComparable<T>
     {
         /// <summary>
         /// Gets the left child of the <see cref="SplayTreeNode{T}"/>.

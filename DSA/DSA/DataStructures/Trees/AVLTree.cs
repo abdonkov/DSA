@@ -7,9 +7,7 @@ namespace DSA.DataStructures.Trees
     /// <summary>
     /// Represents an AVL binary search tree.
     /// </summary>
-    /// <typeparam name="T">T implements <see cref="IComparable{T}">.</typeparam>
     public class AVLTree<T> : BinarySearchTree<T>
-        where T : IComparable<T>
     {
         /// <summary>
         /// Gets the tree root of the <see cref="AVLTree{T}"/>.
@@ -31,9 +29,15 @@ namespace DSA.DataStructures.Trees
         public override int Count { get; internal set; }
 
         /// <summary>
-        /// Creates a new instance of the <see cref="AVLTree{T}"/> class.
+        /// Creates a new instance of the <see cref="AVLTree{T}"/> class and uses the default <see cref="IComparer{T}"/> implementation to compare elements.
         /// </summary>
         public AVLTree() : base() { }
+
+        /// <summary>
+        ///  Creates a new instance of the <see cref="AVLTree{T}"/> class and uses the specified <see cref="IComparer{T}"/> implementation to compare elements.
+        /// </summary>
+        /// <param name="comparer">The <see cref="IComparer{T}"/> implementation to use when comparing elements, or null to use the default comparer <see cref="Comparer{T}.Default"/>.</param>
+        public AVLTree(IComparer<T> comparer) : base(comparer) { }
 
         /// <summary>
         /// Gets the node height. Returns 0 if node is null.
@@ -130,7 +134,7 @@ namespace DSA.DataStructures.Trees
         {
             if (node == null) return new AVLTreeNode<T>(value);
 
-            int cmp = value.CompareTo(node.Value);
+            int cmp = comparer.Compare(value, node.Value);
             if (cmp < 0) node.Left = Add(node.Left, value);
             else if (cmp > 0) node.Right = Add(node.Right, value);
             else throw new ArgumentException("Tried to insert duplicate value!");
@@ -157,7 +161,7 @@ namespace DSA.DataStructures.Trees
         {
             if (node == null) return node;
 
-            int cmp = value.CompareTo(node.Value);
+            int cmp = comparer.Compare(value, node.Value);
             if (cmp < 0) node.Left = Remove(node.Left, value);
             else if (cmp > 0) node.Right = Remove(node.Right, value);
             else

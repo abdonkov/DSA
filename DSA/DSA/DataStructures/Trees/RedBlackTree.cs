@@ -6,9 +6,7 @@ namespace DSA.DataStructures.Trees
     /// <summary>
     /// Represents a red-black binary search tree.
     /// </summary>
-    /// <typeparam name="T">T implements <see cref="IComparable{T}">.</typeparam>
     public class RedBlackTree<T> : BinarySearchTree<T>
-        where T : IComparable<T>
     {
         /// <summary>
         /// Gets the tree root of the <see cref="RedBlackTree{T}"/>.
@@ -25,9 +23,15 @@ namespace DSA.DataStructures.Trees
         public override int Count { get; internal set; }
 
         /// <summary>
-        /// Creates a new instance of the <see cref="RedBlackTree{T}"/> class.
+        /// Creates a new instance of the <see cref="RedBlackTree{T}"/> class and uses the default <see cref="IComparer{T}"/> implementation to compare elements.
         /// </summary>
         public RedBlackTree() : base() { }
+
+        /// <summary>
+        ///  Creates a new instance of the <see cref="RedBlackTree{T}"/> class and uses the specified <see cref="IComparer{T}"/> implementation to compare elements.
+        /// </summary>
+        /// <param name="comparer">The <see cref="IComparer{T}"/> implementation to use when comparing elements, or null to use the default comparer <see cref="Comparer{T}.Default"/>.</param>
+        public RedBlackTree(IComparer<T> comparer) : base(comparer) { }
 
         private RedBlackTreeNode<T> RotateLeft(RedBlackTreeNode<T> node)
         {
@@ -104,7 +108,7 @@ namespace DSA.DataStructures.Trees
             int cmp = 0;
             while(current != null)
             {
-                cmp = value.CompareTo(current.Value);
+                cmp = comparer.Compare(value, current.Value);
 
                 parent = current;
 
@@ -191,7 +195,7 @@ namespace DSA.DataStructures.Trees
 
             while (curNode != null)
             {
-                int cmp = value.CompareTo(curNode.Value);
+                int cmp = comparer.Compare(value, curNode.Value);
 
                 if (cmp < 0)
                 {

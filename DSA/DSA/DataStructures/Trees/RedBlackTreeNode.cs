@@ -1,13 +1,9 @@
-﻿using System;
-
-namespace DSA.DataStructures.Trees
+﻿namespace DSA.DataStructures.Trees
 {
     /// <summary>
     /// Represents a node in the <see cref="RedBlackTree{T}"/>.
     /// </summary>
-    /// <typeparam name="T">T implements <see cref="IComparable{T}">.</typeparam>
     public class RedBlackTreeNode<T> : BinarySearchTreeNode<T>
-        where T : IComparable<T>
     {
         /// <summary>
         /// Gets the left child of the <see cref="RedBlackTreeNode{T}"/>.

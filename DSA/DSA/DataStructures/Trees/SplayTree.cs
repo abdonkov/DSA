@@ -7,9 +7,7 @@ namespace DSA.DataStructures.Trees
     /// <summary>
     /// Represents a Splay binary search tree.
     /// </summary>
-    /// <typeparam name="T">T implements <see cref="IComparable{T}">.</typeparam>
     public class SplayTree<T> : BinarySearchTree<T>
-        where T : IComparable<T>
     {
         /// <summary>
         /// Gets the tree root of the <see cref="SplayTree{T}"/>.
@@ -26,9 +24,15 @@ namespace DSA.DataStructures.Trees
         public override int Count { get; internal set; }
 
         /// <summary>
-        /// Creates a new instance of the <see cref="SplayTree{T}"/> class.
+        /// Creates a new instance of the <see cref="SplayTree{T}"/> class and uses the default <see cref="IComparer{T}"/> implementation to compare elements.
         /// </summary>
         public SplayTree() : base() { }
+
+        /// <summary>
+        ///  Creates a new instance of the <see cref="SplayTree{T}"/> class and uses the specified <see cref="IComparer{T}"/> implementation to compare elements.
+        /// </summary>
+        /// <param name="comparer">The <see cref="IComparer{T}"/> implementation to use when comparing elements, or null to use the default comparer <see cref="Comparer{T}.Default"/>.</param>
+        public SplayTree(IComparer<T> comparer) : base(comparer) { }
 
         /// <summary>
         /// Standard left rotation.
@@ -73,7 +77,7 @@ namespace DSA.DataStructures.Trees
             {
                 traversedNodes.AddFirst(curNode);
 
-                int cmp = value.CompareTo(curNode.Value);
+                int cmp = comparer.Compare(value, curNode.Value);
 
                 if (cmp < 0)
                 {
@@ -224,7 +228,7 @@ namespace DSA.DataStructures.Trees
             {
                 traversedNodes.AddFirst(curNode);
 
-                int cmp = value.CompareTo(curNode.Value);
+                int cmp = comparer.Compare(value, curNode.Value);
 
                 if (cmp < 0)
                 {
@@ -354,7 +358,7 @@ namespace DSA.DataStructures.Trees
             {
                 traversedNodes.AddFirst(curNode);
 
-                int cmp = value.CompareTo(curNode.Value);
+                int cmp = comparer.Compare(value, curNode.Value);
 
                 if (cmp < 0)
                 {
