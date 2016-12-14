@@ -114,6 +114,7 @@
     <Compile Include="DataStructures\Trees\BinarySearchTreeTests.cs" />
     <Compile Include="DataStructures\Trees\SplayTreeTests.cs" />
     <Compile Include="DataStructures\Trees\TrieTests.cs" />
+    <Compile Include="DataStructures\Trees\BinarySearchTreeMapTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataStructures\Trees\RedBlackTreeTests.cs" />
   </ItemGroup>
