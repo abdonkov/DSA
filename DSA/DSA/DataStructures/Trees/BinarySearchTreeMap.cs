@@ -261,7 +261,7 @@ namespace DSA.DataStructures.Trees
         /// <summary>
         /// Determines whether an element with the specified key is contained in the <see cref="BinarySearchTreeMap{TKey, TValue}"/>.
         /// </summary>
-        /// <param name="value">The key to check.</param>
+        /// <param name="key">The key to check.</param>
         /// <returns>true if key is found; otherwise false.</returns>
         public virtual bool ContainsKey(TKey key)
         {

@@ -28,6 +28,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="BinarySearchTreeMapNode{TKey, TValue}"/> class, containing the specified key and value.
         /// </summary>
+        /// <param name="key">The key to contain in the <see cref="BinarySearchTreeMapNode{TKey, TValue}"/>.</param>
         /// <param name="value">The value to contain in the <see cref="BinarySearchTreeMapNode{TKey, TValue}"/>.</param>
         public BinarySearchTreeMapNode(TKey key, TValue value)
         {
