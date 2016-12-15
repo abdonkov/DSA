@@ -113,6 +113,8 @@
     <Compile Include="DataStructures\Stacks\ArrayStack.cs" />
     <Compile Include="DataStructures\Stacks\LinkedStack.cs" />
     <Compile Include="DataStructures\Trees\AVLTree.cs" />
+    <Compile Include="DataStructures\Trees\AVLTreeMap.cs" />
+    <Compile Include="DataStructures\Trees\AVLTreeMapNode.cs" />
     <Compile Include="DataStructures\Trees\AVLTreeNode.cs" />
     <Compile Include="DataStructures\Trees\BinarySearchTree.cs" />
     <Compile Include="DataStructures\Trees\BinarySearchTreeMap.cs" />
