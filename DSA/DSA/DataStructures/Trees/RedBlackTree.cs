@@ -221,6 +221,29 @@ namespace DSA.DataStructures.Trees
                         RemoveNodeAndBalanceTree(nodeForRemoval: subtreeNode, isNodeForRemovalNull: false);
 
                         subtreeNode.Invalidate();
+
+                        // Create copy node of the current, place it on its position
+                        // and invalidate current node. Used to invalidate references for
+                        // the removed node the user can have
+                        var copyNode = new RedBlackTreeNode<T>(curNode.Value)
+                        {
+                            Parent = curNode.Parent,
+                            Left = curNode.Left,
+                            Right = curNode.Right,
+                            IsRed = curNode.IsRed
+                        };
+                        if (copyNode.Left != null) copyNode.Left.Parent = copyNode;
+                        if (copyNode.Right != null) copyNode.Right.Parent = copyNode;
+                        if (curNode.Parent != null)
+                        {
+                            if (copyNode.Parent.Left == curNode)
+                                copyNode.Parent.Left = copyNode;
+                            else
+                                copyNode.Parent.Right = copyNode;
+                        }
+                        else Root = copyNode;
+
+                        curNode.Invalidate();
                     }
                     else if (curNode.Right != null)
                     {
@@ -236,6 +259,29 @@ namespace DSA.DataStructures.Trees
                         RemoveNodeAndBalanceTree(nodeForRemoval: subtreeNode, isNodeForRemovalNull: false);
 
                         subtreeNode.Invalidate();
+
+                        // Create copy node of the current, place it on its position
+                        // and invalidate current node. Used to invalidate references for
+                        // the removed node the user can have
+                        var copyNode = new RedBlackTreeNode<T>(curNode.Value)
+                        {
+                            Parent = curNode.Parent,
+                            Left = curNode.Left,
+                            Right = curNode.Right,
+                            IsRed = curNode.IsRed
+                        };
+                        if (copyNode.Left != null) copyNode.Left.Parent = copyNode;
+                        if (copyNode.Right != null) copyNode.Right.Parent = copyNode;
+                        if (curNode.Parent != null)
+                        {
+                            if (copyNode.Parent.Left == curNode)
+                                copyNode.Parent.Left = copyNode;
+                            else
+                                copyNode.Parent.Right = copyNode;
+                        }
+                        else Root = copyNode;
+
+                        curNode.Invalidate();
                     }
                     else
                     {
