@@ -357,7 +357,7 @@ namespace DSAUnitTests
         [TestMethod]
         public void CheckIfNodeIsInvalidatedAfterClearingAndAfterRemoval()
         {
-            var tree = new AVLTree<int>();
+            var tree = new RedBlackTree<int>();
 
             tree.Add(2);
             tree.Add(1);
