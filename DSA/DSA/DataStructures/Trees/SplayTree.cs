@@ -216,6 +216,11 @@ namespace DSA.DataStructures.Trees
             throw new Exception("Splaying was not performed correctly! The traversed nodes list is corrupted!");
         }
 
+        /// <summary>
+        /// Removes an element from the <see cref="SplayTree{T}"/>.
+        /// </summary>
+        /// <param name="value">The value to remove.</param>
+        /// <returns>true if the item is successfully removed; otherwise false. Also returns false if item is not found.</returns>
         public override bool Remove(T value)
         {
             if (Root == null) return false;
