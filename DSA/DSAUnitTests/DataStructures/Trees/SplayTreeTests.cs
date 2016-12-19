@@ -27,7 +27,12 @@ namespace DSAUnitTests.DataStructures.Trees
                 int el = 0;
                 while (el < elementsCount)
                 {
-                    if (!tree.Contains(el)) tree.Add(el);
+                    if (!tree.Contains(el))
+                    {
+                        tree.Add(el);
+                        if (tree.Root.Value != el) Assert.Fail();
+                    }
+                    else if (tree.Root.Value != el) Assert.Fail();
                     el += i;
                 }
 
@@ -70,7 +75,12 @@ namespace DSAUnitTests.DataStructures.Trees
                 int el = 0;
                 while (el < elementsCount)
                 {
-                    if (!tree.Contains(el)) tree.Add(el);
+                    if (!tree.Contains(el))
+                    {
+                        tree.Add(el);
+                        if (tree.Root.Value != el) Assert.Fail();
+                    }
+                    else if (tree.Root.Value != el) Assert.Fail();
                     el += i;
                 }
 
@@ -127,7 +137,12 @@ namespace DSAUnitTests.DataStructures.Trees
                 int el = 0;
                 while (el < elementsCount)
                 {
-                    if (!tree.Contains(el)) tree.Add(el);
+                    if (!tree.Contains(el))
+                    {
+                        tree.Add(el);
+                        if (tree.Root.Value != el) Assert.Fail();
+                    }
+                    else if (tree.Root.Value != el) Assert.Fail();
                     el += i;
                 }
 
@@ -148,7 +163,7 @@ namespace DSAUnitTests.DataStructures.Trees
         [TestMethod]
         public void RemoveRootEveryTimeUntilTreeElementsAreHalfed()
         {
-            var tree = new BinarySearchTree<int>();
+            var tree = new SplayTree<int>();
 
             int elementsCount = 10000;
 
@@ -167,7 +182,9 @@ namespace DSAUnitTests.DataStructures.Trees
                     if (!tree.Contains(el))
                     {
                         tree.Add(el);
+                        if (tree.Root.Value != el) Assert.Fail();
                     }
+                    else if (tree.Root.Value != el) Assert.Fail();
                     el += i;
                 }
 
@@ -255,6 +272,63 @@ namespace DSAUnitTests.DataStructures.Trees
         }
 
         [TestMethod]
+        public void CheckIfTreeIsSplayedAfterRemoval()
+        {
+            var tree = new SplayTree<int>();
+
+            int elementsCount = 10000;
+
+            //To make it more balanced
+            tree.Add(50);
+            tree.Add(75);
+            tree.Add(25);
+
+            //Adding every seventh number, then every fifth number,
+            //every third and at last all numbers
+            for (int i = 7; i > 0; i -= 2)
+            {
+                int el = 0;
+                while (el < elementsCount)
+                {
+                    if (!tree.Contains(el))
+                    {
+                        tree.Add(el);
+                        if (tree.Root.Value != el) Assert.Fail();
+                    }
+                    else if (tree.Root.Value != el) Assert.Fail();
+                    el += i;
+                }
+
+            }
+
+            bool removedEverything = true;
+
+            for (int i = 0; i < elementsCount - 1; i++)
+            {
+                // Get parent of node for removal. That node have to be splayed
+                SplayTreeNode<int> curNode = tree.Root;
+                SplayTreeNode<int> lastNode = null;
+                while (curNode.Value != i)
+                {
+                    var cmp = i.CompareTo(curNode.Value);
+                    if (cmp == 0) break;
+
+                    lastNode = curNode;
+
+                    if (cmp > 0) curNode = curNode.Right;
+                    else curNode = curNode.Left;
+                }
+
+                if (!tree.Remove(i)) removedEverything = false;
+                else if (lastNode != null) Assert.IsTrue(tree.Root.Value == lastNode.Value);
+            }
+
+            Assert.IsTrue(tree.Count == 1
+                            && removedEverything
+                            && tree.Root.Value == elementsCount - 1);
+        }
+
+        [TestMethod]
         public void AddingAfterClearingTree()
         {
             var tree = new SplayTree<int>();
@@ -271,7 +345,9 @@ namespace DSAUnitTests.DataStructures.Trees
                     if (!tree.Contains(el))
                     {
                         tree.Add(el);
+                        if (tree.Root.Value != el) Assert.Fail();
                     }
+                    else if (tree.Root.Value != el) Assert.Fail();
                     el += i;
                 }
 
@@ -293,7 +369,9 @@ namespace DSAUnitTests.DataStructures.Trees
                     if (!tree.Contains(el))
                     {
                         tree.Add(el);
+                        if (tree.Root.Value != el) Assert.Fail();
                     }
+                    else if (tree.Root.Value != el) Assert.Fail();
                     el += i;
                 }
 
@@ -335,7 +413,9 @@ namespace DSAUnitTests.DataStructures.Trees
                     if (!tree.Contains(el))
                     {
                         tree.Add(el);
+                        if (tree.Root.Value != el) Assert.Fail();
                     }
+                    else if (tree.Root.Value != el) Assert.Fail();
                     el += i;
                 }
 
@@ -368,7 +448,9 @@ namespace DSAUnitTests.DataStructures.Trees
                     if (!tree.Contains(el))
                     {
                         tree.Add(el);
+                        if (tree.Root.Value != el) Assert.Fail();
                     }
+                    else if (tree.Root.Value != el) Assert.Fail();
                     el += i;
                 }
 
@@ -396,7 +478,7 @@ namespace DSAUnitTests.DataStructures.Trees
         [TestMethod]
         public void CheckIfNodeIsInvalidatedAfterClearingAndAfterRemoval()
         {
-            var tree = new AVLTree<int>();
+            var tree = new SplayTree<int>();
 
             tree.Add(3);
             tree.Add(1);
