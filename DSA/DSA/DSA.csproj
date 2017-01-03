@@ -75,6 +75,8 @@
     <Compile Include="Algorithms\Sorting\QuickSorter.cs" />
     <Compile Include="Algorithms\Sorting\SelectionSorter.cs" />
     <Compile Include="Algorithms\Sorting\ShellSorter.cs" />
+    <Compile Include="Algorithms\Trees\BinarySearchTreeRecursiveWalker.cs" />
+    <Compile Include="Algorithms\Trees\TraversalMode.cs" />
     <Compile Include="DataStructures\Arrays\HashedArrayTree.cs" />
     <Compile Include="DataStructures\Arrays\SparseMatrix.cs" />
     <Compile Include="DataStructures\Graphs\ALGraph.cs" />
