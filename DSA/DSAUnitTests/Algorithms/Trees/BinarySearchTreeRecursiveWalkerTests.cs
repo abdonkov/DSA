@@ -89,25 +89,27 @@ namespace DSAUnitTests.Algorithms.Trees
                     }
                     break;
                 case TraversalMode.PreOrderRightToLeft:
-                    visited = new HashSet<BinarySearchTreeNode<T>>();
-                    stack = new Stack<BinarySearchTreeNode<T>>();
-                    stack.Push(tree.Root);
-                    while (stack.Count > 0)
                     {
-                        BinarySearchTreeNode<T> curNode = stack.Peek();
-
-                        if (curNode.Right == null || visited.Contains(curNode.Right))
+                        visited = new HashSet<BinarySearchTreeNode<T>>();
+                        stack = new Stack<BinarySearchTreeNode<T>>();
+                        stack.Push(tree.Root);
+                        while (stack.Count > 0)
                         {
-                            visited.Add(curNode);
-                            stack.Pop();
-                            if (curNode.Right == null) elements.Add(curNode.Value);
+                            BinarySearchTreeNode<T> curNode = stack.Peek();
 
-                            if (curNode.Left != null) stack.Push(curNode.Left);
-                        }
-                        else
-                        {
-                            elements.Add(curNode.Value);
-                            stack.Push(curNode.Right);
+                            if (curNode.Right == null || visited.Contains(curNode.Right))
+                            {
+                                visited.Add(curNode);
+                                stack.Pop();
+                                if (curNode.Right == null) elements.Add(curNode.Value);
+
+                                if (curNode.Left != null) stack.Push(curNode.Left);
+                            }
+                            else
+                            {
+                                elements.Add(curNode.Value);
+                                stack.Push(curNode.Right);
+                            }
                         }
                     }
                     break;
@@ -312,25 +314,27 @@ namespace DSAUnitTests.Algorithms.Trees
                     }
                     break;
                 case TraversalMode.PreOrderRightToLeft:
-                    visited = new HashSet<BinarySearchTreeMapNode<TKey, TValue>>();
-                    stack = new Stack<BinarySearchTreeMapNode<TKey, TValue>>();
-                    stack.Push(tree.Root);
-                    while (stack.Count > 0)
                     {
-                        BinarySearchTreeMapNode<TKey, TValue> curNode = stack.Peek();
-
-                        if (curNode.Right == null || visited.Contains(curNode.Right))
+                        visited = new HashSet<BinarySearchTreeMapNode<TKey, TValue>>();
+                        stack = new Stack<BinarySearchTreeMapNode<TKey, TValue>>();
+                        stack.Push(tree.Root);
+                        while (stack.Count > 0)
                         {
-                            visited.Add(curNode);
-                            stack.Pop();
-                            if (curNode.Right == null) elements.Add(new KeyValuePair<TKey, TValue>(curNode.Key, curNode.Value));
+                            BinarySearchTreeMapNode<TKey, TValue> curNode = stack.Peek();
 
-                            if (curNode.Left != null) stack.Push(curNode.Left);
-                        }
-                        else
-                        {
-                            elements.Add(new KeyValuePair<TKey, TValue>(curNode.Key, curNode.Value));
-                            stack.Push(curNode.Right);
+                            if (curNode.Right == null || visited.Contains(curNode.Right))
+                            {
+                                visited.Add(curNode);
+                                stack.Pop();
+                                if (curNode.Right == null) elements.Add(new KeyValuePair<TKey, TValue>(curNode.Key, curNode.Value));
+
+                                if (curNode.Left != null) stack.Push(curNode.Left);
+                            }
+                            else
+                            {
+                                elements.Add(new KeyValuePair<TKey, TValue>(curNode.Key, curNode.Value));
+                                stack.Push(curNode.Right);
+                            }
                         }
                     }
                     break;
