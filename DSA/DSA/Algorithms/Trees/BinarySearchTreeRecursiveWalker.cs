@@ -313,7 +313,7 @@ namespace DSA.Algorithms.Trees
         #endregion
 
         /// <summary>
-        /// Recursivly visits all nodes of the given tree in the specified order and applies the given action on them. Level-order traversal is iterative.
+        /// Recursively visits all nodes of the given tree in the specified order and applies the given action on them. Level-order traversal is iterative.
         /// </summary>
         /// <typeparam name="T">The data type of the <see cref="BinarySearchTree{T}"/>.</typeparam>
         /// <param name="tree">The <see cref="BinarySearchTree{T}"/> for traversal.</param>
@@ -359,7 +359,7 @@ namespace DSA.Algorithms.Trees
         }
 
         /// <summary>
-        /// Recursivly visits all nodes of the given subtree in the specified order and applies the given action on them. Level-order traversal is iterative.
+        /// Recursively visits all nodes of the given subtree in the specified order and applies the given action on them. Level-order traversal is iterative.
         /// </summary>
         /// <typeparam name="T">The data type of the <see cref="BinarySearchTreeNode{T}"/>.</typeparam>
         /// <param name="root">The root of the subtree for traversal.</param>
@@ -403,7 +403,7 @@ namespace DSA.Algorithms.Trees
         }
 
         /// <summary>
-        /// Recursivly visits all nodes of the given tree in the specified order and applies the given action on them. Level-order traversal is iterative.
+        /// Recursively visits all nodes of the given tree in the specified order and applies the given action on them. Level-order traversal is iterative.
         /// </summary>
         /// <typeparam name="TKey">The data type of the key of the <see cref="BinarySearchTreeMap{TKey, TValue}"/>.</typeparam>
         /// <typeparam name="TValue">The data type of the value of the <see cref="BinarySearchTreeMap{TKey, TValue}"/>.</typeparam>
@@ -450,7 +450,7 @@ namespace DSA.Algorithms.Trees
         }
 
         /// <summary>
-        /// Recursivly visits all nodes of the given subtree in the specified order and applies the given action on them. Level-order traversal is iterative.
+        /// Recursively visits all nodes of the given subtree in the specified order and applies the given action on them. Level-order traversal is iterative.
         /// </summary>
         /// <typeparam name="TKey">The data type of the key of the <see cref="BinarySearchTreeMapNode{TKey, TValue}"/>.</typeparam>
         /// <typeparam name="TValue">The data type of the value of the <see cref="BinarySearchTreeMapNode{TKey, TValue}"/>.</typeparam>
