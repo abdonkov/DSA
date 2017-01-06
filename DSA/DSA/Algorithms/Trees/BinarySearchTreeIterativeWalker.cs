@@ -532,7 +532,7 @@ namespace DSA.Algorithms.Trees
         /// <param name="root">The root of the subtree for traversal.</param>
         /// <param name="action">The action to perform on each node.</param>
         /// <param name="traversalMode">The way in which the subtree is traversed.</param>
-        public static void ForEachRecursive<T>(this BinarySearchTreeNode<T> root, Action<BinarySearchTreeNode<T>> action, TraversalMode traversalMode = TraversalMode.InOrder)
+        public static void ForEachIterative<T>(this BinarySearchTreeNode<T> root, Action<BinarySearchTreeNode<T>> action, TraversalMode traversalMode = TraversalMode.InOrder)
         {
             if (root == null) throw new ArgumentNullException("root");
             if (action == null) throw new ArgumentNullException("action");
