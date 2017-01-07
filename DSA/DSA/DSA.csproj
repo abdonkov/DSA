@@ -131,6 +131,8 @@
     <Compile Include="DataStructures\Trees\SplayTreeMap.cs" />
     <Compile Include="DataStructures\Trees\SplayTreeMapNode.cs" />
     <Compile Include="DataStructures\Trees\SplayTreeNode.cs" />
+    <Compile Include="DataStructures\Trees\SuffixTree.cs" />
+    <Compile Include="DataStructures\Trees\SuffixTreeNode.cs" />
     <Compile Include="DataStructures\Trees\Trie.cs" />
     <Compile Include="DataStructures\Trees\TrieMap.cs" />
     <Compile Include="DataStructures\Trees\TrieMapNode.cs" />
