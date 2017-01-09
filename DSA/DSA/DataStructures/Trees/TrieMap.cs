@@ -216,13 +216,8 @@ namespace DSA.DataStructures.Trees
 
             var curNode = Root;
 
-            var comparer = Comparer<char>.Default;
-            // Creating reversed sorted dictionary for adding into the stack of nodes
-            var sortedChildren = new SortedDictionary<char, TrieMapNode<TValue>>(curNode.children,
-                                            Comparer<char>.Create((x, y) => comparer.Compare(y, x)));
-
             // Adding nodes in the stack
-            foreach (var kvp in sortedChildren)
+            foreach (var kvp in curNode.children)
             {
                 nodesStack.Push(kvp.Value);
                 levelStack.Push(1);
@@ -251,22 +246,13 @@ namespace DSA.DataStructures.Trees
                     if (object.Equals(curNode.Value, value)) return true;
                 }
 
-                // Creating reversed sorted dictionary for adding into the stack of nodes
-                sortedChildren = new SortedDictionary<char, TrieMapNode<TValue>>(curNode.children,
-                                            Comparer<char>.Create((x, y) => comparer.Compare(y, x)));
-
                 // Adding nodes in the stack
-                foreach (var kvp in sortedChildren)
+                foreach (var kvp in curNode.children)
                 {
                     nodesStack.Push(kvp.Value);
                     levelStack.Push(curLevel + 1);
                 }
             }
-
-            // Note: We add the nodes in reversed order because the stack
-            // is LIFO(last in first out) data structure so everything is outputted
-            // in reversed order. We do this because we need this feature(LIFO)
-            // of the stack to create a DFS(depth first search)
 
             return false;
         }
