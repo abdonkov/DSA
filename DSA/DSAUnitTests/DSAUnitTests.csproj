@@ -84,6 +84,7 @@
     <Compile Include="Algorithms\Sorting\ParallelMergeSorterLinkedListTests.cs" />
     <Compile Include="Algorithms\Sorting\ParallelMergeSorterSinglyLinkedListTests.cs" />
     <Compile Include="Algorithms\Sorting\ParallelMergeSorterDoublyLinkedListTests.cs" />
+    <Compile Include="Algorithms\Subsequences\LongestCommonSubsequenceFinderTests.cs" />
     <Compile Include="Algorithms\Trees\BinarySearchTreeRecursiveWalkerTests.cs" />
     <Compile Include="Algorithms\Trees\BinarySearchTreeIterativeWalkerTests.cs" />
     <Compile Include="DataStructures\Arrays\SparseMatrixTests.cs" />
