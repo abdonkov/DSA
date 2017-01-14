@@ -75,6 +75,7 @@
     <Compile Include="Algorithms\Sorting\QuickSorter.cs" />
     <Compile Include="Algorithms\Sorting\SelectionSorter.cs" />
     <Compile Include="Algorithms\Sorting\ShellSorter.cs" />
+    <Compile Include="Algorithms\Strings\EditDistance.DamerauLevenshtein.cs" />
     <Compile Include="Algorithms\Strings\EditDistance.Levenshtein.cs" />
     <Compile Include="Algorithms\Subsequences\LongestCommonSubsequenceFinder.cs" />
     <Compile Include="Algorithms\Subsequences\LongestIncreasingSubsequenceFinder.cs" />
