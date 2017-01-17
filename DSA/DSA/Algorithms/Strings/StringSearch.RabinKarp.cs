@@ -3,10 +3,13 @@ using System.Collections.Generic;
 
 namespace DSA.Algorithms.Strings
 {
+    /// <summary>
+    /// A static class containing methods for string pattern searching.
+    /// </summary>
     public static partial class StringSearch
     {
         /// <summary>
-        /// Searches for the first occurrence of a pattern in a target <see cref="string"/>.
+        /// Searches for the first occurrence of a pattern in a target <see cref="string"/> using Rabin-Karp's algorithm.
         /// </summary>
         /// <param name="target">The <see cref="string"/> to search in.</param>
         /// <param name="pattern">The <see cref="string"/> to search for.</param>
@@ -65,7 +68,7 @@ namespace DSA.Algorithms.Strings
         }
 
         /// <summary>
-        /// Searches for all occurences of a pattern in a target <see cref="string"/>.
+        /// Searches for all occurences of a pattern in a target <see cref="string"/> using Rabin-Karp's algorithm.
         /// </summary>
         /// <param name="target">The <see cref="string"/> to search in.</param>
         /// <param name="pattern">The <see cref="string"/> to search for.</param>
@@ -127,7 +130,7 @@ namespace DSA.Algorithms.Strings
         }
 
         /// <summary>
-        /// Searches for the first occurrence of multiple patterns in a target <see cref="string"/>.
+        /// Searches for the first occurrence of multiple patterns in a target <see cref="string"/> using Rabin-Karp's algorithm.
         /// </summary>
         /// <param name="target">The <see cref="string"/> to search in.</param>
         /// <param name="patterns">A <see cref="IList{T}"/> of <see cref="string"/> patterns.</param>
@@ -233,7 +236,7 @@ namespace DSA.Algorithms.Strings
         }
 
         /// <summary>
-        /// Searches for all occurrences of multiple patterns in a target <see cref="string"/>.
+        /// Searches for all occurrences of multiple patterns in a target <see cref="string"/> using Rabin-Karp's algorithm.
         /// </summary>
         /// <param name="target">The <see cref="string"/> to search in.</param>
         /// <param name="patterns">A <see cref="IList{T}"/> of <see cref="string"/> patterns.</param>
