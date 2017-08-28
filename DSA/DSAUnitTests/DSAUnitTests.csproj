@@ -1,170 +1,19 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DD36F5BA-30C8-435E-865F-F8C0EBADAE05}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DSAUnitTests</RootNamespace>
-    <AssemblyName>DSAUnitTests</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
-    <IsCodedUITest>False</IsCodedUITest>
-    <TestProjectType>UnitTest</TestProjectType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0-preview-20170628-02" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.1.18" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.1.18" />
   </ItemGroup>
-  <Choose>
-    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
-      <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-      </ItemGroup>
-    </When>
-    <Otherwise>
-      <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
-          <Private>False</Private>
-        </Reference>
-      </ItemGroup>
-    </Otherwise>
-  </Choose>
+
   <ItemGroup>
-    <Compile Include="Algorithms\Graphs\DijkstraShortestPathsFinderTests.cs" />
-    <Compile Include="Algorithms\Graphs\BellmanFordShortestPathsFinderTests.cs" />
-    <Compile Include="Algorithms\Graphs\BipartiteColorerTests.cs" />
-    <Compile Include="Algorithms\Graphs\TopologicalSorterTests.cs" />
-    <Compile Include="Algorithms\Graphs\PrimMSTFinderTests.cs" />
-    <Compile Include="Algorithms\Graphs\KruskalMSTFinderTests.cs" />
-    <Compile Include="Algorithms\Graphs\CyclesDetectorTests.cs" />
-    <Compile Include="Algorithms\Searching\BinarySearcherTests.cs" />
-    <Compile Include="Algorithms\Searching\LinearSearcherIListTests.cs" />
-    <Compile Include="Algorithms\Searching\LinearSearcherLinkedListTests.cs" />
-    <Compile Include="Algorithms\Searching\LinearSearcherSinglyLinkedListTests.cs" />
-    <Compile Include="Algorithms\Searching\LinearSearcherDoublyLinkedListTests.cs" />
-    <Compile Include="Algorithms\Searching\QuickSelectorTests.cs" />
-    <Compile Include="Algorithms\Sorting\BubbleSorterTests.cs" />
-    <Compile Include="Algorithms\Sorting\InsertionSorterTests.cs" />
-    <Compile Include="Algorithms\Sorting\SelectionSorterTests.cs" />
-    <Compile Include="Algorithms\Sorting\ShellSorterTests.cs" />
-    <Compile Include="Algorithms\Sorting\HeapSorterTests.cs" />
-    <Compile Include="Algorithms\Sorting\MergeSorterIListTests.cs" />
-    <Compile Include="Algorithms\Sorting\MergeSorterLinkedListTests.cs" />
-    <Compile Include="Algorithms\Sorting\MergeSorterDoublyLinkedListTests.cs" />
-    <Compile Include="Algorithms\Sorting\MergeSorterSinglyLinkedListTests.cs" />
-    <Compile Include="Algorithms\Sorting\QuickSorterTests.cs" />
-    <Compile Include="Algorithms\Sorting\Quick3SorterTests.cs" />
-    <Compile Include="Algorithms\Sorting\CountingSorterTests.cs" />
-    <Compile Include="Algorithms\Sorting\PigeonholeSorterTests.cs" />
-    <Compile Include="Algorithms\Sorting\LSDRadixSorterTests.cs" />
-    <Compile Include="Algorithms\Sorting\ParallelQuickSorterTests.cs" />
-    <Compile Include="Algorithms\Sorting\ParallelMergeSorterIListTests.cs" />
-    <Compile Include="Algorithms\Sorting\ParallelMergeSorterLinkedListTests.cs" />
-    <Compile Include="Algorithms\Sorting\ParallelMergeSorterSinglyLinkedListTests.cs" />
-    <Compile Include="Algorithms\Sorting\ParallelMergeSorterDoublyLinkedListTests.cs" />
-    <Compile Include="Algorithms\Strings\EditDistanceLevenshteinTests.cs" />
-    <Compile Include="Algorithms\Strings\EditDistanceDamerauLevenshteinTests.cs" />
-    <Compile Include="Algorithms\Strings\StringSearchRabinKarpTests.cs" />
-    <Compile Include="Algorithms\Strings\StringSearchKnuthMorrisPrattTests.cs" />
-    <Compile Include="Algorithms\Strings\StringSearchBoyerMooreTests.cs" />
-    <Compile Include="Algorithms\Strings\LongestCommonSubstringFinderTests.cs" />
-    <Compile Include="Algorithms\Subsequences\LongestCommonSubsequenceFinderTests.cs" />
-    <Compile Include="Algorithms\Subsequences\LongestIncreasingSubsequenceFinderTests.cs" />
-    <Compile Include="Algorithms\Trees\BinarySearchTreeRecursiveWalkerTests.cs" />
-    <Compile Include="Algorithms\Trees\BinarySearchTreeIterativeWalkerTests.cs" />
-    <Compile Include="DataStructures\Arrays\SparseMatrixTests.cs" />
-    <Compile Include="DataStructures\Arrays\HashedArrayTreeTests.cs" />
-    <Compile Include="DataStructures\Graphs\ALGraphTests.cs" />
-    <Compile Include="DataStructures\Graphs\DirectedALGraphTests.cs" />
-    <Compile Include="DataStructures\Graphs\DirectedWeightedALGraphTests.cs" />
-    <Compile Include="DataStructures\Graphs\AMGraphTests.cs" />
-    <Compile Include="DataStructures\Graphs\DirectedAMGraphTests.cs" />
-    <Compile Include="DataStructures\Graphs\DirectedWeightedAMGraphTests.cs" />
-    <Compile Include="DataStructures\Graphs\WeightedAMGraphTests.cs" />
-    <Compile Include="DataStructures\Graphs\WeightedALGraphTests.cs" />
-    <Compile Include="DataStructures\Heaps\BinaryMinHeapTests.cs" />
-    <Compile Include="DataStructures\Heaps\BinaryMaxHeapTests.cs" />
-    <Compile Include="DataStructures\Heaps\BinomialMinHeapTests.cs" />
-    <Compile Include="DataStructures\Heaps\BinomialMaxHeapTests.cs" />
-    <Compile Include="DataStructures\Heaps\FibonacciMinHeapTests.cs" />
-    <Compile Include="DataStructures\Heaps\FibonacciMaxHeapTests.cs" />
-    <Compile Include="DataStructures\Lists\ArrayListTests.cs" />
-    <Compile Include="DataStructures\Lists\SinglyLinkedListTests.cs" />
-    <Compile Include="DataStructures\Lists\DoublyLinkedListTest.cs" />
-    <Compile Include="DataStructures\Lists\SkipListTests.cs" />
-    <Compile Include="DataStructures\Queues\ArrayQueueTests.cs" />
-    <Compile Include="DataStructures\Queues\LinkedQueueTests.cs" />
-    <Compile Include="DataStructures\Queues\MinPriorityQueueTests.cs" />
-    <Compile Include="DataStructures\Queues\MaxPriorityQueueTests.cs" />
-    <Compile Include="DataStructures\Stacks\ArrayStackTests.cs" />
-    <Compile Include="DataStructures\Stacks\LinkedStackTests.cs" />
-    <Compile Include="DataStructures\Trees\AVLTreeTests.cs" />
-    <Compile Include="DataStructures\Trees\BinarySearchTreeTests.cs" />
-    <Compile Include="DataStructures\Trees\SplayTreeTests.cs" />
-    <Compile Include="DataStructures\Trees\TrieTests.cs" />
-    <Compile Include="DataStructures\Trees\BinarySearchTreeMapTests.cs" />
-    <Compile Include="DataStructures\Trees\AVLTreeMapTests.cs" />
-    <Compile Include="DataStructures\Trees\RedBlackTreeMapTests.cs" />
-    <Compile Include="DataStructures\Trees\SplayTreeMapTests.cs" />
-    <Compile Include="DataStructures\Trees\TrieMapTests.cs" />
-    <Compile Include="DataStructures\Trees\SuffixTreeTests.cs" />
-    <Compile Include="DataStructures\Trees\SuffixTreeMapTests.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DataStructures\Trees\RedBlackTreeTests.cs" />
+    <ProjectReference Include="..\DSA\DSA.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DSA\DSA.csproj">
-      <Project>{b4f99c9c-2afc-4d41-86b1-eb6da0807c18}</Project>
-      <Name>DSA</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Choose>
-    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
-      <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
-  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>
