@@ -3,9 +3,17 @@
 A personal project with implementations of data structures and algorithms, written in C# and created out of curiosity and for learning purposes.
 
  ### Requirements
-
- * .NET Core 2.0
+ * .NET Standard 2.0 compatible framework
+ * .NET Core 2.0 *(Only if you want to build the Unit Tests project)*
  
+## Installation
+
+The package with the .NET Standard 2.0 Class Library can be found on [NuGet](https://www.nuget.org/packages/DSA/).
+
+*Command for NuGet package manager:* ```Install-Package DSA```
+
+*Command for .NET CLI:* ```dotnet add package DSA```
+
  
 ## Data Structures
  
