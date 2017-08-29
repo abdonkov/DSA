@@ -48,7 +48,7 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<T> ShellSort<T>(this IList<T> list, Comparison<T> comparison)
         {
-            if (comparison == null) throw new ArgumentNullException("comparison");
+            if (comparison == null) throw new ArgumentNullException(nameof(comparison));
 
             if (list.Count == 0) return list;
 
@@ -64,7 +64,7 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<T> ShellSortDescending<T>(this IList<T> list, Comparison<T> comparison)
         {
-            if (comparison == null) throw new ArgumentNullException("comparison");
+            if (comparison == null) throw new ArgumentNullException(nameof(comparison));
 
             if (list.Count == 0) return list;
 
@@ -113,8 +113,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<T> ShellSort<T>(this IList<T> list, int index, int count, IComparer<T> comparer)
         {
-            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException("index");
-            if (count < 0) throw new ArgumentOutOfRangeException("count");
+            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException(nameof(index));
+            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
             if (index + count > list.Count) throw new ArgumentException("Invalid length specified.");
 
             if (comparer == null) comparer = Comparer<T>.Default;
@@ -156,8 +156,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<T> ShellSortDescending<T>(this IList<T> list, int index, int count, IComparer<T> comparer)
         {
-            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException("index");
-            if (count < 0) throw new ArgumentOutOfRangeException("count");
+            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException(nameof(index));
+            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
             if (index + count > list.Count) throw new ArgumentException("Invalid length specified.");
 
             if (comparer == null) comparer = Comparer<T>.Default;

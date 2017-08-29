@@ -131,7 +131,7 @@ namespace DSA.DataStructures.Heaps
         /// <param name="collection">The collection of elements to heapify.</param>
         public void Heapify(IEnumerable<T> collection)
         {
-            if (collection == null) throw new ArgumentNullException();
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
 
             var newArrayList = new ArrayList<T>(collection);
 

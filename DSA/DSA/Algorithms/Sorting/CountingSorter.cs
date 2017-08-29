@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace DSA.Algorithms.Sorting
 {
+    /// <summary>
+    /// Static class containing extension methods for counting sort.
+    /// </summary>
     public static class CountingSorter
     {
         /// <summary>
@@ -38,8 +41,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<int> CountingSort(this IList<int> list, int index, int count)
         {
-            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException("index");
-            if (count < 0) throw new ArgumentOutOfRangeException("count");
+            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException(nameof(index));
+            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
             if (index + count > list.Count) throw new ArgumentException("Invalid length specified.");
 
             if (count == 1) return list;
@@ -110,8 +113,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<int> CountingSortDescending(this IList<int> list, int index, int count)
         {
-            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException("index");
-            if (count < 0) throw new ArgumentOutOfRangeException("count");
+            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException(nameof(index));
+            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
             if (index + count > list.Count) throw new ArgumentException("Invalid length specified.");
 
             if (count == 1) return list;
@@ -209,8 +212,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<KeyValuePair<int, TValue>> CountingSortKeys<TValue>(this IList<KeyValuePair<int, TValue>> list, int index, int count)
         {
-            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException("index");
-            if (count < 0) throw new ArgumentOutOfRangeException("count");
+            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException(nameof(index));
+            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
             if (index + count > list.Count) throw new ArgumentException("Invalid length specified.");
 
             if (count == 1) return list;
@@ -282,8 +285,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<KeyValuePair<int, TValue>> CountingSortDescendingKeys<TValue>(this IList<KeyValuePair<int, TValue>> list, int index, int count)
         {
-            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException("index");
-            if (count < 0) throw new ArgumentOutOfRangeException("count");
+            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException(nameof(index));
+            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
             if (index + count > list.Count) throw new ArgumentException("Invalid length specified.");
 
             if (count == 1) return list;
@@ -348,7 +351,7 @@ namespace DSA.Algorithms.Sorting
         /// <summary>
         /// Sorts the key-value pairs in the entire <see cref="IList{T}"/> by their value in ascending order. The difference between the minimun and maximum key must be lower than (<see cref="int.MaxValue"/> / 4).
         /// </summary>
-        /// <typeparam name="TValue">The data type of the values in the list of <see cref="KeyValuePair{TKey, TValue}"/> items.</typeparam>
+        /// <typeparam name="TKey">The data type of the keys in the list of <see cref="KeyValuePair{TKey, TValue}"/> items.</typeparam>
         /// <param name="list">The <see cref="IList{T}"/> containing the elements for sorting.</param>
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<KeyValuePair<TKey, int>> CountingSortValues<TKey>(this IList<KeyValuePair<TKey, int>> list)
@@ -361,7 +364,7 @@ namespace DSA.Algorithms.Sorting
         /// <summary>
         /// Sorts the key-value pairs in the entire <see cref="IList{T}"/> by their value in descending order. The difference between the minimun and maximum key must be lower than (<see cref="int.MaxValue"/> / 4).
         /// </summary>
-        /// <typeparam name="TValue">The data type of the values in the list of <see cref="KeyValuePair{TKey, TValue}"/> items.</typeparam>
+        /// <typeparam name="TKey">The data type of the keys in the list of <see cref="KeyValuePair{TKey, TValue}"/> items.</typeparam>
         /// <param name="list">The <see cref="IList{T}"/> containing the elements for sorting.</param>
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<KeyValuePair<TKey, int>> CountingSortDescendingValues<TKey>(this IList<KeyValuePair<TKey, int>> list)
@@ -374,15 +377,15 @@ namespace DSA.Algorithms.Sorting
         /// <summary>
         /// Sorts a range of key-value pairs in the <see cref="IList{T}"/> by their value in ascending order. The difference between the minimun and maximum key must be lower than (<see cref="int.MaxValue"/> / 4).
         /// </summary>
-        /// <typeparam name="TValue">The data type of the values in the list of <see cref="KeyValuePair{TKey, TValue}"/> items.</typeparam>
+        /// <typeparam name="TKey">The data type of the keys in the list of <see cref="KeyValuePair{TKey, TValue}"/> items.</typeparam>
         /// <param name="list">The <see cref="IList{T}"/> containing the elements for sorting.</param>
         /// <param name="index">The zero-based starting index of the range for sorting.</param>
         /// <param name="count">The length of the range for sorting.</param>
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<KeyValuePair<TKey, int>> CountingSortValues<TKey>(this IList<KeyValuePair<TKey, int>> list, int index, int count)
         {
-            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException("index");
-            if (count < 0) throw new ArgumentOutOfRangeException("count");
+            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException(nameof(index));
+            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
             if (index + count > list.Count) throw new ArgumentException("Invalid length specified.");
 
             if (count == 1) return list;
@@ -447,15 +450,15 @@ namespace DSA.Algorithms.Sorting
         /// <summary>
         /// Sorts a range of key-value pairs in the <see cref="IList{T}"/> by their value in descending order. The difference between the minimun and maximum key must be lower than (<see cref="int.MaxValue"/> / 4).
         /// </summary>
-        /// <typeparam name="TValue">The data type of the values in the list of <see cref="KeyValuePair{TKey, TValue}"/> items.</typeparam>
+        /// <typeparam name="TKey">The data type of the keys in the list of <see cref="KeyValuePair{TKey, TValue}"/> items.</typeparam>
         /// <param name="list">The <see cref="IList{T}"/> containing the elements for sorting.</param>
         /// <param name="index">The zero-based starting index of the range for sorting.</param>
         /// <param name="count">The length of the range for sorting.</param>
         /// <returns>Returns the given <see cref="IList{T}"/> when sorted.</returns>
         public static IList<KeyValuePair<TKey, int>> CountingSortDescendingValues<TKey>(this IList<KeyValuePair<TKey, int>> list, int index, int count)
         {
-            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException("index");
-            if (count < 0) throw new ArgumentOutOfRangeException("count");
+            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException(nameof(index));
+            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
             if (index + count > list.Count) throw new ArgumentException("Invalid length specified.");
 
             if (count == 1) return list;

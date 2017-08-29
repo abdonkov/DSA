@@ -1,7 +1,7 @@
 ﻿namespace DSA.DataStructures.Lists
 {
     /// <summary>
-    /// Represents a node in the <see cref="DoublyLinkedList{T}"./>. This class cannot be inherited.
+    /// Represents a node in the <see cref="DoublyLinkedList{T}"/>. This class cannot be inherited.
     /// </summary>
     /// <typeparam name="T">The stored data type.</typeparam>
     public sealed class DoublyLinkedListNode<T>

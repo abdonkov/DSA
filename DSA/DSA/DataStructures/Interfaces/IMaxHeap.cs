@@ -6,7 +6,7 @@ namespace DSA.DataStructures.Interfaces
     /// <summary>
     /// A max heap interface.
     /// </summary>
-    /// <typeparam name="T">The stored value type. T implements <see cref="IComparable{T}">.</typeparam>
+    /// <typeparam name="T">The stored value type. T implements <see cref="IComparable{T}"/>.</typeparam>
     public interface IMaxHeap<T>
         where T : IComparable<T>
     {

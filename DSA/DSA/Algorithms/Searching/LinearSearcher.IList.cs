@@ -66,8 +66,8 @@ namespace DSA.Algorithms.Searching
         /// <returns>The zero-based index of the first occurrence of the item in the <see cref="IList{T}"/>, if the item is found; otherwise -1.</returns>
         public static int LinearSearchFirstIndexOf<T>(this IList<T> list, T item, int index, int count, IComparer<T> comparer)
         {
-            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException("index");
-            if (count < 0) throw new ArgumentOutOfRangeException("count");
+            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException(nameof(index));
+            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
             if (index + count > list.Count) throw new ArgumentException("Invalid length specified.");
 
             if (comparer == null) comparer = Comparer<T>.Default;
@@ -140,8 +140,8 @@ namespace DSA.Algorithms.Searching
         /// <returns>The zero-based index of the last occurrence of the item in the <see cref="IList{T}"/>, if the item is found; otherwise -1.</returns>
         public static int LinearSearchLastIndexOf<T>(this IList<T> list, T item, int index, int count, IComparer<T> comparer)
         {
-            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException("index");
-            if (count < 0) throw new ArgumentOutOfRangeException("count");
+            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException(nameof(index));
+            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
             if (index + count > list.Count) throw new ArgumentException("Invalid length specified.");
 
             if (comparer == null) comparer = Comparer<T>.Default;

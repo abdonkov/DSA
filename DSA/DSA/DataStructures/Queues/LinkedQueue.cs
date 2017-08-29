@@ -36,7 +36,7 @@ namespace DSA.DataStructures.Queues
         /// <param name="collection">The collection to copy elements from.</param>
         public LinkedQueue(IEnumerable<T> collection)
         {
-            if (collection == null) throw new ArgumentNullException();
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
 
             Count = 0;
             Node current = null;

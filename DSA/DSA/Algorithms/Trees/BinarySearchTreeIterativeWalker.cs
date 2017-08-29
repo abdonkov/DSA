@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace DSA.Algorithms.Trees
 {
+    /// <summary>
+    /// Static class containing extension methods for iterative walking on binary search trees.
+    /// </summary>
     public static class BinarySearchTreeIterativeWalker
     {
         #region BinarySearchTree visitors
@@ -488,8 +491,8 @@ namespace DSA.Algorithms.Trees
         /// <param name="traversalMode">The way in which the tree is traversed.</param>
         public static void ForEachIterative<T>(this BinarySearchTree<T> tree, Action<BinarySearchTreeNode<T>> action, TraversalMode traversalMode = TraversalMode.InOrder)
         {
-            if (tree == null) throw new ArgumentNullException("tree");
-            if (action == null) throw new ArgumentNullException("action");
+            if (tree == null) throw new ArgumentNullException(nameof(tree));
+            if (action == null) throw new ArgumentNullException(nameof(action));
 
             if (tree.Root == null) return;
 
@@ -534,8 +537,8 @@ namespace DSA.Algorithms.Trees
         /// <param name="traversalMode">The way in which the subtree is traversed.</param>
         public static void ForEachIterative<T>(this BinarySearchTreeNode<T> root, Action<BinarySearchTreeNode<T>> action, TraversalMode traversalMode = TraversalMode.InOrder)
         {
-            if (root == null) throw new ArgumentNullException("root");
-            if (action == null) throw new ArgumentNullException("action");
+            if (root == null) throw new ArgumentNullException(nameof(root));
+            if (action == null) throw new ArgumentNullException(nameof(action));
 
             switch (traversalMode)
             {
@@ -579,8 +582,8 @@ namespace DSA.Algorithms.Trees
         /// <param name="traversalMode">The way in which the tree is traversed.</param>
         public static void ForEachIterative<TKey, TValue>(this BinarySearchTreeMap<TKey, TValue> tree, Action<BinarySearchTreeMapNode<TKey, TValue>> action, TraversalMode traversalMode = TraversalMode.InOrder)
         {
-            if (tree == null) throw new ArgumentNullException("tree");
-            if (action == null) throw new ArgumentNullException("action");
+            if (tree == null) throw new ArgumentNullException(nameof(tree));
+            if (action == null) throw new ArgumentNullException(nameof(action));
 
             if (tree.Root == null) return;
 
@@ -626,8 +629,8 @@ namespace DSA.Algorithms.Trees
         /// <param name="traversalMode">The way in which the subtree is traversed.</param>
         public static void ForEachIterative<TKey, TValue>(this BinarySearchTreeMapNode<TKey, TValue> root, Action<BinarySearchTreeMapNode<TKey, TValue>> action, TraversalMode traversalMode = TraversalMode.InOrder)
         {
-            if (root == null) throw new ArgumentNullException("root");
-            if (action == null) throw new ArgumentNullException("action");
+            if (root == null) throw new ArgumentNullException(nameof(root));
+            if (action == null) throw new ArgumentNullException(nameof(action));
 
             switch (traversalMode)
             {

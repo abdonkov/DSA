@@ -37,7 +37,7 @@ namespace DSA.DataStructures.Trees
                 if (TryGetValue(key, out value))
                     return value;
                 else
-                    throw new KeyNotFoundException();
+                    throw new KeyNotFoundException("The key \"" + key.ToString() + "\" was not found in the RedBlackTreeMap.");
             }
             set
             {

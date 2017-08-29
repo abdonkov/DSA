@@ -13,7 +13,7 @@ namespace DSA.Algorithms.Subsequences
         /// <typeparam name="T">The data type of the <see cref="IList{T}"/>.</typeparam>
         /// <param name="a">An <see cref="IList{T}"/> object representing the first sequence.</param>
         /// <param name="b">An <see cref="IList{T}"/> object representing the second sequence.</param>
-        /// <returns>A <see cref="int[,]"/> representing the LCS table.</returns>
+        /// <returns>A int matrix representing the LCS table.</returns>
         internal static int[,] ComputeLCSTable<T>(IList<T> a, IList<T> b)
         {
             int height = a.Count + 1;
@@ -45,7 +45,7 @@ namespace DSA.Algorithms.Subsequences
         /// </summary>
         /// <param name="s1">The first <see cref="string"/> object.</param>
         /// <param name="s2">The second <see cref="string"/> object.</param>
-        /// <returns>A <see cref="int[,]"/> representing the LCS table.</returns>
+        /// <returns>A int matrix representing the LCS table.</returns>
         internal static int[,] ComputeLCSTable(string s1, string s2)
         {
             int height = s1.Length + 1;

@@ -32,10 +32,10 @@ namespace DSA.DataStructures.Heaps
         public FibonacciMinHeap() { }
 
         /// <summary>
-        /// Merging two <see cref="FibonacciNode{T}"/> lists into one returning the node with the smaller value.
+        /// Merging two <see cref="FibonacciNode"/> lists into one returning the node with the smaller value.
         /// </summary>
-        /// <param name="first">The first <see cref="FibonacciNode{T}"/>.</param>
-        /// <param name="second">The second <see cref="FibonacciNode{T}"/>.</param>
+        /// <param name="first">The first <see cref="FibonacciNode"/>.</param>
+        /// <param name="second">The second <see cref="FibonacciNode"/>.</param>
         /// <returns>Returns the node with the smaller value.</returns>
         internal FibonacciNode MergeNodeLists(FibonacciNode first, FibonacciNode second)
         {
@@ -57,9 +57,9 @@ namespace DSA.DataStructures.Heaps
         }
 
         /// <summary>
-        /// Removes a <see cref="FibonacciNode{T}"/> from the list of nodes, in which it belongs.
+        /// Removes a <see cref="FibonacciNode"/> from the list of nodes, in which it belongs.
         /// </summary>
-        /// <param name="node">The <see cref="FibonacciNode{T}"/> to remove.</param>
+        /// <param name="node">The <see cref="FibonacciNode"/> to remove.</param>
         internal void RemoveNodeFromList(FibonacciNode node)
         {
             var prev = node.Previous;
@@ -161,7 +161,7 @@ namespace DSA.DataStructures.Heaps
         /// <param name="collection">The collection of elements to heapify.</param>
         public void Heapify(IEnumerable<T> collection)
         {
-            if (collection == null) throw new ArgumentNullException();
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
 
             bool haveToClearHeap = true;
 
@@ -351,7 +351,6 @@ namespace DSA.DataStructures.Heaps
         /// <summary>
         /// Represents a node in the <see cref="FibonacciMinHeap{T}"/>.
         /// </summary>
-        /// <typeparam name="T">T implements <see cref="IComparable{T}"/>.</typeparam>
         internal class FibonacciNode
         {
             /// <summary>
@@ -385,9 +384,9 @@ namespace DSA.DataStructures.Heaps
             internal FibonacciNode Next { get; set; }
 
             /// <summary>
-            /// Creates a new instance of the <see cref="FibonacciNode{T}"/> class, containing the specified value.
+            /// Creates a new instance of the <see cref="FibonacciNode"/> class, containing the specified value.
             /// </summary>
-            /// <param name="value">The value to contain in the <see cref="FibonacciNode{T}"/>.</param>
+            /// <param name="value">The value to contain in the <see cref="FibonacciNode"/>.</param>
             public FibonacciNode(T value)
             {
                 Value = value;

@@ -63,10 +63,10 @@ namespace DSA.Algorithms.Searching
         /// <returns>The <see cref="LinkedListNode{T}"/> of the first occurrence of the item in the <see cref="LinkedList{T}"/>, if the item is found; otherwise null.</returns>
         public static LinkedListNode<T> LinearSearchFirstNode<T>(this LinkedList<T> list, T item, LinkedListNode<T> startNode, LinkedListNode<T> endNode, IComparer<T> comparer)
         {
-            if (startNode == null) throw new ArgumentNullException("startNode");
-            if (endNode == null) throw new ArgumentNullException("endNode");
-            if (startNode.List != list) throw new ArgumentException("startNode doesn't belong to the list!");
-            if (endNode.List != list) throw new ArgumentException("startNode doesnt't belong to the list!");
+            if (startNode == null) throw new ArgumentNullException(nameof(startNode));
+            if (endNode == null) throw new ArgumentNullException(nameof(endNode));
+            if (startNode.List != list) throw new ArgumentException(nameof(startNode) + "doesn't belong to the list!");
+            if (endNode.List != list) throw new ArgumentException(nameof(endNode) + "doesnt't belong to the list!");
 
             if (comparer == null) comparer = Comparer<T>.Default;
 
@@ -143,10 +143,10 @@ namespace DSA.Algorithms.Searching
         /// <returns>The <see cref="LinkedListNode{T}"/> of the last occurrence of the item in the <see cref="LinkedList{T}"/>, if the item is found; otherwise null.</returns>
         public static LinkedListNode<T> LinearSearchLastNode<T>(this LinkedList<T> list, T item, LinkedListNode<T> startNode, LinkedListNode<T> endNode, IComparer<T> comparer)
         {
-            if (startNode == null) throw new ArgumentNullException("startNode");
-            if (endNode == null) throw new ArgumentNullException("endNode");
-            if (startNode.List != list) throw new ArgumentException("startNode doesn't belong to the list!");
-            if (endNode.List != list) throw new ArgumentException("startNode doesnt't belong to the list!");
+            if (startNode == null) throw new ArgumentNullException(nameof(startNode));
+            if (endNode == null) throw new ArgumentNullException(nameof(endNode));
+            if (startNode.List != list) throw new ArgumentException(nameof(startNode) + "doesn't belong to the list!");
+            if (endNode.List != list) throw new ArgumentException(nameof(endNode) + "doesnt't belong to the list!");
 
             if (comparer == null) comparer = Comparer<T>.Default;
 

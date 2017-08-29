@@ -35,7 +35,7 @@ namespace DSA.DataStructures.Trees
                 if (TryGetValue(word, out value))
                     return value;
                 else
-                    throw new KeyNotFoundException();
+                    throw new KeyNotFoundException("The word \"" + word + "\" was not found in the TrieMap.");
             }
             set
             {
@@ -327,7 +327,7 @@ namespace DSA.DataStructures.Trees
         }
 
         /// <summary>
-        /// Returns an <see cref="IEnumerable{T}"/>(T being <see cref="KeyValuePair{TKey, TValue}"/> with key of type <see cref="string"/> and value of type <see cref="TValue"/>) of the words in the <see cref="TrieMap{TValue}"/> beginning with the given prefix sorted lexicographically.
+        /// Returns an <see cref="IEnumerable{T}"/>(T being <see cref="KeyValuePair{TKey, TValue}"/> with key of type <see cref="string"/> and value of type TValue) of the words in the <see cref="TrieMap{TValue}"/> beginning with the given prefix sorted lexicographically.
         /// </summary>
         /// <param name="prefix">The prefix of the requested words.</param>
         /// <returns>Returns the words sorted in lexicographical order.</returns>
@@ -337,7 +337,7 @@ namespace DSA.DataStructures.Trees
         }
 
         /// <summary>
-        /// Returns an <see cref="IEnumerable{T}"/>(T being <see cref="KeyValuePair{TKey, TValue}"/> with key of type <see cref="string"/> and value of type <see cref="TValue"/>) of the words in the <see cref="TrieMap{TValue}"/> beginning with the given prefix sorted by the given comparer.
+        /// Returns an <see cref="IEnumerable{T}"/>(T being <see cref="KeyValuePair{TKey, TValue}"/> with key of type <see cref="string"/> and value of type TValue) of the words in the <see cref="TrieMap{TValue}"/> beginning with the given prefix sorted by the given comparer.
         /// </summary>
         /// <param name="prefix">The prefix of the requested words.</param>
         /// <param name="comparer">The comparer which is used for sorting.</param>
@@ -404,7 +404,7 @@ namespace DSA.DataStructures.Trees
         }
 
         /// <summary>
-        /// Returns an <see cref="IEnumerable{T}"/>(T being <see cref="KeyValuePair{TKey, TValue}"/> with key of type <see cref="string"/> and value of type <see cref="TValue"/>) of all words in the <see cref="TrieMap{TValue}"/> sorted in lexicographical order.
+        /// Returns an <see cref="IEnumerable{T}"/>(T being <see cref="KeyValuePair{TKey, TValue}"/> with key of type <see cref="string"/> and value of type TValue) of all words in the <see cref="TrieMap{TValue}"/> sorted in lexicographical order.
         /// </summary>
         /// <returns>Returns the words sorted in lexicographical order.</returns>
         public IEnumerable<KeyValuePair<string, TValue>> GetAllWords()
@@ -413,7 +413,7 @@ namespace DSA.DataStructures.Trees
         }
 
         /// <summary>
-        /// Returns an <see cref="IEnumerable{T}"/>(T being <see cref="KeyValuePair{TKey, TValue}"/> with key of type <see cref="string"/> and value of type <see cref="TValue"/>) of all words in the <see cref="TrieMap{TValue}"/> sorted by the given comparer.
+        /// Returns an <see cref="IEnumerable{T}"/>(T being <see cref="KeyValuePair{TKey, TValue}"/> with key of type <see cref="string"/> and value of type TValue) of all words in the <see cref="TrieMap{TValue}"/> sorted by the given comparer.
         /// </summary>
         /// <param name="comparer">The comparer which is used for sorting.</param>
         /// <returns>Returns the words sorted with the given comparer.</returns>

@@ -3,7 +3,7 @@
 namespace DSA.DataStructures.Lists
 {
     /// <summary>
-    /// Represents a node in the <see cref="SkipList{T}"./>. This class cannot be inherited.
+    /// Represents a node in the <see cref="SkipList{T}"/>. This class cannot be inherited.
     /// </summary>
     /// <typeparam name="T">The stored data type.</typeparam>
     public sealed class SkipListNode<T> where T : IComparable<T>
@@ -32,12 +32,12 @@ namespace DSA.DataStructures.Lists
         {
             get
             {
-                if (level < 0 || level >= Height) throw new IndexOutOfRangeException();
+                if (level < 0 || level >= Height) throw new IndexOutOfRangeException(nameof(level));
                 return forwards[level];
             }
             internal set
             {
-                if (level < 0 || level >= Height) throw new IndexOutOfRangeException();
+                if (level < 0 || level >= Height) throw new IndexOutOfRangeException(nameof(level));
                 forwards[level] = value;
             }
         }
@@ -49,7 +49,7 @@ namespace DSA.DataStructures.Lists
         /// <param name="height">The height of the <see cref="SkipListNode{T}"/>.</param>
         public SkipListNode(T value, int height)
         {
-            if (height < 1) throw new ArgumentOutOfRangeException("height");
+            if (height < 1) throw new ArgumentOutOfRangeException(nameof(height));
             Value = value;
             forwards = new SkipListNode<T>[height];
         }

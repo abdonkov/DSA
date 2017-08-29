@@ -1,12 +1,14 @@
 ﻿using DSA.DataStructures.Lists;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DSA.DataStructures.Queues
 {
+    /// <summary>
+    /// Represents a max-priority queue structure.
+    /// </summary>
+    /// <typeparam name="TPriority">The data type of the priority.</typeparam>
+    /// <typeparam name="TValue">The stored data type.</typeparam>
     public class MaxPriorityQueue<TPriority, TValue>
         where TPriority : IComparable<TPriority>
     {
@@ -177,7 +179,7 @@ namespace DSA.DataStructures.Queues
         /// <param name="collection">The collection of elements to heapify.</param>
         public void Heapify(IEnumerable<KeyValuePair<TPriority, TValue>> collection)
         {
-            if (collection == null) throw new ArgumentNullException();
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
 
             var newArrayList = new ArrayList<KeyValuePair<TPriority, TValue>>(collection);
 
@@ -270,7 +272,7 @@ namespace DSA.DataStructures.Queues
         /// <summary>
         /// Determines whether a value is contained in the <see cref="MaxPriorityQueue{TPriority, TValue}"/>.
         /// </summary>
-        /// <param name="item">The value to search in the <see cref="MaxPriorityQueue{TPriority, TValue}"/>.</param>
+        /// <param name="value">The value to search in the <see cref="MaxPriorityQueue{TPriority, TValue}"/>.</param>
         /// <returns>returns true if the value is found; otherwise false.</returns>
         public bool ContainsValue(TValue value)
         {

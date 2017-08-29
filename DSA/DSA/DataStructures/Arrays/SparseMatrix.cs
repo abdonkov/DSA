@@ -149,7 +149,7 @@ namespace DSA.DataStructures.Arrays
         /// Gets the items in the given column sorted by the row index as an <see cref="IEnumerable{T}"/>
         /// of <see cref="KeyValuePair{TKey, TValue}"/> with the key being the row index and the value being the item.
         /// </summary>
-        /// <param name="row">The zero-based row index.</param>
+        /// <param name="col">The zero-based column index.</param>
         /// <returns>Returns an <see cref="IEnumerable{T}"/> of <see cref="KeyValuePair{TKey, TValue}"/>
         /// with the key being the row index and the value being the item.</returns>
         public IEnumerable<KeyValuePair<int, T>> GetColumnItems(int col)

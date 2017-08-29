@@ -5,6 +5,10 @@ using System.Text;
 
 namespace DSA.DataStructures.Trees
 {
+    /// <summary>
+    /// Represents a Suffix tree map.
+    /// </summary>
+    /// <typeparam name="TValue"></typeparam>
     public class SuffixTreeMap<TValue> : IEnumerable<KeyValuePair<string, TValue>>
     {
         internal StringBuilder ReverseStringBuilder(StringBuilder sb)
@@ -43,7 +47,7 @@ namespace DSA.DataStructures.Trees
                 if (TryGetValue(word, out value))
                     return value;
                 else
-                    throw new KeyNotFoundException();
+                    throw new KeyNotFoundException("The word \"" + word + "\" was not found in the SuffixTreeMap.");
             }
             set
             {
@@ -335,7 +339,7 @@ namespace DSA.DataStructures.Trees
         }
 
         /// <summary>
-        /// Returns an <see cref="IEnumerable{T}"/>(T being <see cref="KeyValuePair{TKey, TValue}"/> with key of type <see cref="string"/> and value of type <see cref="TValue"/>) of the words in the <see cref="SuffixTreeMap{TValue}"/> ending with the given suffix sorted lexicographically.
+        /// Returns an <see cref="IEnumerable{T}"/>(T being <see cref="KeyValuePair{TKey, TValue}"/> with key of type <see cref="string"/> and value of type TValue) of the words in the <see cref="SuffixTreeMap{TValue}"/> ending with the given suffix sorted lexicographically.
         /// </summary>
         /// <param name="suffix">The suffix of the requested words.</param>
         /// <returns>Returns the words sorted in lexicographical order.</returns>
@@ -345,7 +349,7 @@ namespace DSA.DataStructures.Trees
         }
 
         /// <summary>
-        /// Returns an <see cref="IEnumerable{T}"/>(T being <see cref="KeyValuePair{TKey, TValue}"/> with key of type <see cref="string"/> and value of type <see cref="TValue"/>) of the words in the <see cref="SuffixTreeMap{TValue}"/> ending with the given suffix sorted by the given comparer.
+        /// Returns an <see cref="IEnumerable{T}"/>(T being <see cref="KeyValuePair{TKey, TValue}"/> with key of type <see cref="string"/> and value of type TValue) of the words in the <see cref="SuffixTreeMap{TValue}"/> ending with the given suffix sorted by the given comparer.
         /// </summary>
         /// <param name="suffix">The suffix of the requested words.</param>
         /// <param name="comparer">The comparer which is used for sorting.</param>
@@ -425,7 +429,7 @@ namespace DSA.DataStructures.Trees
         }
 
         /// <summary>
-        /// Returns an <see cref="IEnumerable{T}"/>(T being <see cref="KeyValuePair{TKey, TValue}"/> with key of type <see cref="string"/> and value of type <see cref="TValue"/>) of all words in the <see cref="SuffixTreeMap{TValue}"/> sorted in lexicographical order.
+        /// Returns an <see cref="IEnumerable{T}"/>(T being <see cref="KeyValuePair{TKey, TValue}"/> with key of type <see cref="string"/> and value of type TValue) of all words in the <see cref="SuffixTreeMap{TValue}"/> sorted in lexicographical order.
         /// </summary>
         /// <returns>Returns the words sorted in lexicographical order.</returns>
         public IEnumerable<KeyValuePair<string, TValue>> GetAllWords()
@@ -434,7 +438,7 @@ namespace DSA.DataStructures.Trees
         }
 
         /// <summary>
-        /// Returns an <see cref="IEnumerable{T}"/>(T being <see cref="KeyValuePair{TKey, TValue}"/> with key of type <see cref="string"/> and value of type <see cref="TValue"/>) of all words in the <see cref="SuffixTreeMap{TValue}"/> sorted by the given comparer.
+        /// Returns an <see cref="IEnumerable{T}"/>(T being <see cref="KeyValuePair{TKey, TValue}"/> with key of type <see cref="string"/> and value of type TValue) of all words in the <see cref="SuffixTreeMap{TValue}"/> sorted by the given comparer.
         /// </summary>
         /// <param name="comparer">The comparer which is used for sorting.</param>
         /// <returns>Returns the words sorted with the given comparer.</returns>

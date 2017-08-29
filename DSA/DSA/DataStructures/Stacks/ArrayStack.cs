@@ -37,7 +37,7 @@ namespace DSA.DataStructures.Stacks
         /// <param name="capacity">The capacity of the backing array.</param>
         public ArrayStack(int capacity)
         {
-            if (capacity < 0) throw new ArgumentOutOfRangeException();
+            if (capacity < 0) throw new ArgumentOutOfRangeException(nameof(capacity));
 
             Capacity = capacity;
             array = new T[capacity];
@@ -49,7 +49,7 @@ namespace DSA.DataStructures.Stacks
         /// <param name="collection">The collection to copy elements from.</param>
         public ArrayStack(IEnumerable<T> collection)
         {
-            if (collection == null) throw new ArgumentNullException();
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
 
             int colSize = collection.Count();
 

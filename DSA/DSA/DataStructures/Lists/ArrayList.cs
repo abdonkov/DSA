@@ -40,12 +40,12 @@ namespace DSA.DataStructures.Lists
         {
             get
             {
-                if (index < 0 || index >= Count) throw new IndexOutOfRangeException();
+                if (index < 0 || index >= Count) throw new IndexOutOfRangeException(nameof(index));
                 return array[index];
             }
             set
             {
-                if (index < 0 || index >= Count) throw new IndexOutOfRangeException();
+                if (index < 0 || index >= Count) throw new IndexOutOfRangeException(nameof(index));
                 array[index] = value;
             }
         }
@@ -61,7 +61,7 @@ namespace DSA.DataStructures.Lists
         /// <param name="capacity">The capacity of the backing array.</param>
         public ArrayList(int capacity)
         {
-            if (capacity < 0) throw new ArgumentOutOfRangeException();
+            if (capacity < 0) throw new ArgumentOutOfRangeException(nameof(capacity));
 
             Capacity = capacity;
             array = new T[Capacity];
@@ -74,7 +74,7 @@ namespace DSA.DataStructures.Lists
         /// <param name="collection">The collection whose elements are copied to the new <see cref="ArrayList{T}"/>.</param>
         public ArrayList(IEnumerable<T> collection)
         {
-            if (collection == null) throw new ArgumentNullException();
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
 
             int colSize = collection.Count();
 
@@ -148,7 +148,7 @@ namespace DSA.DataStructures.Lists
         /// <param name="collection">The collection whose elements should be added to end of the <see cref="ArrayList{T}"/>.</param>
         public void AddRange(IEnumerable<T> collection)
         {
-            if (collection == null) throw new ArgumentNullException();
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
 
             int colSize = collection.Count();
 
@@ -168,7 +168,7 @@ namespace DSA.DataStructures.Lists
         /// <param name="item">The item to insert in the <see cref="ArrayList{T}"/>.</param>
         public void Insert(int index, T item)
         {
-            if (index < 0 || index > Count) throw new IndexOutOfRangeException();
+            if (index < 0 || index > Count) throw new IndexOutOfRangeException(nameof(index));
             if (index == Count)
             {
                 Add(item);
@@ -195,8 +195,8 @@ namespace DSA.DataStructures.Lists
         /// <param name="collection">The collection whose elements should be inserted in the <see cref="ArrayList{T}"/>at the specified index.</param>
         public void InsertRange(int index, IEnumerable<T> collection)
         {
-            if (index < 0 || index >= Count) throw new IndexOutOfRangeException();
-            if (collection == null) throw new ArgumentNullException();
+            if (index < 0 || index >= Count) throw new IndexOutOfRangeException(nameof(index));
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
 
             int colSize = collection.Count();
 
@@ -236,8 +236,8 @@ namespace DSA.DataStructures.Lists
         /// <param name="count">The number of elements to remove.</param>
         public void RemoveRange(int index, int count)
         {
-            if (index < 0 || index >= Count) throw new IndexOutOfRangeException();
-            if (index + count > Count || count < 1) throw new ArgumentException();
+            if (index < 0 || index >= Count) throw new IndexOutOfRangeException(nameof(index));
+            if (index + count > Count || count < 1) throw new ArgumentOutOfRangeException("Invalid length specified.");
 
             while (index + count < Count)
             {
@@ -256,7 +256,7 @@ namespace DSA.DataStructures.Lists
         /// <param name="index">The index of the item to remove from the <see cref="ArrayList{T}"/>.</param>
         public void RemoveAt(int index)
         {
-            if (index < 0 || index >= Count) throw new IndexOutOfRangeException();
+            if (index < 0 || index >= Count) throw new IndexOutOfRangeException(nameof(index));
 
             for (int i = index; i < Count - 1; i++)
             {

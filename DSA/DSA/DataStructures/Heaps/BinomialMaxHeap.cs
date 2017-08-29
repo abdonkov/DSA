@@ -48,7 +48,7 @@ namespace DSA.DataStructures.Heaps
         /// <param name="collection">The collection of elements to heapify.</param>
         public void Heapify(IEnumerable<T> collection)
         {
-            if (collection == null) throw new ArgumentNullException();
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
 
             bool haveToClearHeap = true;
 
@@ -65,10 +65,10 @@ namespace DSA.DataStructures.Heaps
         }
 
         /// <summary>
-        /// Removes the tree root of a binomial tree given the tree root and the <see cref="BinomialNode{T}"/> before it.
+        /// Removes the tree root of a binomial tree given the tree root and the <see cref="BinomialNode"/> before it.
         /// </summary>
         /// <param name="treeRoot">The root node of the binomial tree.</param>
-        /// <param name="previous">The <see cref="BinomialNode{T}"/> before the tree root.</param>
+        /// <param name="previous">The <see cref="BinomialNode"/> before the tree root.</param>
         internal void RemoveBinomialTreeRoot(BinomialNode treeRoot, BinomialNode previous)
         {
             if (treeRoot == head)
@@ -100,8 +100,8 @@ namespace DSA.DataStructures.Heaps
         /// <summary>
         /// Merge two binomial trees to a new tree of higher order, given the roots of the trees.
         /// </summary>
-        /// <param name="biggerNode">The <see cref="BinomialNode{T}"/> with the bigger value.</param>
-        /// <param name="smallerNode">The <see cref="BinomialNode{T}"/> with the smaller value.</param>
+        /// <param name="biggerNode">The <see cref="BinomialNode"/> with the bigger value.</param>
+        /// <param name="smallerNode">The <see cref="BinomialNode"/> with the smaller value.</param>
         internal void MergeBinomialTrees(BinomialNode biggerNode, BinomialNode smallerNode)
         {
             smallerNode.Parent = biggerNode;
@@ -392,7 +392,6 @@ namespace DSA.DataStructures.Heaps
         /// <summary>
         /// Represents a node in the <see cref="BinomialMaxHeap{T}"/>.
         /// </summary>
-        /// <typeparam name="T">T implements <see cref="IComparable{T}"/>.</typeparam>
         internal class BinomialNode
         {
             /// <summary>
@@ -421,9 +420,9 @@ namespace DSA.DataStructures.Heaps
             internal BinomialNode Sibling { get; set; }
 
             /// <summary>
-            /// Creates a new instance of the <see cref="BinomialNode{T}"/> class, containing the specified value.
+            /// Creates a new instance of the <see cref="BinomialNode"/> class, containing the specified value.
             /// </summary>
-            /// <param name="value">The value to contain in the <see cref="BinomialNode{T}"/>.</param>
+            /// <param name="value">The value to contain in the <see cref="BinomialNode"/>.</param>
             internal BinomialNode(T value)
             {
                 Value = value;

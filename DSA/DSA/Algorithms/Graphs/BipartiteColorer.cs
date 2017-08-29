@@ -9,7 +9,13 @@ namespace DSA.Algorithms.Graphs
     /// </summary>
     public enum BipartiteColor
     {
+        /// <summary>
+        /// Red color for the bipartite coloring.
+        /// </summary>
         Red = 0,
+        /// <summary>
+        /// Blue color for the bipartite coloring.
+        /// </summary>
         Blue = 1
     }
 
@@ -117,6 +123,7 @@ namespace DSA.Algorithms.Graphs
         /// <typeparam name="TVertex">The data type of the vertices. TVertex implements <see cref="IComparable{T}"/>.</typeparam>
         /// <param name="graph">The graph structure for the BFS color check.</param>
         /// <param name="source">The source vertex at which the BFS starts.</param>
+        /// <param name="coloredVertices">A dictionary containing the colored vertices and their color./></param>
         /// <param name="foundColor">The color of the found colored vertex.</param>
         /// <returns>Retruns the level on which the colored vertex is found. Returns -1 if the was no colored vertex found.</returns>
         private static int BFSFindFirstLevelWithColoredVertex<TVertex>(IGraph<TVertex> graph, TVertex source, Dictionary<TVertex, BipartiteColor> coloredVertices, out BipartiteColor foundColor)

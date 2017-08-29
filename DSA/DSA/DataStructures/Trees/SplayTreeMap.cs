@@ -1,9 +1,6 @@
 ﻿using DSA.DataStructures.Lists;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DSA.DataStructures.Trees
 {
@@ -41,7 +38,7 @@ namespace DSA.DataStructures.Trees
                 if (TryGetValue(key, out value))
                     return value;
                 else
-                    throw new KeyNotFoundException();
+                    throw new KeyNotFoundException("The key \"" + key.ToString() + "\" was not found in the SplayTreeMap.");
             }
             set
             {
@@ -195,8 +192,8 @@ namespace DSA.DataStructures.Trees
         /// <param name="traversedNodes">A <see cref="SinglyLinkedList{T}"/> containing the traversed nodes.</param>
         internal void Splay(SinglyLinkedList<SplayTreeMapNode<TKey, TValue>> traversedNodes)
         {
-            if (traversedNodes == null) throw new ArgumentNullException("traversedNodes");
-            if (traversedNodes.Last.Value != Root) throw new ArgumentException("traversedNodes list does not end with the root node!");
+            if (traversedNodes == null) throw new ArgumentNullException(nameof(traversedNodes));
+            if (traversedNodes.Last.Value != Root) throw new ArgumentException(nameof(traversedNodes) + "list does not end with the root node!");
             if (traversedNodes.Count == 1) return;
 
             var nodeToSplay = traversedNodes.First.Value;

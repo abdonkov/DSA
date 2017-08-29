@@ -40,14 +40,14 @@ namespace DSA.DataStructures.Arrays
         {
             get
             {
-                if (index < 0 || index >= Count) throw new IndexOutOfRangeException();
+                if (index < 0 || index >= Count) throw new IndexOutOfRangeException(nameof(index));
                 var topArrayIndex = GetTopArrayIndex(index);
                 var subarrayIndex = GetSubarrayIndex(index);
                 return arrays[topArrayIndex][subarrayIndex];
             }
             set
             {
-                if (index < 0 || index >= Count) throw new IndexOutOfRangeException();
+                if (index < 0 || index >= Count) throw new IndexOutOfRangeException(nameof(index));
                 var topArrayIndex = GetTopArrayIndex(index);
                 var subarrayIndex = GetSubarrayIndex(index);
                 arrays[topArrayIndex][subarrayIndex] = value;
@@ -71,7 +71,7 @@ namespace DSA.DataStructures.Arrays
         /// <param name="collection">The collection whose elements are copied to the new <see cref="HashedArrayTree{T}"/>.</param>
         public HashedArrayTree(IEnumerable<T> collection)
         {
-            if (collection == null) throw new ArgumentNullException();
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
 
             arrays = new T[2][];
             Count = 0;
@@ -202,9 +202,9 @@ namespace DSA.DataStructures.Arrays
         }
 
         /// <summary>
-        /// Adds an item to the end of the <see cref="HashedArrayTree{T}{T}"/>.
+        /// Adds an item to the end of the <see cref="HashedArrayTree{T}"/>.
         /// </summary>
-        /// <param name="item">The item to add at the end of the <see cref="HashedArrayTree{T}{T}"/>.</param>
+        /// <param name="item">The item to add at the end of the <see cref="HashedArrayTree{T}"/>.</param>
         public void Add(T item)
         {
             if (Count == Capacity)
@@ -229,7 +229,7 @@ namespace DSA.DataStructures.Arrays
         /// <param name="collection">The collection whose elements should be added to end of the <see cref="HashedArrayTree{T}"/>.</param>
         public void AddRange(IEnumerable<T> collection)
         {
-            if (collection == null) throw new ArgumentNullException();
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
 
             int colSize = collection.Count();
 
@@ -249,7 +249,7 @@ namespace DSA.DataStructures.Arrays
         /// <param name="item">The item to insert in the <see cref="HashedArrayTree{T}"/>.</param>
         public void Insert(int index, T item)
         {
-            if (index < 0 || index > Count) throw new IndexOutOfRangeException();
+            if (index < 0 || index > Count) throw new IndexOutOfRangeException(nameof(index));
             if (index == Count)
             {
                 Add(item);
@@ -280,8 +280,8 @@ namespace DSA.DataStructures.Arrays
         /// <param name="collection">The collection whose elements should be inserted in the <see cref="HashedArrayTree{T}"/>at the specified index.</param>
         public void InsertRange(int index, IEnumerable<T> collection)
         {
-            if (index < 0 || index >= Count) throw new IndexOutOfRangeException();
-            if (collection == null) throw new ArgumentNullException();
+            if (index < 0 || index >= Count) throw new IndexOutOfRangeException(nameof(index));
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
 
             int colSize = collection.Count();
 
@@ -328,7 +328,7 @@ namespace DSA.DataStructures.Arrays
         /// <returns>true if the item is removed successfully; otherwise false.</returns>
         public bool RemoveAt(int index)
         {
-            if (index < 0 || index >= Count) throw new IndexOutOfRangeException();
+            if (index < 0 || index >= Count) throw new IndexOutOfRangeException(nameof(index));
 
             // We just need to shift all items until the given index by 1 to the left
 
@@ -365,8 +365,8 @@ namespace DSA.DataStructures.Arrays
         /// <param name="count">The number of elements to remove.</param>
         public void RemoveRange(int index, int count)
         {
-            if (index < 0 || index >= Count) throw new IndexOutOfRangeException();
-            if (index + count > Count || count < 1) throw new ArgumentException();
+            if (index < 0 || index >= Count) throw new IndexOutOfRangeException(nameof(index));
+            if (index + count > Count || count < 1) throw new ArgumentException("Invalid length specified.");
 
             // Shifting all items until the end
             while (index + count < Count)

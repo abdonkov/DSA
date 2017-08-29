@@ -35,7 +35,7 @@ namespace DSA.DataStructures.Stacks
         /// <param name="collection">The collection to copy elements from.</param>
         public LinkedStack(IEnumerable<T> collection)
         {
-            if (collection == null) throw new ArgumentNullException();
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
 
             Count = 0;
             Node head = null;

@@ -104,7 +104,7 @@ namespace DSA.DataStructures.Graphs
         }
 
         /// <summary>
-        /// Adds an edge defined by the given vertices to the <see cref="DirectedWeightedALGraph{TVertex, TWeight}"/> with weight being the <see cref="TWeight"/> default value of the <see cref="DirectedWeightedALGraph{TVertex, TWeight}"/>. If the vertices are not present in the graph they will be added.
+        /// Adds an edge defined by the given vertices to the <see cref="DirectedWeightedALGraph{TVertex, TWeight}"/> with weight being the TWeight default value of the <see cref="DirectedWeightedALGraph{TVertex, TWeight}"/>. If the vertices are not present in the graph they will be added.
         /// </summary>
         /// <param name="source">The source vertex of the edge.</param>
         /// <param name="destination">The destination vertex of the edge.</param>

@@ -54,8 +54,8 @@ namespace DSA.Algorithms.Strings
         /// <returns>Returns the position of the first occurrence of the pattern. If not found returns -1.</returns>
         public static int KnuthMorrisPrattSearchFirst(string target, string pattern)
         {
-            if (target == null) throw new ArgumentNullException("target");
-            if (pattern == null) throw new ArgumentNullException("pattern");
+            if (target == null) throw new ArgumentNullException(nameof(target));
+            if (pattern == null) throw new ArgumentNullException(nameof(pattern));
 
             // Build KMP table
             var kmpTable = BuildKMPTable(pattern);
@@ -102,8 +102,8 @@ namespace DSA.Algorithms.Strings
         /// <returns>Returns <see cref="IList{T}"/> of <see cref="int"/> values of the positions at which the pattern occurs. <see cref="IList{T}"/> is empty if none found.</returns>
         public static IList<int> KnuthMorrisPrattSearchAll(string target, string pattern)
         {
-            if (target == null) throw new ArgumentNullException("target");
-            if (pattern == null) throw new ArgumentNullException("pattern");
+            if (target == null) throw new ArgumentNullException(nameof(target));
+            if (pattern == null) throw new ArgumentNullException(nameof(pattern));
 
             // List with matches
             var matches = new List<int>();
@@ -171,8 +171,8 @@ namespace DSA.Algorithms.Strings
         /// If a pattern is not found there is no entry in the dictionary.</returns>
         public static Dictionary<string, int> KnuthMorrisPrattMultipleSearchFirst(string target, IList<string> patterns)
         {
-            if (target == null) throw new ArgumentNullException("target");
-            if (patterns == null) throw new ArgumentNullException("patterns");
+            if (target == null) throw new ArgumentNullException(nameof(target));
+            if (patterns == null) throw new ArgumentNullException(nameof(patterns));
 
             // Dictionary with matches
             var matches = new Dictionary<string, int>();
@@ -196,8 +196,8 @@ namespace DSA.Algorithms.Strings
         /// If a pattern is not found there is no entry in the dictionary.</returns>
         public static Dictionary<string, List<int>> KnuthMorrisPrattMultipleSearchAll(string target, IList<string> patterns)
         {
-            if (target == null) throw new ArgumentNullException("target");
-            if (patterns == null) throw new ArgumentNullException("patterns");
+            if (target == null) throw new ArgumentNullException(nameof(target));
+            if (patterns == null) throw new ArgumentNullException(nameof(patterns));
 
             // Dictionary with matches
             var matches = new Dictionary<string, List<int>>();

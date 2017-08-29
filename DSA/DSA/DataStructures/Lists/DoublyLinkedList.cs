@@ -83,7 +83,7 @@ namespace DSA.DataStructures.Lists
         /// <param name="node">The new <see cref="DoublyLinkedListNode{T}"/> to add at the start of the <see cref="DoublyLinkedList{T}"/>.</param>
         public void AddFirst(DoublyLinkedListNode<T> node)
         {
-            if (node == null) throw new ArgumentNullException("node");
+            if (node == null) throw new ArgumentNullException(nameof(node));
             if (node.List != null) throw new InvalidOperationException("node belongs to another list");
 
             node.List = this;
@@ -104,7 +104,7 @@ namespace DSA.DataStructures.Lists
         /// <returns>The new <see cref="DoublyLinkedListNode{T}"/> containing the value.</returns>
         public DoublyLinkedListNode<T> AddAfter(DoublyLinkedListNode<T> node, T value)
         {
-            if (node == null) throw new ArgumentNullException("node");
+            if (node == null) throw new ArgumentNullException(nameof(node));
             if (node.List != this) throw new InvalidOperationException("node doesn't belong to this list");
 
             if (node == Last) return AddLast(value);
@@ -123,9 +123,9 @@ namespace DSA.DataStructures.Lists
         /// <param name="newNode">The new <see cref="DoublyLinkedListNode{T}"/> to add to the <see cref="DoublyLinkedList{T}"/>.</param>
         public void AddAfter(DoublyLinkedListNode<T> node, DoublyLinkedListNode<T> newNode)
         {
-            if (node == null) throw new ArgumentNullException("node");
+            if (node == null) throw new ArgumentNullException(nameof(node));
             if (node.List != this) throw new InvalidOperationException("node doesn't belong to this list");
-            if (newNode == null) throw new ArgumentNullException("newNode");
+            if (newNode == null) throw new ArgumentNullException(nameof(newNode));
             if (newNode.List != null) throw new InvalidOperationException("newNode belongs to another list");
 
             if (node == Last)
@@ -153,7 +153,7 @@ namespace DSA.DataStructures.Lists
         /// <returns>The new <see cref="DoublyLinkedListNode{T}"/> containing the value.</returns>
         public DoublyLinkedListNode<T> AddBefore(DoublyLinkedListNode<T> node, T value)
         {
-            if (node == null) throw new ArgumentNullException("node");
+            if (node == null) throw new ArgumentNullException(nameof(node));
             if (node.List != this) throw new InvalidOperationException("node doesn't belong to this list");
 
             if (node == First) return AddFirst(value);
@@ -172,9 +172,9 @@ namespace DSA.DataStructures.Lists
         /// <param name="newNode">The new <see cref="DoublyLinkedListNode{T}"/> to add to the <see cref="DoublyLinkedList{T}"/>.</param>
         public void AddBefore(DoublyLinkedListNode<T> node, DoublyLinkedListNode<T> newNode)
         {
-            if (node == null) throw new ArgumentNullException("node");
+            if (node == null) throw new ArgumentNullException(nameof(node));
             if (node.List != this) throw new InvalidOperationException("node doesn't belong to this list");
-            if (newNode == null) throw new ArgumentNullException("newNode");
+            if (newNode == null) throw new ArgumentNullException(nameof(newNode));
             if (newNode.List != null) throw new InvalidOperationException("newNode belongs to another list");
 
             if (node == First)
@@ -215,7 +215,7 @@ namespace DSA.DataStructures.Lists
         /// <param name="node">The new <see cref="DoublyLinkedListNode{T}"/> to add at the end of the <see cref="DoublyLinkedList{T}"/>.</param>
         public void AddLast(DoublyLinkedListNode<T> node)
         {
-            if (node == null) throw new ArgumentNullException("node");
+            if (node == null) throw new ArgumentNullException(nameof(node));
             if (node.List != null) throw new InvalidOperationException("node belongs to another list");
 
             if (Count == 0)
@@ -277,7 +277,7 @@ namespace DSA.DataStructures.Lists
         /// <param name="node">The <see cref="DoublyLinkedListNode{T}"/> to remove from the <see cref="DoublyLinkedList{T}"/>.</param>
         public void Remove(DoublyLinkedListNode<T> node)
         {
-            if (node == null) throw new ArgumentNullException("node");
+            if (node == null) throw new ArgumentNullException(nameof(node));
             if (node.List != this) throw new InvalidOperationException("node doesn't belong to this list");
 
             if (node == First)
@@ -303,7 +303,7 @@ namespace DSA.DataStructures.Lists
         /// </summary>
         public void RemoveFirst()
         {
-            if (Count == 0) throw new InvalidOperationException();
+            if (Count == 0) throw new InvalidOperationException("The DoublyLinkedList doesn't contain any elements.");
 
             var oldFirst = First;
             First = First.Next;
@@ -322,7 +322,7 @@ namespace DSA.DataStructures.Lists
         /// </summary>
         public void RemoveLast()
         {
-            if (Count == 0) throw new InvalidOperationException();
+            if (Count == 0) throw new InvalidOperationException("The DoublyLinkedList doesn't contain any elements.");
 
             var oldLast = Last;
             Last = Last.Previous;

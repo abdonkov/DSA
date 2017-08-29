@@ -74,8 +74,8 @@ namespace DSA.Algorithms.Searching
         /// the bitwise complement of the items count.</returns>
         public static int BinarySearchFirstIndexOf<T>(this IList<T> list, T item, int index, int count, IComparer<T> comparer)
         {
-            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException("index");
-            if (count < 0) throw new ArgumentOutOfRangeException("count");
+            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException(nameof(index));
+            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
             if (index + count > list.Count) throw new ArgumentException("Invalid length specified.");
 
             if (comparer == null) comparer = Comparer<T>.Default;
@@ -180,8 +180,8 @@ namespace DSA.Algorithms.Searching
         /// the bitwise complement of the items count.</returns>
         public static int BinarySearchLastIndexOf<T>(this IList<T> list, T item, int index, int count, IComparer<T> comparer)
         {
-            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException("index");
-            if (count < 0) throw new ArgumentOutOfRangeException("count");
+            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException(nameof(index));
+            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
             if (index + count > list.Count) throw new ArgumentException("Invalid length specified.");
 
             if (comparer == null) comparer = Comparer<T>.Default;

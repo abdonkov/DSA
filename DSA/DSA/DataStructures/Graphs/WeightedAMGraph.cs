@@ -124,7 +124,7 @@ namespace DSA.DataStructures.Graphs
         }
 
         /// <summary>
-        /// Adds an edge defined by the given vertices to the <see cref="WeightedAMGraph{TVertex, TWeight}"/> with weight being the <see cref="TWeight"/> default value of the <see cref="WeightedAMGraph{TVertex, TWeight}"/>. If the vertices are not present in the graph they will be added.
+        /// Adds an edge defined by the given vertices to the <see cref="WeightedAMGraph{TVertex, TWeight}"/> with weight being the TWeight default value of the <see cref="WeightedAMGraph{TVertex, TWeight}"/>. If the vertices are not present in the graph they will be added.
         /// </summary>
         /// <param name="firstVertex">The first vertex.</param>
         /// <param name="secondVertex">The second vertex.</param>

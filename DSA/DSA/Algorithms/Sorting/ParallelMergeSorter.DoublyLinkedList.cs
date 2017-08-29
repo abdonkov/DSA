@@ -41,7 +41,7 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="DoublyLinkedList{T}"/> when sorted.</returns>
         public static DoublyLinkedList<T> ParallelMergeSort<T>(this DoublyLinkedList<T> list, Comparison<T> comparison)
         {
-            if (comparison == null) throw new ArgumentNullException("comparison");
+            if (comparison == null) throw new ArgumentNullException(nameof(comparison));
 
             return ParallelMergeSort(list, Comparer<T>.Create(comparison));
         }
@@ -55,7 +55,7 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="DoublyLinkedList{T}"/> when sorted.</returns>
         public static DoublyLinkedList<T> ParallelMergeSortDescending<T>(this DoublyLinkedList<T> list, Comparison<T> comparison)
         {
-            if (comparison == null) throw new ArgumentNullException("comparison");
+            if (comparison == null) throw new ArgumentNullException(nameof(comparison));
 
             return ParallelMergeSortDescending(list, Comparer<T>.Create(comparison));
         }
@@ -104,8 +104,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="DoublyLinkedList{T}"/> when sorted.</returns>
         public static DoublyLinkedList<T> ParallelMergeSort<T>(this DoublyLinkedList<T> list, int index, int count, IComparer<T> comparer)
         {
-            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException("index");
-            if (count < 0) throw new ArgumentOutOfRangeException("count");
+            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException(nameof(index));
+            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
             if (index + count > list.Count) throw new ArgumentException("Invalid length specified.");
 
             if (comparer == null) comparer = Comparer<T>.Default;
@@ -154,8 +154,8 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="DoublyLinkedList{T}"/> when sorted.</returns>
         public static DoublyLinkedList<T> ParallelMergeSortDescending<T>(this DoublyLinkedList<T> list, int index, int count, IComparer<T> comparer)
         {
-            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException("index");
-            if (count < 0) throw new ArgumentOutOfRangeException("count");
+            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException(nameof(index));
+            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
             if (index + count > list.Count) throw new ArgumentException("Invalid length specified.");
 
             if (comparer == null) comparer = Comparer<T>.Default;
@@ -204,10 +204,10 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="DoublyLinkedList{T}"/> when sorted.</returns>
         public static DoublyLinkedList<T> ParallelMergeSort<T>(this DoublyLinkedList<T> list, DoublyLinkedListNode<T> startNode, DoublyLinkedListNode<T> endNode, IComparer<T> comparer)
         {
-            if (startNode == null) throw new ArgumentNullException("startNode");
-            if (endNode == null) throw new ArgumentNullException("endNode");
-            if (startNode.List != list) throw new ArgumentException("startNode doesn't belong to the list!");
-            if (endNode.List != list) throw new ArgumentException("startNode doesnt't belong to the list!");
+            if (startNode == null) throw new ArgumentNullException(nameof(startNode));
+            if (endNode == null) throw new ArgumentNullException(nameof(endNode));
+            if (startNode.List != list) throw new ArgumentException(nameof(startNode) + "doesn't belong to the list!");
+            if (endNode.List != list) throw new ArgumentException(nameof(endNode) + "doesnt't belong to the list!");
 
             if (comparer == null) comparer = Comparer<T>.Default;
 
@@ -409,10 +409,10 @@ namespace DSA.Algorithms.Sorting
         /// <returns>Returns the given <see cref="DoublyLinkedList{T}"/> when sorted.</returns>
         public static DoublyLinkedList<T> ParallelMergeSortDescending<T>(this DoublyLinkedList<T> list, DoublyLinkedListNode<T> startNode, DoublyLinkedListNode<T> endNode, IComparer<T> comparer)
         {
-            if (startNode == null) throw new ArgumentNullException("startNode");
-            if (endNode == null) throw new ArgumentNullException("endNode");
-            if (startNode.List != list) throw new ArgumentException("startNode doesn't belong to the list!");
-            if (endNode.List != list) throw new ArgumentException("startNode doesnt't belong to the list!");
+            if (startNode == null) throw new ArgumentNullException(nameof(startNode));
+            if (endNode == null) throw new ArgumentNullException(nameof(endNode));
+            if (startNode.List != list) throw new ArgumentException(nameof(startNode) + "doesn't belong to the list!");
+            if (endNode.List != list) throw new ArgumentException(nameof(endNode) + "doesnt't belong to the list!");
 
             if (comparer == null) comparer = Comparer<T>.Default;
 
@@ -499,6 +499,7 @@ namespace DSA.Algorithms.Sorting
         /// <param name="list">The <see cref="DoublyLinkedList{T}"/> containing the elements for sorting.</param>
         /// <param name="startNode">The start <see cref="DoublyLinkedListNode{T}"/> of the current split.</param>
         /// <param name="endNode">The end <see cref="DoublyLinkedListNode{T}"/> of the current split.</param>
+        /// <param name="nodeAfterEndNode">The <see cref="DoublyLinkedListNode{T}"/> after the end node. Needed for merging the splits.</param>
         /// <param name="comparer">The <see cref="IComparable{T}"/> implementation used for comparing the elements.</param>
         private static void SequentialSplitMergeDescending<T>(DoublyLinkedList<T> list, DoublyLinkedListNode<T> startNode, DoublyLinkedListNode<T> endNode, DoublyLinkedListNode<T> nodeAfterEndNode, IComparer<T> comparer)
         {

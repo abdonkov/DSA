@@ -124,7 +124,7 @@ namespace DSA.DataStructures.Lists
         /// <summary>
         /// Removes a value from the <see cref="SkipList{T}"/>.
         /// </summary>
-        /// <param name="item">The value to remove from the <see cref="SkipList{T}"/>.</param>
+        /// <param name="value">The value to remove from the <see cref="SkipList{T}"/>.</param>
         /// <returns>true if the value is removed successfully; otherwise false.</returns>
         public bool Remove(T value)
         {
@@ -181,7 +181,7 @@ namespace DSA.DataStructures.Lists
         /// <summary>
         /// Determines whether a value is in the <see cref="SkipList{T}"/>.
         /// </summary>
-        /// <param name="item">The value to search in the <see cref="SkipList{T}"/>.</param>
+        /// <param name="value">The value to search in the <see cref="SkipList{T}"/>.</param>
         /// <returns>returns true if the value is found; otherwise false.</returns>
         public bool Contains(T value)
         {

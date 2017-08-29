@@ -101,9 +101,9 @@ namespace DSA.Algorithms.Searching
         /// <returns>The N-th smallest item in the range of items in the <see cref="IList{T}"/>.</returns>
         public static T QuickSelectSmallest<T>(this IList<T> list, int n, int index, int count, IComparer<T> comparer)
         {
-            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException("index");
-            if (count < 0) throw new ArgumentOutOfRangeException("count");
-            if (n < 1 || n > count) throw new ArgumentOutOfRangeException("n");
+            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException(nameof(index));
+            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
+            if (n < 1 || n > count) throw new ArgumentOutOfRangeException(nameof(n));
             if (index + count > list.Count) throw new ArgumentException("Invalid length specified.");
 
             if (comparer == null) comparer = Comparer<T>.Default;
@@ -130,9 +130,9 @@ namespace DSA.Algorithms.Searching
         /// <returns>The N-th biggest item in the range of items in the <see cref="IList{T}"/>.</returns>
         public static T QuickSelectBiggest<T>(this IList<T> list, int n, int index, int count, IComparer<T> comparer)
         {
-            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException("index");
-            if (count < 0) throw new ArgumentOutOfRangeException("count");
-            if (n < 1 || n > count) throw new ArgumentOutOfRangeException("n");
+            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException(nameof(index));
+            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
+            if (n < 1 || n > count) throw new ArgumentOutOfRangeException(nameof(n));
             if (index + count > list.Count) throw new ArgumentException("Invalid length specified.");
 
             if (comparer == null) comparer = Comparer<T>.Default;
@@ -241,9 +241,9 @@ namespace DSA.Algorithms.Searching
         /// <returns>The N-th smallest item in the range of items in the <see cref="IList{T}"/>.</returns>
         public static T QuickSelectInPlaceSmallest<T>(this IList<T> list, int n, int index, int count, IComparer<T> comparer)
         {
-            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException("index");
-            if (count < 0) throw new ArgumentOutOfRangeException("count");
-            if (n < 1 || n > count) throw new ArgumentOutOfRangeException("n");
+            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException(nameof(index));
+            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
+            if (n < 1 || n > count) throw new ArgumentOutOfRangeException(nameof(n));
             if (index + count > list.Count) throw new ArgumentException("Invalid length specified.");
 
             if (comparer == null) comparer = Comparer<T>.Default;
@@ -341,9 +341,9 @@ namespace DSA.Algorithms.Searching
         /// <returns>The N-th biggest item in the range of items in the <see cref="IList{T}"/>.</returns>
         public static T QuickSelectInPlaceBiggest<T>(this IList<T> list, int n, int index, int count, IComparer<T> comparer)
         {
-            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException("index");
-            if (count < 0) throw new ArgumentOutOfRangeException("count");
-            if (n < 1 || n > count) throw new ArgumentOutOfRangeException("n");
+            if (index < 0 || index >= list.Count) throw new ArgumentOutOfRangeException(nameof(index));
+            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count));
+            if (n < 1 || n > count) throw new ArgumentOutOfRangeException(nameof(n));
             if (index + count > list.Count) throw new ArgumentException("Invalid length specified.");
 
             if (comparer == null) comparer = Comparer<T>.Default;
