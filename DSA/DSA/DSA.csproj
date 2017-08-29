@@ -2,6 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageId>DSA</PackageId>
+    <Version>1.0.0</Version>
+    <Title>Data Structures and Algorithms in C#</Title>
+    <Authors>Alexander Donkov</Authors>
+    <Description>Implementation of some Data Structures and Algorithms in C#</Description>
+    <PackageProjectUrl>https://github.com/abdonkov/DSA</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/abdonkov/DSA/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageTags>DataStructures Algorithms Structures</PackageTags>
+    
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
