@@ -9,7 +9,7 @@ namespace DSA.DataStructures.Arrays
     /// Represents a hashed array tree.
     /// </summary>
     /// <typeparam name="T">The stored data type.</typeparam>
-    public class HashedArrayTree<T> : IEnumerable<T>
+    public class HashedArrayTree<T> : IList<T>
     {
         /// <summary>
         /// The base 2 logarithm of the top array size. Used for bitwise indexing calculations.
@@ -316,7 +316,10 @@ namespace DSA.DataStructures.Arrays
         {
             int index = IndexOf(item);
             if (index != -1)
-                return RemoveAt(index);
+            {
+                RemoveAt(index);
+                return true;
+            }
             else
                 return false;
         }
@@ -326,7 +329,7 @@ namespace DSA.DataStructures.Arrays
         /// </summary>
         /// <param name="index">The index of the item to remove from the <see cref="HashedArrayTree{T}"/>.</param>
         /// <returns>true if the item is removed successfully; otherwise false.</returns>
-        public bool RemoveAt(int index)
+        public void RemoveAt(int index)
         {
             if (index < 0 || index >= Count) throw new IndexOutOfRangeException(nameof(index));
 
@@ -354,8 +357,6 @@ namespace DSA.DataStructures.Arrays
             // we can remove the last allocated array
             if (Count % arrays.Length == 0)
                 arrays[GetTopArrayIndex(Count)] = null;
-
-            return true;
         }
 
         /// <summary>
@@ -452,6 +453,18 @@ namespace DSA.DataStructures.Arrays
             Count = 0;
             Capacity = 4;
             topArrayLog2Size = 1;
+        }
+
+        /// <inheritdoc />
+        public bool IsReadOnly { get; } = false;
+
+        public void CopyTo(T[] array, int arrayIndex)
+        {
+            // TODO: Should use Array.Copy for better performance
+            for (int i = 0; i < Count; i++)
+            {
+                array[arrayIndex + i] = this[i];
+            }
         }
 
         /// <summary>
